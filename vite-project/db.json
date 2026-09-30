@@ -1,0 +1,277 @@
+{
+  "users": [
+    {
+      "id": "u1",
+      "user_id": "u1",
+      "full_name": "Trần Lan",
+      "email": "lan.tran@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash1",
+      "role": "student",
+      "permissions": [],
+      "status": "active",
+      "phone": "0901234567",
+      "created_at": "2026-01-12T02:00:00.000Z",
+      "updated_at": "2026-01-12T02:00:00.000Z"
+    },
+    {
+      "id": "u2",
+      "user_id": "u2",
+      "full_name": "TS. Nguyễn Hải",
+      "email": "hai.nguyen@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash2",
+      "role": "instructor",
+      "permissions": ["course:create", "quiz:create", "question:manage"],
+      "status": "active",
+      "phone": "0909876543",
+      "created_at": "2025-09-03T02:00:00.000Z",
+      "updated_at": "2025-09-03T02:00:00.000Z"
+    },
+    {
+      "id": "u3",
+      "user_id": "u3",
+      "full_name": "ThS. Lê Vy",
+      "email": "vy.le@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash3",
+      "role": "instructor",
+      "permissions": ["course:create", "quiz:create", "question:manage"],
+      "status": "active",
+      "phone": "0912345678",
+      "created_at": "2025-11-17T02:00:00.000Z",
+      "updated_at": "2025-11-17T02:00:00.000Z"
+    },
+    {
+      "id": "u4",
+      "user_id": "u4",
+      "full_name": "TS. Phạm An",
+      "email": "an.pham@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash4",
+      "role": "instructor",
+      "permissions": ["course:create", "quiz:create", "question:manage"],
+      "status": "active",
+      "phone": "0987654321",
+      "created_at": "2026-02-01T02:00:00.000Z",
+      "updated_at": "2026-02-01T02:00:00.000Z"
+    },
+    {
+      "id": "u5",
+      "user_id": "u5",
+      "full_name": "TS. Vũ Khánh",
+      "email": "khanh.vu@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash5",
+      "role": "instructor",
+      "permissions": ["course:create", "quiz:create", "question:manage"],
+      "status": "active",
+      "phone": "0977111222",
+      "created_at": "2025-08-20T02:00:00.000Z",
+      "updated_at": "2025-08-20T02:00:00.000Z"
+    },
+    {
+      "id": "u6",
+      "user_id": "u6",
+      "full_name": "Đặng Minh Quân",
+      "email": "quan.dang@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash6",
+      "role": "student",
+      "permissions": [],
+      "status": "locked",
+      "phone": "0933444555",
+      "created_at": "2026-02-28T02:00:00.000Z",
+      "updated_at": "2026-06-01T02:00:00.000Z"
+    },
+    {
+      "id": "u7",
+      "user_id": "u7",
+      "full_name": "Quản trị viên",
+      "email": "admin@skillbook.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash7",
+      "role": "admin",
+      "permissions": ["*"],
+      "status": "active",
+      "phone": "0900000000",
+      "created_at": "2025-06-01T02:00:00.000Z",
+      "updated_at": "2025-06-01T02:00:00.000Z"
+    }
+  ],
+
+  "courses": [
+    {
+      "id": "c1",
+      "course_id": "c1",
+      "title": "Cấu trúc dữ liệu & Giải thuật",
+      "description": "Nền tảng cấu trúc dữ liệu (danh sách, ngăn xếp, hàng đợi, cây, đồ thị) và các giải thuật cốt lõi.",
+      "status": "published",
+      "created_by": "u2",
+      "thumbnail_url": null,
+      "category": "Khoa học máy tính",
+      "total_chapters": 4,
+      "created_at": "2025-09-05T02:00:00.000Z",
+      "updated_at": "2026-09-19T02:00:00.000Z"
+    },
+    {
+      "id": "c2",
+      "course_id": "c2",
+      "title": "Nhập môn Lập trình",
+      "description": "Khóa học nền tảng cho người mới bắt đầu học lập trình.",
+      "status": "published",
+      "created_by": "u2",
+      "thumbnail_url": null,
+      "category": "Khoa học máy tính",
+      "total_chapters": 3,
+      "created_at": "2025-09-10T02:00:00.000Z",
+      "updated_at": "2026-08-01T02:00:00.000Z"
+    },
+    {
+      "id": "c3",
+      "course_id": "c3",
+      "title": "Xác suất & Thống kê ứng dụng",
+      "description": "Các khái niệm xác suất, thống kê và ứng dụng trong phân tích dữ liệu.",
+      "status": "pending",
+      "created_by": "u4",
+      "thumbnail_url": null,
+      "category": "Toán ứng dụng",
+      "total_chapters": 0,
+      "created_at": "2026-09-21T02:00:00.000Z",
+      "updated_at": "2026-09-21T02:00:00.000Z"
+    },
+    {
+      "id": "c4",
+      "course_id": "c4",
+      "title": "Thuật toán nâng cao",
+      "description": "Các kỹ thuật thiết kế giải thuật nâng cao: chia để trị, quy hoạch động, đồ thị nâng cao.",
+      "status": "pending",
+      "created_by": "u2",
+      "thumbnail_url": null,
+      "category": "Khoa học máy tính",
+      "total_chapters": 0,
+      "created_at": "2026-09-22T09:00:00.000Z",
+      "updated_at": "2026-09-22T09:00:00.000Z"
+    },
+    {
+      "id": "c5",
+      "course_id": "c5",
+      "title": "Hệ quản trị Cơ sở dữ liệu",
+      "description": "Nguyên lý thiết kế và vận hành hệ quản trị CSDL quan hệ.",
+      "status": "removed",
+      "created_by": "u5",
+      "thumbnail_url": null,
+      "category": "Khoa học máy tính",
+      "total_chapters": 5,
+      "created_at": "2025-03-01T02:00:00.000Z",
+      "updated_at": "2026-09-08T02:00:00.000Z"
+    },
+    {
+      "id": "c6",
+      "course_id": "c6",
+      "title": "Lập trình Web nâng cao (React & Node)",
+      "description": "Xây dựng ứng dụng web full-stack với ReactJS, Node.js và REST API.",
+      "status": "published",
+      "created_by": "u3",
+      "thumbnail_url": null,
+      "category": "Phát triển Web",
+      "total_chapters": 6,
+      "created_at": "2025-11-20T02:00:00.000Z",
+      "updated_at": "2026-09-22T03:00:00.000Z"
+    },
+    {
+      "id": "c7",
+      "course_id": "c7",
+      "title": "Kỹ năng thuyết trình & làm việc nhóm",
+      "description": "Kỹ năng mềm: thuyết trình hiệu quả và làm việc nhóm.",
+      "status": "published",
+      "created_by": "u3",
+      "thumbnail_url": null,
+      "category": "Kỹ năng mềm",
+      "total_chapters": 2,
+      "created_at": "2025-10-01T02:00:00.000Z",
+      "updated_at": "2026-01-15T02:00:00.000Z"
+    },
+    {
+      "id": "c8",
+      "course_id": "c8",
+      "title": "Tiếng Anh học thuật IELTS 6.5+",
+      "description": "Luyện thi IELTS học thuật hướng tới mục tiêu 6.5+.",
+      "status": "published",
+      "created_by": "u4",
+      "thumbnail_url": null,
+      "category": "Ngoại ngữ",
+      "total_chapters": 4,
+      "created_at": "2025-12-01T02:00:00.000Z",
+      "updated_at": "2026-09-01T02:00:00.000Z"
+    }
+  ],
+
+  "sessions": [
+    { "id": "s1", "session_id": "s1", "course_id": "c1", "title": "Chương 1 — Danh sách & Ngăn xếp", "description": "Danh sách liên kết, ngăn xếp và hàng đợi.", "order_index": 1, "total_lessons": 4, "status": "published", "created_by": "u2", "created_at": "2025-09-06T02:00:00.000Z", "updated_at": "2025-09-06T02:00:00.000Z" },
+    { "id": "s2", "session_id": "s2", "course_id": "c1", "title": "Chương 2 — Cây", "description": "Cây tổng quát, cây nhị phân tìm kiếm, cây AVL, duyệt cây.", "order_index": 2, "total_lessons": 4, "status": "published", "created_by": "u2", "created_at": "2025-09-13T02:00:00.000Z", "updated_at": "2025-09-13T02:00:00.000Z" },
+    { "id": "s3", "session_id": "s3", "course_id": "c1", "title": "Chương 3 — Đồ thị", "description": "Biểu diễn đồ thị, BFS/DFS, đường đi ngắn nhất.", "order_index": 3, "total_lessons": 3, "status": "published", "created_by": "u2", "created_at": "2025-09-20T02:00:00.000Z", "updated_at": "2025-09-20T02:00:00.000Z" },
+    { "id": "s4", "session_id": "s4", "course_id": "c1", "title": "Chương 4 — Quy hoạch động", "description": "Nguyên lý quy hoạch động và các bài toán kinh điển.", "order_index": 4, "total_lessons": 3, "status": "published", "created_by": "u2", "created_at": "2025-09-27T02:00:00.000Z", "updated_at": "2025-09-27T02:00:00.000Z" },
+    { "id": "s5", "session_id": "s5", "course_id": "c6", "title": "Chương 1 — Nhập môn React", "description": "Component, props, state, JSX.", "order_index": 1, "total_lessons": 5, "status": "published", "created_by": "u3", "created_at": "2025-11-21T02:00:00.000Z", "updated_at": "2025-11-21T02:00:00.000Z" }
+  ],
+
+  "lessons": [
+    { "id": "l1", "lesson_id": "l1", "session_id": "s1", "title": "Danh sách liên kết đơn", "content": "Khái niệm, cài đặt và thao tác cơ bản trên danh sách liên kết đơn.", "content_type": "text", "order_index": 1, "estimated_minutes": 20, "status": "published", "created_by": "u2", "created_at": "2025-09-06T02:00:00.000Z", "updated_at": "2025-09-06T02:00:00.000Z" },
+    { "id": "l2", "lesson_id": "l2", "session_id": "s1", "title": "Danh sách liên kết đôi", "content": "So sánh với danh sách liên kết đơn và các thao tác chèn/xóa hai chiều.", "content_type": "text", "order_index": 2, "estimated_minutes": 20, "status": "published", "created_by": "u2", "created_at": "2025-09-06T02:00:00.000Z", "updated_at": "2025-09-06T02:00:00.000Z" },
+    { "id": "l3", "lesson_id": "l3", "session_id": "s1", "title": "Ngăn xếp (Stack)", "content": "Nguyên tắc LIFO, cài đặt bằng mảng và danh sách liên kết.", "content_type": "text", "order_index": 3, "estimated_minutes": 18, "status": "published", "created_by": "u2", "created_at": "2025-09-07T02:00:00.000Z", "updated_at": "2025-09-07T02:00:00.000Z" },
+    { "id": "l4", "lesson_id": "l4", "session_id": "s1", "title": "Hàng đợi (Queue)", "content": "Nguyên tắc FIFO, cài đặt hàng đợi vòng.", "content_type": "text", "order_index": 4, "estimated_minutes": 18, "status": "published", "created_by": "u2", "created_at": "2025-09-07T02:00:00.000Z", "updated_at": "2025-09-07T02:00:00.000Z" },
+    { "id": "l5", "lesson_id": "l5", "session_id": "s2", "title": "Khái niệm cây tổng quát", "content": "Định nghĩa cây, nút gốc, nút lá, độ sâu, độ cao.", "content_type": "text", "order_index": 1, "estimated_minutes": 15, "status": "published", "created_by": "u2", "created_at": "2025-09-13T02:00:00.000Z", "updated_at": "2025-09-13T02:00:00.000Z" },
+    {
+      "id": "l6",
+      "lesson_id": "l6",
+      "session_id": "s2",
+      "title": "Cây nhị phân tìm kiếm (BST)",
+      "content": "Cây nhị phân tìm kiếm là cấu trúc dữ liệu dạng cây trong đó mỗi nút có tối đa hai nút con, và với mọi nút: giá trị các nút bên trái nhỏ hơn nút cha, giá trị các nút bên phải lớn hơn nút cha.\n\nBa thao tác cơ bản:\n- Tìm kiếm — so sánh và rẽ nhánh trái/phải, độ phức tạp trung bình O(log n).\n- Chèn — tìm vị trí phù hợp theo tính chất BST rồi thêm nút lá mới.\n- Xóa — xử lý 3 trường hợp: nút lá, nút có 1 con, nút có 2 con.\n\nVì sao độ cân bằng quan trọng? Nếu dữ liệu được chèn theo thứ tự đã sắp xếp, BST suy biến thành danh sách liên kết — độ phức tạp tìm kiếm rơi về O(n). Đây là lý do bài tiếp theo giới thiệu cây AVL tự cân bằng.",
+      "content_type": "text",
+      "order_index": 2,
+      "estimated_minutes": 25,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-14T02:00:00.000Z",
+      "updated_at": "2025-09-14T02:00:00.000Z"
+    },
+    { "id": "l7", "lesson_id": "l7", "session_id": "s2", "title": "Cây cân bằng AVL", "content": "Hệ số cân bằng, các phép xoay đơn/kép.", "content_type": "text", "order_index": 3, "estimated_minutes": 25, "status": "published", "created_by": "u2", "created_at": "2025-09-14T02:00:00.000Z", "updated_at": "2025-09-14T02:00:00.000Z" },
+    { "id": "l8", "lesson_id": "l8", "session_id": "s2", "title": "Duyệt cây (DFS/BFS)", "content": "Duyệt theo chiều sâu (pre/in/post-order) và theo chiều rộng.", "content_type": "text", "order_index": 4, "estimated_minutes": 20, "status": "published", "created_by": "u2", "created_at": "2025-09-15T02:00:00.000Z", "updated_at": "2025-09-15T02:00:00.000Z" }
+  ],
+
+  "questions": [
+    { "id": "q1", "question_id": "q1", "session_id": "s1", "content": "Ngăn xếp (Stack) hoạt động theo nguyên tắc nào?", "options": ["LIFO — vào sau ra trước", "FIFO — vào trước ra trước", "Ngẫu nhiên", "Theo độ ưu tiên"], "correct_answer": 0, "explanation": "Stack tuân theo nguyên tắc LIFO (Last In, First Out) — phần tử được thêm vào sau cùng sẽ được lấy ra đầu tiên, giống chồng đĩa.", "difficulty": "easy", "created_by": "u2", "created_at": "2025-09-08T02:00:00.000Z", "updated_at": "2025-09-08T02:00:00.000Z" },
+    { "id": "q2", "question_id": "q2", "session_id": "s1", "content": "Thao tác nào KHÔNG phải là thao tác cơ bản của Hàng đợi (Queue)?", "options": ["peek()", "sort() — sắp xếp toàn bộ hàng đợi", "enqueue()", "dequeue()"], "correct_answer": 1, "explanation": "Queue chuẩn chỉ hỗ trợ enqueue, dequeue và peek. sort() không phải thao tác cơ bản vì nó phá vỡ thứ tự FIFO của cấu trúc.", "difficulty": "medium", "created_by": "u2", "created_at": "2025-09-08T02:00:00.000Z", "updated_at": "2025-09-08T02:00:00.000Z" },
+    { "id": "q3", "question_id": "q3", "session_id": "s2", "content": "Trong cây nhị phân tìm kiếm (BST), phần tử nhỏ nhất nằm ở đâu?", "options": ["Nút gốc của cây", "Nút lá tận cùng bên phải", "Nút lá tận cùng bên trái", "Không xác định được"], "correct_answer": 2, "explanation": "Phần tử nhỏ nhất trong BST luôn nằm ở nút lá tận cùng bên trái.", "difficulty": "medium", "created_by": "u2", "created_at": "2025-09-15T02:00:00.000Z", "updated_at": "2025-09-15T02:00:00.000Z" },
+    { "id": "q4", "question_id": "q4", "session_id": "s2", "content": "Độ phức tạp trung bình của thao tác tìm kiếm trên BST cân bằng với n phần tử là gì?", "options": ["O(log n)", "O(n)", "O(n log n)", "O(1)"], "correct_answer": 0, "explanation": "Với cây cân bằng, độ phức tạp trung bình của tìm kiếm là O(log n).", "difficulty": "medium", "created_by": "u2", "created_at": "2025-09-15T02:00:00.000Z", "updated_at": "2025-09-15T02:00:00.000Z" },
+    { "id": "q5", "question_id": "q5", "session_id": "s2", "content": "Khi nào một BST suy biến thành danh sách liên kết, khiến độ phức tạp tìm kiếm là O(n)?", "options": ["Khi cây có số lẻ phần tử", "Khi dữ liệu được chèn theo thứ tự đã sắp xếp", "Khi cây được xóa nhiều lần", "Không bao giờ xảy ra"], "correct_answer": 1, "explanation": "Nếu dữ liệu được chèn theo thứ tự đã sắp xếp, BST suy biến thành một danh sách liên kết.", "difficulty": "hard", "created_by": "u2", "created_at": "2025-09-15T02:00:00.000Z", "updated_at": "2025-09-15T02:00:00.000Z" },
+    { "id": "q6", "question_id": "q6", "session_id": "s2", "content": "Chọn tất cả các thuật toán duyệt cây hợp lệ.", "options": ["Pre-order", "Post-order", "Quick-order", "In-order"], "correct_answer": [0, 1, 3], "explanation": "Pre-order, In-order và Post-order là các thuật toán duyệt cây hợp lệ; Quick-order không tồn tại.", "difficulty": "medium", "created_by": "u2", "created_at": "2025-09-16T02:00:00.000Z", "updated_at": "2025-09-16T02:00:00.000Z" },
+    { "id": "q7", "question_id": "q7", "session_id": "s3", "content": "Độ phức tạp thời gian của thuật toán Dijkstra với heap nhị phân là gì?", "options": ["O(V^2)", "O((V+E) log V)", "O(E log E)", "O(V log E)"], "correct_answer": 1, "explanation": "Với cài đặt bằng heap nhị phân, độ phức tạp của Dijkstra là O((V+E) log V).", "difficulty": "hard", "created_by": "u2", "created_at": "2025-09-21T02:00:00.000Z", "updated_at": "2025-09-21T02:00:00.000Z" },
+    { "id": "q8", "question_id": "q8", "session_id": "s4", "content": "Bài toán cái túi 0/1 thuộc nhóm kỹ thuật nào?", "options": ["Chia để trị", "Quy hoạch động", "Tham lam", "Vét cạn"], "correct_answer": 1, "explanation": "Bài toán cái túi 0/1 là bài toán kinh điển được giải bằng quy hoạch động.", "difficulty": "easy", "created_by": "u2", "created_at": "2025-09-28T02:00:00.000Z", "updated_at": "2025-09-28T02:00:00.000Z" }
+  ],
+
+  "quizzes": [
+    { "id": "quiz1", "quiz_id": "quiz1", "session_id": "s1", "title": "Quiz Chương 1 — Danh sách & Ngăn xếp", "question_ids": ["q1", "q2"], "time_limit_minutes": 15, "status": "published", "pass_score": 5, "created_by": "u2", "created_at": "2025-09-09T02:00:00.000Z", "updated_at": "2025-09-09T02:00:00.000Z" },
+    { "id": "quiz2", "quiz_id": "quiz2", "session_id": "s2", "title": "Quiz Chương 2 — Cây & BST", "question_ids": ["q3", "q4", "q5", "q6"], "time_limit_minutes": 20, "status": "published", "pass_score": 5, "created_by": "u2", "created_at": "2025-09-17T02:00:00.000Z", "updated_at": "2026-08-26T01:00:00.000Z" },
+    { "id": "quiz3", "quiz_id": "quiz3", "session_id": "s3", "title": "Quiz Chương 3 — Đồ thị", "question_ids": ["q7"], "time_limit_minutes": 25, "status": "scheduled", "pass_score": 5, "created_by": "u2", "created_at": "2025-09-22T02:00:00.000Z", "updated_at": "2026-09-02T01:00:00.000Z" },
+    { "id": "quiz4", "quiz_id": "quiz4", "session_id": "s4", "title": "Quiz Chương 4 — Quy hoạch động", "question_ids": ["q8"], "time_limit_minutes": 15, "status": "scheduled", "pass_score": 5, "created_by": "u2", "created_at": "2025-09-29T02:00:00.000Z", "updated_at": "2026-09-09T01:00:00.000Z" }
+  ],
+
+  "enrollments": [
+    { "id": "e1", "enrollment_id": "e1", "user_id": "u1", "course_id": "c1", "status": "active", "enrolled_at": "2026-07-01T02:00:00.000Z", "completed_at": null, "completion_rate": 42, "average_quiz_score": 9.0, "created_at": "2026-07-01T02:00:00.000Z", "updated_at": "2026-09-20T02:00:00.000Z" },
+    { "id": "e2", "enrollment_id": "e2", "user_id": "u1", "course_id": "c6", "status": "active", "enrolled_at": "2026-06-15T02:00:00.000Z", "completed_at": null, "completion_rate": 45, "average_quiz_score": 7.0, "created_at": "2026-06-15T02:00:00.000Z", "updated_at": "2026-09-18T02:00:00.000Z" },
+    { "id": "e3", "enrollment_id": "e3", "user_id": "u1", "course_id": "c7", "status": "completed", "enrolled_at": "2026-02-01T02:00:00.000Z", "completed_at": "2026-04-20T02:00:00.000Z", "completion_rate": 100, "average_quiz_score": 9.1, "created_at": "2026-02-01T02:00:00.000Z", "updated_at": "2026-04-20T02:00:00.000Z" },
+    { "id": "e4", "enrollment_id": "e4", "user_id": "u1", "course_id": "c8", "status": "active", "enrolled_at": "2026-09-01T02:00:00.000Z", "completed_at": null, "completion_rate": 8, "average_quiz_score": null, "created_at": "2026-09-01T02:00:00.000Z", "updated_at": "2026-09-10T02:00:00.000Z" }
+  ],
+
+  "progress": [
+    { "id": "p1", "progress_id": "p1", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l1", "is_completed": true, "completed_at": "2026-07-02T02:00:00.000Z", "time_spent_seconds": 1100, "last_accessed_at": "2026-07-02T02:00:00.000Z", "created_at": "2026-07-01T02:00:00.000Z", "updated_at": "2026-07-02T02:00:00.000Z" },
+    { "id": "p2", "progress_id": "p2", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l2", "is_completed": true, "completed_at": "2026-07-03T02:00:00.000Z", "time_spent_seconds": 980, "last_accessed_at": "2026-07-03T02:00:00.000Z", "created_at": "2026-07-02T02:00:00.000Z", "updated_at": "2026-07-03T02:00:00.000Z" },
+    { "id": "p3", "progress_id": "p3", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l3", "is_completed": true, "completed_at": "2026-07-05T02:00:00.000Z", "time_spent_seconds": 890, "last_accessed_at": "2026-07-05T02:00:00.000Z", "created_at": "2026-07-04T02:00:00.000Z", "updated_at": "2026-07-05T02:00:00.000Z" },
+    { "id": "p4", "progress_id": "p4", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l4", "is_completed": false, "completed_at": null, "time_spent_seconds": 120, "last_accessed_at": "2026-09-20T02:00:00.000Z", "created_at": "2026-09-20T02:00:00.000Z", "updated_at": "2026-09-20T02:00:00.000Z" },
+    { "id": "p5", "progress_id": "p5", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l5", "is_completed": true, "completed_at": "2026-09-10T02:00:00.000Z", "time_spent_seconds": 700, "last_accessed_at": "2026-09-10T02:00:00.000Z", "created_at": "2026-09-09T02:00:00.000Z", "updated_at": "2026-09-10T02:00:00.000Z" },
+    { "id": "p6", "progress_id": "p6", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l6", "is_completed": false, "completed_at": null, "time_spent_seconds": 340, "last_accessed_at": "2026-09-22T02:00:00.000Z", "created_at": "2026-09-21T02:00:00.000Z", "updated_at": "2026-09-22T02:00:00.000Z" }
+  ],
+
+  "attempts": [
+    { "id": "a1", "attempt_id": "a1", "quiz_id": "quiz1", "user_id": "u1", "enrollment_id": "e1", "status": "submitted", "score": 9, "started_at": "2026-09-15T08:00:00.000Z", "submitted_at": "2026-09-15T08:09:42.000Z", "duration_seconds": 582, "created_at": "2026-09-15T08:00:00.000Z" }
+  ],
+
+  "answers": [
+    { "id": "an1", "answer_id": "an1", "attempt_id": "a1", "question_id": "q1", "selected_option": 0, "is_correct": true, "answered_at": "2026-09-15T08:03:10.000Z", "time_spent_seconds": 40, "view_explanation_count": 0, "created_at": "2026-09-15T08:03:10.000Z", "updated_at": "2026-09-15T08:03:10.000Z" },
+    { "id": "an2", "answer_id": "an2", "attempt_id": "a1", "question_id": "q2", "selected_option": 0, "is_correct": false, "answered_at": "2026-09-15T08:06:45.000Z", "time_spent_seconds": 55, "view_explanation_count": 1, "created_at": "2026-09-15T08:06:45.000Z", "updated_at": "2026-09-15T08:06:45.000Z" }
+  ]
+}

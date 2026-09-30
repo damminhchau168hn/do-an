@@ -1,0 +1,163 @@
+:root {
+  --ink: #1a1a1a;
+  --ink-soft: #5c5c5c;
+  --paper: #fdfcf9;
+  --paper-dim: #f3f1ea;
+  --clay: #c8553d;
+  --teal: #2f6f6a;
+  --amber: #e0a458;
+  --line: #e3e0d6;
+  --card: #ffffff;
+  --radius: 12px;
+  --error: #c0392b;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: 'IBM Plex Sans', sans-serif;
+}
+
+h1, h2, h3 { font-family: 'Fraunces', serif; margin: 0; }
+code, .mono { font-family: 'IBM Plex Mono', monospace; }
+
+.btn {
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 14px;
+}
+.btn-primary { background: var(--teal); color: #fff; border-color: var(--teal); }
+.btn-ghost { background: transparent; }
+.btn-danger { background: var(--error); color: #fff; border-color: var(--error); }
+
+.stat-row { display: flex; gap: 16px; margin-bottom: 20px; }
+.stat-tile {
+  flex: 1;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+.stat-tile .num { font-size: 28px; font-weight: 600; font-family: 'Fraunces', serif; }
+.stat-tile .label { color: var(--ink-soft); font-size: 13px; }
+
+.filter-bar { display: flex; gap: 12px; align-items: center; margin-bottom: 16px; flex-wrap: wrap; }
+.search-box {
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-width: 220px;
+}
+.chip {
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  cursor: pointer;
+  font-size: 13px;
+}
+.chip.active { background: var(--ink); color: #fff; border-color: var(--ink); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.table { width: 100%; border-collapse: collapse; }
+.table th, .table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--line);
+  font-size: 14px;
+}
+.table th { color: var(--ink-soft); font-weight: 500; font-size: 12px; text-transform: uppercase; }
+
+.mini-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--paper-dim);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; margin-right: 8px;
+}
+
+.role-select {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 500;
+}
+.badge-pending { background: #fdf1e0; color: var(--amber); }
+.badge-published { background: #e5f2f0; color: var(--teal); }
+.badge-removed { background: #fbe9e7; color: var(--error); }
+.badge-active { background: #e5f2f0; color: var(--teal); }
+.badge-locked { background: #f0f0f0; color: var(--ink-soft); }
+
+.pagination { display: flex; gap: 8px; margin-top: 16px; justify-content: flex-end; }
+.page-btn-nav {
+  padding: 6px 14px;
+  border-radius: 6px;
+  border: 1px solid var(--line);
+  background: var(--card);
+  cursor: pointer;
+}
+.page-btn-nav:disabled { opacity: 0.4; cursor: default; }
+
+.state-block { padding: 40px; text-align: center; color: var(--ink-soft); }
+.state-block.error { color: var(--error); }
+
+.app-header {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 16px 32px;
+  border-bottom: 1px solid var(--line);
+  background: var(--card);
+}
+.app-header nav { display: flex; gap: 20px; }
+.app-header nav a { color: var(--ink-soft); text-decoration: none; font-size: 14px; padding: 6px 0; }
+.app-header nav a.active { color: var(--ink); font-weight: 600; border-bottom: 2px solid var(--clay); }
+
+.page-container { padding: 32px; max-width: 1100px; margin: 0 auto; }
+.wrap { padding: 32px; max-width: 1100px; margin: 0 auto; }
+
+.eyebrow {
+  text-transform: uppercase;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.stat-tile .lab { color: var(--ink-soft); font-size: 13px; margin-bottom: 4px; }
+
+.search-box input {
+  border: none;
+  outline: none;
+  background: transparent;
+  min-width: 220px;
+  font-size: 14px;
+}
+
+.badge-ink { background: var(--paper-dim); color: var(--ink); }
+.badge-teal { background: #e5f2f0; color: var(--teal); }
+.badge-error { background: #fbe9e7; color: var(--error); }
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 16px;
+}
+.pagination-info { color: var(--ink-soft); font-size: 13px; }
+.pagination-controls { display: flex; gap: 8px; }
