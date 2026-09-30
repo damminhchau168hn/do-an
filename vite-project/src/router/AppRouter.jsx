@@ -4,6 +4,9 @@ import Footer from '../components/layout/Footer';
 import UserManagementPage from '../pages/admin/UserManagementPage';
 import CourseApprovalPage from '../pages/admin/CourseApprovalPage';
 import InstructorDashboard from '../pages/instructor/InstructorDashboard';
+import QuizList from '../pages/quiz/QuizList';
+import QuizDoing from '../pages/quiz/QuizDoing';
+import QuizResult from '../pages/quiz/QuizResult';
 
 function AdminTabs() {
   const location = useLocation();
@@ -31,6 +34,9 @@ export default function AppRouter() {
         <Route path="/admin/users" element={<UserManagementPage />} />
         <Route path="/admin/courses" element={<CourseApprovalPage />} />
         <Route path="/dashboard" element={<InstructorDashboard />} />
+        <Route path="/quiz-list" element={<QuizList />} />
+        <Route path="/quiz-doing" element={<QuizDoing />} />
+        <Route path="/quiz-result" element={<QuizResult />} />
       </Routes>
       <Footer />
     </BrowserRouter>
