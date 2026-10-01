@@ -1,451 +1,280 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link, useLocation, useParams } from "react-router-dom";
 import "../../styles/QuizResult.css";
 
-function QuizResult() {
-  const dialRef = useRef(null);
+const API = "http://localhost:3001";
+const LETTERS = ["A", "B", "C", "D", "E", "F"];
+const TEAL = "#1f7a6c";
+const CLAY = "#b84b2a";
 
-  const [result, setResult] = useState({
-    correctCount: 0,
-    totalQuestions: 10,
-    percent: 0,
-    answers: {},
-  });
+/* ================= Chuẩn hóa câu hỏi từ API =================
+   Nếu tên trường trong db.json của bạn khác, chỉ cần sửa hàm này. */
+function optionText(o) {
+  const t = typeof o === "string" ? o : o.text ?? o.content ?? o.label ?? o.value ?? "";
+  return String(t).replace(/^[A-F][.)]\s*/, "");
+}
 
-  // Danh sách câu hỏi + đáp án đúng
-  const questions = [
-    {
-      id: 1,
-      text: "Ngăn xếp (Stack) hoạt động theo nguyên tắc nào?",
-      options: [
-        ["A", "FIFO — vào trước ra trước"],
-        ["B", "LIFO — vào sau ra trước"],
-        ["C", "Ngẫu nhiên"],
-        ["D", "Theo độ ưu tiên"],
-      ],
-      correctAnswer: "B",
-      explanation:
-        "Stack tuân theo nguyên tắc LIFO (Last In, First Out) — phần tử được thêm vào sau cùng sẽ được lấy ra đầu tiên.",
-    },
+function normalizeQuestion(q) {
+  const raw = q.options ?? q.answers ?? q.choices ?? [];
+  const options = raw.map(optionText);
 
-    {
-      id: 2,
-      text: "Thao tác nào dùng để thêm một phần tử vào Stack?",
-      options: [
-        ["A", "Push"],
-        ["B", "Pop"],
-        ["C", "Peek"],
-        ["D", "Delete"],
-      ],
-      correctAnswer: "A",
-      explanation:
-        "Push là thao tác dùng để thêm một phần tử vào đỉnh của Stack.",
-    },
+  // 1) đáp án có cờ is_correct / correct
+  let correctIndex = raw.findIndex(
+    (o) => typeof o === "object" && (o.is_correct || o.isCorrect || o.correct)
+  );
 
-    {
-      id: 3,
-      text: "Thao tác nào dùng để lấy phần tử trên cùng của Stack?",
-      options: [
-        ["A", "Push"],
-        ["B", "Peek"],
-        ["C", "Pop"],
-        ["D", "Insert"],
-      ],
-      correctAnswer: "C",
-      explanation:
-        "Pop dùng để lấy và xóa phần tử ở trên cùng của Stack.",
-    },
-
-    {
-      id: 4,
-      text: "Phần tử nào được lấy ra đầu tiên trong Stack?",
-      options: [
-        ["A", "Phần tử đầu tiên được thêm"],
-        ["B", "Phần tử ở giữa"],
-        ["C", "Phần tử nhỏ nhất"],
-        ["D", "Phần tử được thêm cuối cùng"],
-      ],
-      correctAnswer: "D",
-      explanation:
-        "Stack hoạt động theo LIFO nên phần tử được thêm cuối cùng sẽ được lấy ra đầu tiên.",
-    },
-
-    {
-      id: 5,
-      text: "Thao tác Peek trong Stack dùng để làm gì?",
-      options: [
-        ["A", "Xóa toàn bộ Stack"],
-        ["B", "Xem phần tử trên cùng nhưng không xóa"],
-        ["C", "Thêm phần tử"],
-        ["D", "Sắp xếp Stack"],
-      ],
-      correctAnswer: "B",
-      explanation:
-        "Peek cho phép xem phần tử trên cùng của Stack mà không xóa phần tử đó.",
-    },
-
-    {
-      id: 6,
-      text: "Khi nào Stack được gọi là rỗng?",
-      options: [
-        ["A", "Khi không có phần tử nào"],
-        ["B", "Khi có một phần tử"],
-        ["C", "Khi có nhiều phần tử"],
-        ["D", "Khi Stack đầy"],
-      ],
-      correctAnswer: "A",
-      explanation:
-        "Stack rỗng khi không chứa bất kỳ phần tử nào.",
-    },
-
-    {
-      id: 7,
-      text: "Hàng đợi (Queue) hoạt động theo nguyên tắc nào?",
-      options: [
-        ["A", "LIFO"],
-        ["B", "FIFO"],
-        ["C", "Ngẫu nhiên"],
-        ["D", "Theo độ ưu tiên"],
-      ],
-      correctAnswer: "B",
-      explanation:
-        "Queue hoạt động theo nguyên tắc FIFO — phần tử vào trước sẽ được lấy ra trước.",
-    },
-
-    {
-      id: 8,
-      text: "Thao tác thêm phần tử vào Queue được gọi là gì?",
-      options: [
-        ["A", "Pop"],
-        ["B", "Dequeue"],
-        ["C", "Enqueue"],
-        ["D", "Peek"],
-      ],
-      correctAnswer: "C",
-      explanation:
-        "Enqueue là thao tác thêm một phần tử vào cuối Queue.",
-    },
-
-    {
-      id: 9,
-      text: "Stack thường được sử dụng để hỗ trợ vấn đề nào?",
-      options: [
-        ["A", "Quản lý lời gọi hàm"],
-        ["B", "Lưu trữ dữ liệu cố định"],
-        ["C", "Sắp xếp bảng"],
-        ["D", "Kết nối mạng"],
-      ],
-      correctAnswer: "A",
-      explanation:
-        "Stack thường được sử dụng để quản lý các lời gọi hàm trong chương trình.",
-    },
-
-    {
-      id: 10,
-      text: "Điều gì xảy ra khi Pop một Stack đang rỗng?",
-      options: [
-        ["A", "Overflow"],
-        ["B", "Underflow"],
-        ["C", "Reset"],
-        ["D", "Nothing"],
-      ],
-      correctAnswer: "B",
-      explanation:
-        "Thực hiện Pop trên Stack rỗng gây ra tình trạng Underflow.",
-    },
-  ];
-
-  // Lấy kết quả đã lưu
-  useEffect(() => {
-    const savedResult = localStorage.getItem("quizResult");
-
-    if (savedResult) {
-      setResult(JSON.parse(savedResult));
+  // 2) trường đáp án đúng ở cấp câu hỏi: số (bắt đầu từ 0), chữ "A", hoặc nội dung đáp án
+  if (correctIndex < 0) {
+    const v =
+      q.correct_answer ??
+      q.correct_option ??
+      q.correct_index ??
+      q.correctAnswer ??
+      q.answer ??
+      q.correct;
+    if (typeof v === "number") {
+      correctIndex = v;
+    } else if (typeof v === "string") {
+      const s = v.trim();
+      if (/^[A-F]$/i.test(s)) {
+        correctIndex = LETTERS.indexOf(s.toUpperCase());
+      } else {
+        const target = s.replace(/^[A-F][.)]\s*/, "").toLowerCase();
+        correctIndex = options.findIndex((t) => t.trim().toLowerCase() === target);
+      }
     }
+  }
+
+  return {
+    id: q.id,
+    text: q.content ?? q.question_text ?? q.question ?? q.text ?? q.title ?? "",
+    options,
+    correctIndex,
+    explain: q.explanation ?? q.solution ?? q.explain ?? "",
+  };
+}
+
+function formatTime(total) {
+  const m = String(Math.floor(total / 60)).padStart(2, "0");
+  const s = String(total % 60).padStart(2, "0");
+  return `${m}:${s}`;
+}
+
+/* ================= Vòng tròn điểm ================= */
+function Dial({ percent, color, sub, size = 140 }) {
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setReady(true));
+    return () => cancelAnimationFrame(id);
   }, []);
 
-  const percent = result.percent;
-
-  const size = 140;
   const stroke = size / 9;
-  const radius = (size - stroke) / 2;
-
-  const circumference = 2 * Math.PI * radius;
-
-  const offset =
-    circumference -
-    (percent / 100) * circumference;
-
-  // Animation vòng tròn
-  useEffect(() => {
-    const dial = dialRef.current;
-
-    if (!dial) return;
-
-    const valueCircle =
-      dial.querySelector(".dial-value");
-
-    if (!valueCircle) return;
-
-    requestAnimationFrame(() => {
-      valueCircle.style.strokeDashoffset = offset;
-    });
-  }, [offset]);
+  const r = (size - stroke) / 2;
+  const c = 2 * Math.PI * r;
+  const offset = ready ? c - (percent / 100) * c : c;
 
   return (
-    <div className="quiz-result">
-
-      {/* HEADER */}
-      <header className="site">
-        <div className="nav-row">
-
-          <a href="/" className="logo">
-            Skill<span>book</span>
-          </a>
-
-          <a
-            href="/quiz-list"
-            className="course-crumb"
-          >
-            ← Danh sách quiz
-          </a>
-
-          <div className="avatar">
-            TL
-          </div>
-
-        </div>
-      </header>
-
-
-      {/* RESULT */}
-      <div className="result-hero">
-
-        <p className="eyebrow">
-          Quiz Chương 1 — Danh sách & Ngăn xếp
-        </p>
-
-
-        {/* VÒNG TRÒN % */}
-        <div className="dial-wrap">
-
-          <div
-            className="dial"
-            ref={dialRef}
-            style={{
-              width: size,
-              height: size,
-            }}
-          >
-
-            <svg
-              width={size}
-              height={size}
-              viewBox={`0 0 ${size} ${size}`}
-            >
-
-              <circle
-                className="dial-track"
-                cx={size / 2}
-                cy={size / 2}
-                r={radius}
-                strokeWidth={stroke}
-              />
-
-              <circle
-                className="dial-value"
-                cx={size / 2}
-                cy={size / 2}
-                r={radius}
-                strokeWidth={stroke}
-                stroke="var(--teal)"
-                strokeDasharray={circumference}
-                strokeDashoffset={circumference}
-              />
-
-            </svg>
-
-
-            <div className="dial-label">
-
-              <div className="percent">
-                <span className="percent-number">
-                  {percent}
-                </span>
-
-                <span className="percent-symbol">
-                  %
-                </span>
-              </div>
-
-              <span className="dial-sub">
-                {result.correctCount}/
-                {result.totalQuestions} câu đúng
-              </span>
-
-            </div>
-
-          </div>
-
-        </div>
-
-
-        <h1>
-          Gút dóp
-        </h1>
-
-
-        {/* THÔNG TIN */}
-        <div className="result-meta">
-
-          <div>
-            <b>10:30</b>
-            <span>
-              Thời gian làm bài
-            </span>
-          </div>
-
-          <div>
-            <b>
-              {result.correctCount}/
-              {result.totalQuestions}
-            </b>
-
-            <span>
-              Câu trả lời đúng
-            </span>
-          </div>
-
-          <div>
-            <b>1/1</b>
-
-            <span>
-              Lượt đã dùng
-            </span>
-          </div>
-
-        </div>
-
+    <div className="qr-dial" style={{ width: size, height: size }}>
+      <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+        <circle
+          className="qr-dial-track"
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          strokeWidth={stroke}
+        />
+        <circle
+          className="qr-dial-value"
+          cx={size / 2}
+          cy={size / 2}
+          r={r}
+          strokeWidth={stroke}
+          stroke={color}
+          strokeDasharray={c}
+          strokeDashoffset={offset}
+        />
+      </svg>
+      <div className="qr-dial-label" style={{ color }}>
+        <span>
+          {Math.round(percent)}
+          <small>%</small>
+        </span>
+        {sub && <span className="qr-dial-sub">{sub}</span>}
       </div>
+    </div>
+  );
+}
 
+/* ================= Trang kết quả ================= */
+function QuizResult() {
+  const { quizId } = useParams();
+  const location = useLocation();
+  const submitted = location.state; // { answers, elapsed } do QuizDoing truyền sang
+  const answers = submitted?.answers ?? {};
 
-      {/* XEM LẠI ĐÁP ÁN */}
-      <main>
+  const [quiz, setQuiz] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
-        <div className="wrap">
+  useEffect(() => {
+    let cancelled = false;
 
-          <h2 className="section-head">
-            Xem lại đáp án
-          </h2>
+    async function load() {
+      try {
+        const { data: quizData } = await axios.get(`${API}/quizzes/${quizId}`);
+        const list = await Promise.all(
+          (quizData.question_ids ?? []).map((id) =>
+            axios.get(`${API}/questions/${id}`).then((r) => r.data)
+          )
+        );
+        console.log("Kết quả — câu hỏi:", list, "Đáp án đã chọn:", answers);
 
+        if (cancelled) return;
+        setQuiz(quizData);
+        setQuestions(list.map(normalizeQuestion));
+      } catch (err) {
+        console.error("Lỗi:", err);
+        if (!cancelled) setError("Không thể tải kết quả");
+      } finally {
+        if (!cancelled) setLoading(false);
+      }
+    }
 
-          {questions.map((question) => {
+    load();
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [quizId]);
 
-            const userAnswer =
-              result.answers?.[`q${question.id}`];
+  if (loading || error || !quiz) {
+    return (
+        <div className="qr-page">
+          <div className="qr-wrap qr-state">
+            {loading ? "Đang tải kết quả..." : error || "Không tìm thấy bài quiz."}
+          </div>
+        </div>
+    );
+  }
 
-            return (
-              <div
-                className="q-card"
-                key={question.id}
-              >
+  if (!submitted) {
+    return (
+        <div className="qr-page">
+          <div className="qr-wrap qr-state">
+            Chưa có bài làm nào để hiển thị.
+            <div className="qr-actions">
+              <Link to="/quiz-list" className="qr-btn primary">
+                Về danh sách quiz
+              </Link>
+            </div>
+          </div>
+        </div>
+    );
+  }
 
-                <div className="q-num">
-                  CÂU {question.id} /{" "}
-                  {result.totalQuestions}
-                </div>
+  /* ----- Chấm điểm ----- */
+  const total = questions.length;
+  const correct = questions.filter(
+    (q) => q.correctIndex >= 0 && answers[q.id] === q.correctIndex
+  ).length;
+  const ungraded = questions.filter((q) => q.correctIndex < 0).length;
+  const percent = total ? (correct / total) * 100 : 0;
+  const score10 = total ? Math.round((correct / total) * 100) / 10 : 0; // thang 10
+  const passScore = Number(quiz.pass_score ?? 0);
+  const passed = score10 >= passScore;
+  const color = passed ? TEAL : CLAY;
 
-                <div className="q-text">
-                  {question.text}
-                </div>
+  return (
+      <div className="qr-page">
+        <div className="qr-hero">
+          <p className="qr-eyebrow">{quiz.title}</p>
 
+          <div className="qr-dial-wrap">
+            <Dial percent={percent} color={color} sub={`${correct}/${total} câu đúng`} />
+          </div>
 
-                {/* CÁC ĐÁP ÁN */}
-                {question.options.map(
-                  ([letter, text]) => {
+          <h1 className="qr-title">
+            {passed ? "Chúc mừng, bạn đã đạt!" : "Chưa đạt, hãy thử lại nhé!"}
+          </h1>
 
-                    const isCorrect =
-                      letter ===
-                      question.correctAnswer;
+          <div className="qr-meta">
+            <div>
+              <b>{submitted.elapsed != null ? formatTime(submitted.elapsed) : "--:--"}</b>
+              <span>Thời gian làm bài</span>
+            </div>
+            <div>
+              <b>
+                {correct}/{total}
+              </b>
+              <span>Câu trả lời đúng</span>
+            </div>
+            <div>
+              <b>{score10}/10</b>
+              <span>Điểm (cần {passScore} để đạt)</span>
+            </div>
+          </div>
 
-                    const isUserAnswer =
-                      letter === userAnswer;
+          {ungraded > 0 && (
+            <p className="qr-warn">
+              Chưa xác định được đáp án đúng của {ungraded} câu (kiểm tra tên
+              trường đáp án trong db.json).
+            </p>
+          )}
+        </div>
 
-                    let className = "opt";
+        <main>
+          <div className="qr-wrap">
+            <h2 className="qr-section-title">Xem lại đáp án</h2>
 
-                    // Đáp án đúng
-                    if (isCorrect) {
-                      className += " correct";
-                    }
+            {questions.map((q, i) => {
+              const picked = answers[q.id];
+              return (
+                <div className="qr-card" key={q.id}>
+                  <div className="qr-num">
+                    CÂU {i + 1} / {total}
+                  </div>
+                  <div className="qr-text">{q.text}</div>
 
-                    // Người dùng chọn sai
-                    if (
-                      isUserAnswer &&
-                      !isCorrect
-                    ) {
-                      className += " incorrect";
-                    }
-
+                  {q.options.map((opt, idx) => {
+                    const isCorrect = idx === q.correctIndex;
+                    const isWrongPick = idx === picked && !isCorrect;
+                    const cls = isCorrect ? " correct" : isWrongPick ? " incorrect" : "";
                     return (
-                      <div
-                        className={className}
-                        key={letter}
-                      >
-
-                        <span className="opt-letter">
-                          {letter}
-                        </span>
-
-                        <span>
-                          {text}
-                        </span>
-
-                        {/* Chú thích */}
-                        {isCorrect && (
-                          <span className="answer-label">
-                            ✓ Đáp án đúng
-                          </span>
-                        )}
-
-                        {isUserAnswer &&
-                          !isCorrect && (
-                            <span className="answer-label">
-                              ✕ Bạn chọn
-                            </span>
-                          )}
+                      <div key={idx} className={`qr-opt${cls}`}>
+                        <span className="qr-opt-letter">{LETTERS[idx]}</span>
+                        {opt}
+                        {isWrongPick && " — bạn đã chọn"}
                       </div>
                     );
-                  }
-                )}
+                  })}
 
+                  {picked === undefined && (
+                    <div className="qr-skip">Bạn chưa trả lời câu này.</div>
+                  )}
 
-                {/* LỜI GIẢI */}
-                <div className="explain">
-                  <b>Lời giải:</b>{" "}
-                  {question.explanation}
+                  {q.explain && (
+                    <div className="qr-explain">
+                      <b>Lời giải:</b> {q.explain}
+                    </div>
+                  )}
                 </div>
-              </div>
-            );
-          })}
+              );
+            })}
 
-
-          {/* BUTTON */}
-          <div className="result-actions">
-            <a
-              href="/quiz-list"
-              className="btn btn-ghost"
-            >
-              Về danh sách quiz
-            </a>
-            <a
-              href="/quiz-doing"
-              className="btn btn-primary"
-            >
-              Làm lại bài
-            </a>
+            <div className="qr-actions">
+              <Link to="/quiz-list" className="qr-btn ghost">
+                Về danh sách quiz
+              </Link>
+              <Link to="/" className="qr-btn primary">
+                Tiếp tục khóa học
+              </Link>
+            </div>
           </div>
-        </div>
-      </main>
-    </div>
+        </main>
+      </div>
   );
 }
 

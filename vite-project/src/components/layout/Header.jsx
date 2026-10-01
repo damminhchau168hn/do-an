@@ -21,6 +21,7 @@ function Header() {
           <a href="/compare">So sánh</a>
           <a href="/blogs">Bài viết</a>
           <a href="/enrollment-lookup">Tra cứu đăng ký</a>
+          <a href="/quiz-list">Quiz</a>
         </nav>
 
         <div className="nav-actions">

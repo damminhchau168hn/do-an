@@ -1,57 +1,7 @@
 import { useEffect, useState } from "react";
+import axios from "axios";
+import { Link } from "react-router-dom";
 import "../../styles/QuizList.css";
-
-const quizzes = [
-  {
-    id: 1,
-    title: "Quiz Chương 1 — Danh sách & Ngăn xếp",
-    questions: 10,
-    time: 15,
-    note: "Đã làm 1/1 lượt",
-    progress: 100,
-    state: "done", // done | ready | locked
-    badge: "Đã hoàn thành · 9/10",
-    href: "/quiz-result",
-  },
-  {
-    id: 2,
-    title: "Quiz Chương 2 — Cây & BST",
-    questions: 12,
-    time: 20,
-    note: "Mở đến 28/08/2026",
-    progress: 0,
-    state: "ready",
-    badge: "Sẵn sàng làm bài",
-    href: "/quiz-take",
-  },
-  {
-    id: 3,
-    title: "Quiz Chương 3 — Đồ thị",
-    questions: 15,
-    time: 25,
-    note: "Mở từ 02/09/2026",
-    progress: 0,
-    state: "locked",
-    badge: "Chưa mở",
-  },
-  {
-    id: 4,
-    title: "Quiz Chương 4 — Quy hoạch động",
-    questions: 10,
-    time: 15,
-    note: "Mở từ 09/09/2026",
-    progress: 0,
-    state: "locked",
-    badge: "Chưa mở",
-  },
-];
-
-const DIAL_COLOR = {
-  done: "#1f7a6c",
-  ready: "#f2a93b",
-  locked: "#5b6472",
-};
-const BADGE_CLASS = { done: "teal", ready: "amber", locked: "ink" };
 
 /* ================= Vòng tròn tiến độ ================= */
 function Dial({ percent, color, size = 52 }) {
@@ -95,31 +45,27 @@ function Dial({ percent, color, size = 52 }) {
   );
 }
 
-/* ================= Nút hành động ================= */
-function QuizAction({ quiz }) {
-  if (quiz.state === "locked") {
-    return (
-      <button className="quiz-btn ghost" disabled>
-        Chưa mở
-      </button>
-    );
-  }
-  if (quiz.state === "done") {
-    return (
-      <a href={quiz.href} className="quiz-btn ghost">
-        Xem kết quả
-      </a>
-    );
-  }
-  return (
-    <a href={quiz.href} className="quiz-btn primary">
-      Bắt đầu làm bài
-    </a>
-  );
-}
-
 /* ================= Component chính ================= */
 function QuizList() {
+  const [quizzes, setQuizzes] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3001/quizzes")
+      .then((response) => {
+        setQuizzes(response.data);
+      })
+      .catch((err) => {
+        console.error("Lỗi:", err);
+        setError("Không thể tải danh sách Quiz");
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, []);
+
   return (
     <div className="quiz-page">
       <div className="quiz-wrap">
@@ -130,29 +76,58 @@ function QuizList() {
           nộp bài, theo cấu hình của giảng viên.
         </p>
 
-        <div className="quiz-list">
-          {quizzes.map((quiz) => (
-            <div
-              key={quiz.id}
-              className={`quiz-row${quiz.state === "locked" ? " locked" : ""}`}
-            >
-              <Dial percent={quiz.progress} color={DIAL_COLOR[quiz.state]} />
+        {loading && <div className="quiz-state">Đang tải danh sách Quiz...</div>}
+        {error && <div className="quiz-state error">{error}</div>}
 
-              <div>
-                <div className="quiz-title">{quiz.title}</div>
-                <div className="quiz-meta">
-                  {quiz.questions} câu · {quiz.time} phút · {quiz.note}
+        {!loading && !error && (
+          <div className="quiz-list">
+            {quizzes.length === 0 && (
+              <div className="quiz-state">Chưa có quiz nào.</div>
+            )}
+
+            {quizzes.map((quiz) => {
+              const isOpen = quiz.status === "published";
+              const questionCount = quiz.question_ids?.length ?? 0;
+
+              return (
+                <div
+                  key={quiz.id}
+                  className={`quiz-row${isOpen ? "" : " locked"}`}
+                >
+                  <Dial
+                    percent={0}
+                    color={isOpen ? "#f2a93b" : "#5b6472"}
+                  />
+
+                  <div>
+                    <div className="quiz-title">{quiz.title}</div>
+                    <div className="quiz-meta">
+                      {questionCount} câu · {quiz.time_limit_minutes} phút ·
+                      Điểm đạt {quiz.pass_score}
+                    </div>
+                  </div>
+
+                  <span className={`quiz-badge ${isOpen ? "amber" : "ink"}`}>
+                    {isOpen ? "Sẵn sàng làm bài" : "Chưa mở"}
+                  </span>
+
+                  {isOpen ? (
+                    <Link
+                      to={`/quiz-doing/${quiz.id}`}
+                      className="quiz-btn primary"
+                    >
+                      Bắt đầu làm bài
+                    </Link>
+                  ) : (
+                    <button className="quiz-btn ghost" disabled>
+                      Chưa mở
+                    </button>
+                  )}
                 </div>
-              </div>
-
-              <span className={`quiz-badge ${BADGE_CLASS[quiz.state]}`}>
-                {quiz.badge}
-              </span>
-
-              <QuizAction quiz={quiz} />
-            </div>
-          ))}
-        </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

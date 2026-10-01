@@ -4,9 +4,9 @@ import Footer from '../components/layout/Footer';
 import UserManagementPage from '../pages/admin/UserManagementPage';
 import CourseApprovalPage from '../pages/admin/CourseApprovalPage';
 import InstructorDashboard from '../pages/instructor/InstructorDashboard';
-import QuizList from '../pages/quiz/QuizList';
-import QuizDoing from '../pages/quiz/QuizDoing';
-import QuizResult from '../pages/quiz/QuizResult';
+import QuizList from "../pages/quiz/QuizList";
+import QuizDoing from "../pages/quiz/QuizDoing";
+import QuizResult from "../pages/quiz/QuizResult";
 
 function AdminTabs() {
   const location = useLocation();
@@ -24,21 +24,33 @@ function AdminTabs() {
   );
 }
 
-export default function AppRouter() {
+function Layout() {
+  const { pathname } = useLocation();
+  // Đang làm bài: ẩn Header, thanh quản trị và Footer để tập trung
+  const isExam = pathname.startsWith('/quiz-doing');
+
   return (
-    <BrowserRouter>
-      <Header />
-      <AdminTabs />
+    <>
+      {!isExam && <Header />}
+      {!isExam && <AdminTabs />}
       <Routes>
         <Route path="/" element={<UserManagementPage />} />
         <Route path="/admin/users" element={<UserManagementPage />} />
         <Route path="/admin/courses" element={<CourseApprovalPage />} />
         <Route path="/dashboard" element={<InstructorDashboard />} />
         <Route path="/quiz-list" element={<QuizList />} />
-        <Route path="/quiz-doing" element={<QuizDoing />} />
-        <Route path="/quiz-result" element={<QuizResult />} />
+        <Route path="/quiz-doing/:quizId" element={<QuizDoing />} />
+        <Route path="/quiz-result/:quizId" element={<QuizResult />} />
       </Routes>
-      <Footer />
+      {!isExam && <Footer />}
+    </>
+  );
+}
+
+export default function AppRouter() {
+  return (
+    <BrowserRouter>
+      <Layout />
     </BrowserRouter>
   );
 }
