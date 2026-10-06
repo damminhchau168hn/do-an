@@ -3,15 +3,21 @@ import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import UserManagementPage from '../pages/admin/UserManagementPage';
 import CourseApprovalPage from '../pages/admin/CourseApprovalPage';
-import InstructorDashboard from '../pages/instructor/InstructorDashboard';
+import InstructorDashboard from '../pages/instructors/InstructorDashboard';
 import QuizList from "../pages/quiz/QuizList";
 import QuizDoing from "../pages/quiz/QuizDoing";
 import QuizResult from "../pages/quiz/QuizResult";
+import CourseListPage from "../pages/courses/CourseListPage";
+import CourseDetailPage from "../pages/courses/CourseDetailPage";
+import InstructorListPage from '../pages/instructors/InstructorListPage';
+import ComparePage from '../pages/courses/ComparePage';
+import BlogListPage from '../pages/blogs/BlogListPage';
+import BlogDetailPage from '../pages/blogs/BlogDetailPage';
+import EnrollmentLookupPage from '../pages/enrollment/EnrollmentLookupPage';
 
 function AdminTabs() {
   const location = useLocation();
   const isActive = (path) => (location.pathname === path ? 'active' : '');
-
   return (
     <header className="app-header">
       <h2 style={{ fontSize: 18 }}>Khu vực quản trị</h2>
@@ -26,9 +32,7 @@ function AdminTabs() {
 
 function Layout() {
   const { pathname } = useLocation();
-  // Đang làm bài: ẩn Header, thanh quản trị và Footer để tập trung
   const isExam = pathname.startsWith('/quiz-doing');
-
   return (
     <>
       {!isExam && <Header />}
@@ -37,10 +41,17 @@ function Layout() {
         <Route path="/" element={<UserManagementPage />} />
         <Route path="/admin/users" element={<UserManagementPage />} />
         <Route path="/admin/courses" element={<CourseApprovalPage />} />
+        <Route path="/compare" element={<ComparePage />} />
         <Route path="/dashboard" element={<InstructorDashboard />} />
         <Route path="/quiz-list" element={<QuizList />} />
         <Route path="/quiz-doing/:quizId" element={<QuizDoing />} />
         <Route path="/quiz-result/:quizId" element={<QuizResult />} />
+        <Route path="/courses" element={<CourseListPage />} />
+        <Route path="/courses/:id" element={<CourseDetailPage />} />
+        <Route path="/instructors" element={<InstructorListPage />} />
+        <Route path="/blogs" element={<BlogListPage />} />
+        <Route path="/blogs/:id" element={<BlogDetailPage />} />
+        <Route path="/enrollment-lookup" element={<EnrollmentLookupPage />} />
       </Routes>
       {!isExam && <Footer />}
     </>

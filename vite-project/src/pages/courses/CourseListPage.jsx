@@ -20,20 +20,23 @@ export default function CourseListPage() {
       });
   }, []);
 
-  if (loading) return <div style={{ padding: '20px' }}>Đang tải danh sách khóa học...</div>;
+  if (loading) return <div className="page-container"><div className="state-block">Đang tải danh sách khóa học...</div></div>;
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
-      <h2 style={{ marginBottom: '20px', color: '#333' }}>Danh sách khóa học hiện có</h2>
+    <div className="page-container">
+      <h1 style={{ marginBottom: 24 }}>Danh sách khóa học hiện có</h1>
+
       {courses.length === 0 ? (
-        <p>Hiện tại chưa có khóa học nào được xuất bản.</p>
+        <div className="card">
+          <div className="state-block">Hiện tại chưa có khóa học nào được xuất bản.</div>
+        </div>
       ) : (
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '20px' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 20 }}>
           {courses.map(course => (
-            <div key={course.id} style={{ border: '1px solid #e0e0e0', padding: '20px', borderRadius: '8px', backgroundColor: '#fff', boxShadow: '0 2px 4px rgba(0,0,0,0.05)' }}>
-              <h3 style={{ marginTop: '0', color: '#0056b3' }}>{course.title}</h3>
-              <p style={{ color: '#666', minHeight: '50px', fontSize: '14px' }}>{course.description}</p>
-              <Link to={`/courses/${course.id}`} style={{ display: 'inline-block', marginTop: '10px', color: '#fff', backgroundColor: '#007bff', padding: '8px 16px', borderRadius: '4px', textDecoration: 'none', fontWeight: 'bold' }}>
+            <div key={course.id} className="card">
+              <h3 style={{ marginBottom: 8 }}>{course.title}</h3>
+              <p style={{ color: 'var(--ink-soft)', minHeight: 50, fontSize: 14 }}>{course.description}</p>
+              <Link to={`/courses/${course.id}`} className="btn btn-primary" style={{ display: 'inline-block', marginTop: 10 }}>
                 Xem chi tiết
               </Link>
             </div>

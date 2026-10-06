@@ -4,7 +4,6 @@ function Footer() {
   return (
     <footer className="site-footer">
       <div className="wrap footer-grid">
-        {/* Cột 1 — Thương hiệu */}
         <div className="footer-brand">
           <a href="/" className="logo">
             Skill<span>book</span>
@@ -15,7 +14,6 @@ function Footer() {
           </p>
         </div>
 
-        {/* Cột 2 — Khám phá */}
         <div className="footer-col">
           <h4>Khám phá</h4>
           <a href="/courses">Danh sách khóa học</a>
@@ -24,14 +22,12 @@ function Footer() {
           <a href="/blogs">Bài viết</a>
         </div>
 
-        {/* Cột 3 — Học viên */}
         <div className="footer-col">
           <h4>Học viên</h4>
           <a href="/favorites">Khóa học yêu thích</a>
           <a href="/enrollment-lookup">Tra cứu đăng ký</a>
         </div>
 
-        {/* Cột 4 — Liên hệ */}
         <div className="footer-col">
           <h4>Liên hệ</h4>
           <a href="mailto:hello@skillbook.vn">hello@skillbook.vn</a>
