@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { API, CURRENT_USER_ID } from "../../api/quizUtils";
 import "../../styles/QuizList.css";
+
+const COLORS = {
+  locked: "#9ca3af",
+  done: "#14b8a6",
+  failed: "#f59e0b",
+  ready: "#f59e0b",
+};
 
 /* ================= Vòng tròn tiến độ ================= */
 function Dial({ percent, color, size = 52 }) {
@@ -45,91 +53,170 @@ function Dial({ percent, color, size = 52 }) {
   );
 }
 
+/* ================= Tính trạng thái từng quiz =================
+   Quy tắc: quiz đầu luôn mở; quiz chương sau chỉ mở khi quiz chương trước
+   đã có lượt làm đạt điểm (điểm cao nhất >= pass_score). */
+const byChapter = (a, b) =>
+  String(a.session_id).localeCompare(String(b.session_id), undefined, { numeric: true });
+
+function buildRows(quizzes, attempts) {
+  const stats = {};
+  attempts.forEach((a) => {
+    const s = stats[a.quiz_id] ?? (stats[a.quiz_id] = { count: 0, best: 0 });
+    s.count += 1;
+    s.best = Math.max(s.best, Number(a.score) || 0);
+  });
+
+  let prev = null;
+  return [...quizzes].sort(byChapter).map((quiz) => {
+    const s = stats[quiz.id];
+    const passed = !!s && s.best >= Number(quiz.pass_score ?? 0);
+    const published = quiz.status === "published";
+    const prevPassed = prev ? prev.passed : true;
+
+    let state;
+    if (!published || !prevPassed) state = "locked";
+    else if (passed) state = "done";
+    else if (s) state = "failed";
+    else state = "ready";
+
+    const row = { quiz, state, stats: s, passed, published, prevTitle: prev?.quiz.title };
+    prev = row;
+    return row;
+  });
+}
+
+function rowTexts(row) {
+  const { quiz, state, stats, published, prevTitle } = row;
+  const n = quiz.question_ids?.length ?? 0;
+  const base = `${n} câu · ${quiz.time_limit_minutes} phút`;
+
+  if (state === "locked") {
+    return {
+      meta: published
+        ? `${base} · Cần đạt "${prevTitle}" để mở khóa`
+        : `${base} · Chưa mở`,
+      badge: "Chưa mở",
+      badgeClass: "ink",
+    };
+  }
+  if (state === "done") {
+    return {
+      meta: `${base} · Đã làm ${stats.count} lượt`,
+      badge: `Đã hoàn thành · ${stats.best}/10`,
+      badgeClass: "teal",
+    };
+  }
+  if (state === "failed") {
+    return {
+      meta: `${base} · Đã làm ${stats.count} lượt · Cần ${quiz.pass_score}/10 để đạt`,
+      badge: `Chưa đạt · ${stats.best}/10`,
+      badgeClass: "amber",
+    };
+  }
+  return {
+    meta: `${base} · Điểm đạt ${quiz.pass_score}/10`,
+    badge: "Sẵn sàng làm bài",
+    badgeClass: "amber",
+  };
+}
+
+function QuizAction({ row }) {
+  const { quiz, state } = row;
+  if (state === "locked") {
+    return (
+      <button className="quiz-btn ghost" disabled>
+        Chưa mở
+      </button>
+    );
+  }
+  if (state === "done") {
+    return (
+      <Link to={`/quiz-result/${quiz.id}`} className="quiz-btn ghost">
+        Xem kết quả
+      </Link>
+    );
+  }
+  return (
+    <Link to={`/quiz-doing/${quiz.id}`} className="quiz-btn primary">
+      {state === "failed" ? "Làm lại" : "Bắt đầu làm bài"}
+    </Link>
+  );
+}
+
 /* ================= Component chính ================= */
 function QuizList() {
-  const [quizzes, setQuizzes] = useState([]);
+  const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3001/quizzes")
-      .then((response) => {
-        setQuizzes(response.data);
+    let cancelled = false;
+
+    Promise.all([
+      axios.get(`${API}/quizzes`),
+      axios.get(`${API}/attempts`, { params: { user_id: CURRENT_USER_ID } }),
+    ])
+      .then(([quizRes, attemptRes]) => {
+        if (!cancelled) setRows(buildRows(quizRes.data, attemptRes.data));
       })
       .catch((err) => {
         console.error("Lỗi:", err);
-        setError("Không thể tải danh sách Quiz");
+        if (!cancelled) setError("Không thể tải danh sách Quiz");
       })
       .finally(() => {
-        setLoading(false);
+        if (!cancelled) setLoading(false);
       });
+
+    return () => {
+      cancelled = true;
+    };
   }, []);
 
   return (
-    <div className="quiz-page">
-      <div className="quiz-wrap">
-        <p className="quiz-eyebrow">Cấu trúc dữ liệu &amp; Giải thuật</p>
-        <h1 className="quiz-heading">Các bài quiz</h1>
-        <p className="quiz-lede">
-          Mỗi quiz được tính giờ ở máy chủ. Đáp án chỉ hiển thị lời giải sau khi
-          nộp bài, theo cấu hình của giảng viên.
-        </p>
+      <div className="quiz-page">
+        <div className="quiz-wrap">
+          <p className="quiz-eyebrow">Cấu trúc dữ liệu &amp; Giải thuật</p>
+          <h1 className="quiz-heading">Các bài quiz</h1>
+          <p className="quiz-lede">
+            Hoàn thành quiz của chương trước với số điểm đạt để mở khóa quiz của
+            chương tiếp theo. Mỗi quiz được tính giờ, lời giải hiển thị sau khi nộp bài.
+          </p>
 
-        {loading && <div className="quiz-state">Đang tải danh sách Quiz...</div>}
-        {error && <div className="quiz-state error">{error}</div>}
+          {loading && <div className="quiz-state">Đang tải danh sách Quiz...</div>}
+          {error && <div className="quiz-state error">{error}</div>}
 
-        {!loading && !error && (
-          <div className="quiz-list">
-            {quizzes.length === 0 && (
-              <div className="quiz-state">Chưa có quiz nào.</div>
-            )}
+          {!loading && !error && (
+            <div className="quiz-list">
+              {rows.length === 0 && <div className="quiz-state">Chưa có quiz nào.</div>}
 
-            {quizzes.map((quiz) => {
-              const isOpen = quiz.status === "published";
-              const questionCount = quiz.question_ids?.length ?? 0;
+              {rows.map((row) => {
+                const { quiz, state, stats } = row;
+                const { meta, badge, badgeClass } = rowTexts(row);
+                const percent = stats ? Math.round(stats.best * 10) : 0;
 
-              return (
-                <div
-                  key={quiz.id}
-                  className={`quiz-row${isOpen ? "" : " locked"}`}
-                >
-                  <Dial
-                    percent={0}
-                    color={isOpen ? "#f2a93b" : "#5b6472"}
-                  />
+                return (
+                  <div
+                    key={quiz.id}
+                    className={`quiz-row${state === "locked" ? " locked" : ""}`}
+                  >
+                    <Dial percent={percent} color={COLORS[state]} />
 
-                  <div>
-                    <div className="quiz-title">{quiz.title}</div>
-                    <div className="quiz-meta">
-                      {questionCount} câu · {quiz.time_limit_minutes} phút ·
-                      Điểm đạt {quiz.pass_score}
+                    <div>
+                      <div className="quiz-title">{quiz.title}</div>
+                      <div className="quiz-meta">{meta}</div>
                     </div>
+
+                    <span className={`quiz-badge ${badgeClass}`}>{badge}</span>
+
+                    <QuizAction row={row} />
                   </div>
-
-                  <span className={`quiz-badge ${isOpen ? "amber" : "ink"}`}>
-                    {isOpen ? "Sẵn sàng làm bài" : "Chưa mở"}
-                  </span>
-
-                  {isOpen ? (
-                    <Link
-                      to={`/quiz-doing/${quiz.id}`}
-                      className="quiz-btn primary"
-                    >
-                      Bắt đầu làm bài
-                    </Link>
-                  ) : (
-                    <button className="quiz-btn ghost" disabled>
-                      Chưa mở
-                    </button>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        )}
+                );
+              })}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
   );
 }
 

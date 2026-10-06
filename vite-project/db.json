@@ -20,7 +20,11 @@
       "email": "hai.nguyen@truong.edu.vn",
       "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash2",
       "role": "instructor",
-      "permissions": ["course:create", "quiz:create", "question:manage"],
+      "permissions": [
+        "course:create",
+        "quiz:create",
+        "question:manage"
+      ],
       "status": "active",
       "phone": "0909876543",
       "created_at": "2025-09-03T02:00:00.000Z",
@@ -33,7 +37,11 @@
       "email": "vy.le@truong.edu.vn",
       "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash3",
       "role": "instructor",
-      "permissions": ["course:create", "quiz:create", "question:manage"],
+      "permissions": [
+        "course:create",
+        "quiz:create",
+        "question:manage"
+      ],
       "status": "active",
       "phone": "0912345678",
       "created_at": "2025-11-17T02:00:00.000Z",
@@ -46,11 +54,15 @@
       "email": "an.pham@truong.edu.vn",
       "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash4",
       "role": "instructor",
-      "permissions": ["course:create", "quiz:create", "question:manage"],
+      "permissions": [
+        "course:create",
+        "quiz:create",
+        "question:manage"
+      ],
       "status": "active",
       "phone": "0987654321",
       "created_at": "2026-02-01T02:00:00.000Z",
-      "updated_at": "2026-02-01T02:00:00.000Z"
+      "updated_at": "2026-10-06T09:34:09.950Z"
     },
     {
       "id": "u5",
@@ -59,7 +71,11 @@
       "email": "khanh.vu@truong.edu.vn",
       "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash5",
       "role": "instructor",
-      "permissions": ["course:create", "quiz:create", "question:manage"],
+      "permissions": [
+        "course:create",
+        "quiz:create",
+        "question:manage"
+      ],
       "status": "active",
       "phone": "0977111222",
       "created_at": "2025-08-20T02:00:00.000Z",
@@ -76,7 +92,7 @@
       "status": "locked",
       "phone": "0933444555",
       "created_at": "2026-02-28T02:00:00.000Z",
-      "updated_at": "2026-06-01T02:00:00.000Z"
+      "updated_at": "2026-10-06T09:34:16.226Z"
     },
     {
       "id": "u7",
@@ -85,14 +101,15 @@
       "email": "admin@skillbook.vn",
       "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash7",
       "role": "admin",
-      "permissions": ["*"],
+      "permissions": [
+        "*"
+      ],
       "status": "active",
       "phone": "0900000000",
       "created_at": "2025-06-01T02:00:00.000Z",
       "updated_at": "2025-06-01T02:00:00.000Z"
     }
   ],
-
   "courses": [
     {
       "id": "c1",
@@ -199,21 +216,144 @@
       "updated_at": "2026-09-01T02:00:00.000Z"
     }
   ],
-
   "sessions": [
-    { "id": "s1", "session_id": "s1", "course_id": "c1", "title": "Chương 1 — Danh sách & Ngăn xếp", "description": "Danh sách liên kết, ngăn xếp và hàng đợi.", "order_index": 1, "total_lessons": 4, "status": "published", "created_by": "u2", "created_at": "2025-09-06T02:00:00.000Z", "updated_at": "2025-09-06T02:00:00.000Z" },
-    { "id": "s2", "session_id": "s2", "course_id": "c1", "title": "Chương 2 — Cây", "description": "Cây tổng quát, cây nhị phân tìm kiếm, cây AVL, duyệt cây.", "order_index": 2, "total_lessons": 4, "status": "published", "created_by": "u2", "created_at": "2025-09-13T02:00:00.000Z", "updated_at": "2025-09-13T02:00:00.000Z" },
-    { "id": "s3", "session_id": "s3", "course_id": "c1", "title": "Chương 3 — Đồ thị", "description": "Biểu diễn đồ thị, BFS/DFS, đường đi ngắn nhất.", "order_index": 3, "total_lessons": 3, "status": "published", "created_by": "u2", "created_at": "2025-09-20T02:00:00.000Z", "updated_at": "2025-09-20T02:00:00.000Z" },
-    { "id": "s4", "session_id": "s4", "course_id": "c1", "title": "Chương 4 — Quy hoạch động", "description": "Nguyên lý quy hoạch động và các bài toán kinh điển.", "order_index": 4, "total_lessons": 3, "status": "published", "created_by": "u2", "created_at": "2025-09-27T02:00:00.000Z", "updated_at": "2025-09-27T02:00:00.000Z" },
-    { "id": "s5", "session_id": "s5", "course_id": "c6", "title": "Chương 1 — Nhập môn React", "description": "Component, props, state, JSX.", "order_index": 1, "total_lessons": 5, "status": "published", "created_by": "u3", "created_at": "2025-11-21T02:00:00.000Z", "updated_at": "2025-11-21T02:00:00.000Z" }
+    {
+      "id": "s1",
+      "session_id": "s1",
+      "course_id": "c1",
+      "title": "Chương 1 — Danh sách & Ngăn xếp",
+      "description": "Danh sách liên kết, ngăn xếp và hàng đợi.",
+      "order_index": 1,
+      "total_lessons": 4,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-06T02:00:00.000Z",
+      "updated_at": "2025-09-06T02:00:00.000Z"
+    },
+    {
+      "id": "s2",
+      "session_id": "s2",
+      "course_id": "c1",
+      "title": "Chương 2 — Cây",
+      "description": "Cây tổng quát, cây nhị phân tìm kiếm, cây AVL, duyệt cây.",
+      "order_index": 2,
+      "total_lessons": 4,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-13T02:00:00.000Z",
+      "updated_at": "2025-09-13T02:00:00.000Z"
+    },
+    {
+      "id": "s3",
+      "session_id": "s3",
+      "course_id": "c1",
+      "title": "Chương 3 — Đồ thị",
+      "description": "Biểu diễn đồ thị, BFS/DFS, đường đi ngắn nhất.",
+      "order_index": 3,
+      "total_lessons": 3,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-20T02:00:00.000Z",
+      "updated_at": "2025-09-20T02:00:00.000Z"
+    },
+    {
+      "id": "s4",
+      "session_id": "s4",
+      "course_id": "c1",
+      "title": "Chương 4 — Quy hoạch động",
+      "description": "Nguyên lý quy hoạch động và các bài toán kinh điển.",
+      "order_index": 4,
+      "total_lessons": 3,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-27T02:00:00.000Z",
+      "updated_at": "2025-09-27T02:00:00.000Z"
+    },
+    {
+      "id": "s5",
+      "session_id": "s5",
+      "course_id": "c6",
+      "title": "Chương 1 — Nhập môn React",
+      "description": "Component, props, state, JSX.",
+      "order_index": 1,
+      "total_lessons": 5,
+      "status": "published",
+      "created_by": "u3",
+      "created_at": "2025-11-21T02:00:00.000Z",
+      "updated_at": "2025-11-21T02:00:00.000Z"
+    }
   ],
-
   "lessons": [
-    { "id": "l1", "lesson_id": "l1", "session_id": "s1", "title": "Danh sách liên kết đơn", "content": "Khái niệm, cài đặt và thao tác cơ bản trên danh sách liên kết đơn.", "content_type": "text", "order_index": 1, "estimated_minutes": 20, "status": "published", "created_by": "u2", "created_at": "2025-09-06T02:00:00.000Z", "updated_at": "2025-09-06T02:00:00.000Z" },
-    { "id": "l2", "lesson_id": "l2", "session_id": "s1", "title": "Danh sách liên kết đôi", "content": "So sánh với danh sách liên kết đơn và các thao tác chèn/xóa hai chiều.", "content_type": "text", "order_index": 2, "estimated_minutes": 20, "status": "published", "created_by": "u2", "created_at": "2025-09-06T02:00:00.000Z", "updated_at": "2025-09-06T02:00:00.000Z" },
-    { "id": "l3", "lesson_id": "l3", "session_id": "s1", "title": "Ngăn xếp (Stack)", "content": "Nguyên tắc LIFO, cài đặt bằng mảng và danh sách liên kết.", "content_type": "text", "order_index": 3, "estimated_minutes": 18, "status": "published", "created_by": "u2", "created_at": "2025-09-07T02:00:00.000Z", "updated_at": "2025-09-07T02:00:00.000Z" },
-    { "id": "l4", "lesson_id": "l4", "session_id": "s1", "title": "Hàng đợi (Queue)", "content": "Nguyên tắc FIFO, cài đặt hàng đợi vòng.", "content_type": "text", "order_index": 4, "estimated_minutes": 18, "status": "published", "created_by": "u2", "created_at": "2025-09-07T02:00:00.000Z", "updated_at": "2025-09-07T02:00:00.000Z" },
-    { "id": "l5", "lesson_id": "l5", "session_id": "s2", "title": "Khái niệm cây tổng quát", "content": "Định nghĩa cây, nút gốc, nút lá, độ sâu, độ cao.", "content_type": "text", "order_index": 1, "estimated_minutes": 15, "status": "published", "created_by": "u2", "created_at": "2025-09-13T02:00:00.000Z", "updated_at": "2025-09-13T02:00:00.000Z" },
+    {
+      "id": "l1",
+      "lesson_id": "l1",
+      "session_id": "s1",
+      "title": "Danh sách liên kết đơn",
+      "content": "Khái niệm, cài đặt và thao tác cơ bản trên danh sách liên kết đơn.",
+      "content_type": "text",
+      "order_index": 1,
+      "estimated_minutes": 20,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-06T02:00:00.000Z",
+      "updated_at": "2025-09-06T02:00:00.000Z"
+    },
+    {
+      "id": "l2",
+      "lesson_id": "l2",
+      "session_id": "s1",
+      "title": "Danh sách liên kết đôi",
+      "content": "So sánh với danh sách liên kết đơn và các thao tác chèn/xóa hai chiều.",
+      "content_type": "text",
+      "order_index": 2,
+      "estimated_minutes": 20,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-06T02:00:00.000Z",
+      "updated_at": "2025-09-06T02:00:00.000Z"
+    },
+    {
+      "id": "l3",
+      "lesson_id": "l3",
+      "session_id": "s1",
+      "title": "Ngăn xếp (Stack)",
+      "content": "Nguyên tắc LIFO, cài đặt bằng mảng và danh sách liên kết.",
+      "content_type": "text",
+      "order_index": 3,
+      "estimated_minutes": 18,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-07T02:00:00.000Z",
+      "updated_at": "2025-09-07T02:00:00.000Z"
+    },
+    {
+      "id": "l4",
+      "lesson_id": "l4",
+      "session_id": "s1",
+      "title": "Hàng đợi (Queue)",
+      "content": "Nguyên tắc FIFO, cài đặt hàng đợi vòng.",
+      "content_type": "text",
+      "order_index": 4,
+      "estimated_minutes": 18,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-07T02:00:00.000Z",
+      "updated_at": "2025-09-07T02:00:00.000Z"
+    },
+    {
+      "id": "l5",
+      "lesson_id": "l5",
+      "session_id": "s2",
+      "title": "Khái niệm cây tổng quát",
+      "content": "Định nghĩa cây, nút gốc, nút lá, độ sâu, độ cao.",
+      "content_type": "text",
+      "order_index": 1,
+      "estimated_minutes": 15,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-13T02:00:00.000Z",
+      "updated_at": "2025-09-13T02:00:00.000Z"
+    },
     {
       "id": "l6",
       "lesson_id": "l6",
@@ -228,50 +368,1414 @@
       "created_at": "2025-09-14T02:00:00.000Z",
       "updated_at": "2025-09-14T02:00:00.000Z"
     },
-    { "id": "l7", "lesson_id": "l7", "session_id": "s2", "title": "Cây cân bằng AVL", "content": "Hệ số cân bằng, các phép xoay đơn/kép.", "content_type": "text", "order_index": 3, "estimated_minutes": 25, "status": "published", "created_by": "u2", "created_at": "2025-09-14T02:00:00.000Z", "updated_at": "2025-09-14T02:00:00.000Z" },
-    { "id": "l8", "lesson_id": "l8", "session_id": "s2", "title": "Duyệt cây (DFS/BFS)", "content": "Duyệt theo chiều sâu (pre/in/post-order) và theo chiều rộng.", "content_type": "text", "order_index": 4, "estimated_minutes": 20, "status": "published", "created_by": "u2", "created_at": "2025-09-15T02:00:00.000Z", "updated_at": "2025-09-15T02:00:00.000Z" }
+    {
+      "id": "l7",
+      "lesson_id": "l7",
+      "session_id": "s2",
+      "title": "Cây cân bằng AVL",
+      "content": "Hệ số cân bằng, các phép xoay đơn/kép.",
+      "content_type": "text",
+      "order_index": 3,
+      "estimated_minutes": 25,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-14T02:00:00.000Z",
+      "updated_at": "2025-09-14T02:00:00.000Z"
+    },
+    {
+      "id": "l8",
+      "lesson_id": "l8",
+      "session_id": "s2",
+      "title": "Duyệt cây (DFS/BFS)",
+      "content": "Duyệt theo chiều sâu (pre/in/post-order) và theo chiều rộng.",
+      "content_type": "text",
+      "order_index": 4,
+      "estimated_minutes": 20,
+      "status": "published",
+      "created_by": "u2",
+      "created_at": "2025-09-15T02:00:00.000Z",
+      "updated_at": "2025-09-15T02:00:00.000Z"
+    }
   ],
-
   "questions": [
-    { "id": "q1", "question_id": "q1", "session_id": "s1", "content": "Ngăn xếp (Stack) hoạt động theo nguyên tắc nào?", "options": ["LIFO — vào sau ra trước", "FIFO — vào trước ra trước", "Ngẫu nhiên", "Theo độ ưu tiên"], "correct_answer": 0, "explanation": "Stack tuân theo nguyên tắc LIFO (Last In, First Out) — phần tử được thêm vào sau cùng sẽ được lấy ra đầu tiên, giống chồng đĩa.", "difficulty": "easy", "created_by": "u2", "created_at": "2025-09-08T02:00:00.000Z", "updated_at": "2025-09-08T02:00:00.000Z" },
-    { "id": "q2", "question_id": "q2", "session_id": "s1", "content": "Thao tác nào KHÔNG phải là thao tác cơ bản của Hàng đợi (Queue)?", "options": ["peek()", "sort() — sắp xếp toàn bộ hàng đợi", "enqueue()", "dequeue()"], "correct_answer": 1, "explanation": "Queue chuẩn chỉ hỗ trợ enqueue, dequeue và peek. sort() không phải thao tác cơ bản vì nó phá vỡ thứ tự FIFO của cấu trúc.", "difficulty": "medium", "created_by": "u2", "created_at": "2025-09-08T02:00:00.000Z", "updated_at": "2025-09-08T02:00:00.000Z" },
-    { "id": "q3", "question_id": "q3", "session_id": "s2", "content": "Trong cây nhị phân tìm kiếm (BST), phần tử nhỏ nhất nằm ở đâu?", "options": ["Nút gốc của cây", "Nút lá tận cùng bên phải", "Nút lá tận cùng bên trái", "Không xác định được"], "correct_answer": 2, "explanation": "Phần tử nhỏ nhất trong BST luôn nằm ở nút lá tận cùng bên trái.", "difficulty": "medium", "created_by": "u2", "created_at": "2025-09-15T02:00:00.000Z", "updated_at": "2025-09-15T02:00:00.000Z" },
-    { "id": "q4", "question_id": "q4", "session_id": "s2", "content": "Độ phức tạp trung bình của thao tác tìm kiếm trên BST cân bằng với n phần tử là gì?", "options": ["O(log n)", "O(n)", "O(n log n)", "O(1)"], "correct_answer": 0, "explanation": "Với cây cân bằng, độ phức tạp trung bình của tìm kiếm là O(log n).", "difficulty": "medium", "created_by": "u2", "created_at": "2025-09-15T02:00:00.000Z", "updated_at": "2025-09-15T02:00:00.000Z" },
-    { "id": "q5", "question_id": "q5", "session_id": "s2", "content": "Khi nào một BST suy biến thành danh sách liên kết, khiến độ phức tạp tìm kiếm là O(n)?", "options": ["Khi cây có số lẻ phần tử", "Khi dữ liệu được chèn theo thứ tự đã sắp xếp", "Khi cây được xóa nhiều lần", "Không bao giờ xảy ra"], "correct_answer": 1, "explanation": "Nếu dữ liệu được chèn theo thứ tự đã sắp xếp, BST suy biến thành một danh sách liên kết.", "difficulty": "hard", "created_by": "u2", "created_at": "2025-09-15T02:00:00.000Z", "updated_at": "2025-09-15T02:00:00.000Z" },
-    { "id": "q6", "question_id": "q6", "session_id": "s2", "content": "Chọn tất cả các thuật toán duyệt cây hợp lệ.", "options": ["Pre-order", "Post-order", "Quick-order", "In-order"], "correct_answer": [0, 1, 3], "explanation": "Pre-order, In-order và Post-order là các thuật toán duyệt cây hợp lệ; Quick-order không tồn tại.", "difficulty": "medium", "created_by": "u2", "created_at": "2025-09-16T02:00:00.000Z", "updated_at": "2025-09-16T02:00:00.000Z" },
-    { "id": "q7", "question_id": "q7", "session_id": "s3", "content": "Độ phức tạp thời gian của thuật toán Dijkstra với heap nhị phân là gì?", "options": ["O(V^2)", "O((V+E) log V)", "O(E log E)", "O(V log E)"], "correct_answer": 1, "explanation": "Với cài đặt bằng heap nhị phân, độ phức tạp của Dijkstra là O((V+E) log V).", "difficulty": "hard", "created_by": "u2", "created_at": "2025-09-21T02:00:00.000Z", "updated_at": "2025-09-21T02:00:00.000Z" },
-    { "id": "q8", "question_id": "q8", "session_id": "s4", "content": "Bài toán cái túi 0/1 thuộc nhóm kỹ thuật nào?", "options": ["Chia để trị", "Quy hoạch động", "Tham lam", "Vét cạn"], "correct_answer": 1, "explanation": "Bài toán cái túi 0/1 là bài toán kinh điển được giải bằng quy hoạch động.", "difficulty": "easy", "created_by": "u2", "created_at": "2025-09-28T02:00:00.000Z", "updated_at": "2025-09-28T02:00:00.000Z" }
+    {
+      "id": "q1",
+      "question_id": "q1",
+      "session_id": "s1",
+      "content": "Ngăn xếp (Stack) hoạt động theo nguyên tắc nào?",
+      "options": [
+        "LIFO — vào sau ra trước",
+        "FIFO — vào trước ra trước",
+        "Ngẫu nhiên",
+        "Theo độ ưu tiên"
+      ],
+      "correct_answer": 0,
+      "explanation": "Stack tuân theo nguyên tắc LIFO (Last In, First Out) — phần tử được thêm vào sau cùng sẽ được lấy ra đầu tiên, giống chồng đĩa.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2025-09-08T02:00:00.000Z",
+      "updated_at": "2025-09-08T02:00:00.000Z"
+    },
+    {
+      "id": "q2",
+      "question_id": "q2",
+      "session_id": "s1",
+      "content": "Thao tác nào KHÔNG phải là thao tác cơ bản của Hàng đợi (Queue)?",
+      "options": [
+        "peek()",
+        "sort() — sắp xếp toàn bộ hàng đợi",
+        "enqueue()",
+        "dequeue()"
+      ],
+      "correct_answer": 1,
+      "explanation": "Queue chuẩn chỉ hỗ trợ enqueue, dequeue và peek. sort() không phải thao tác cơ bản vì nó phá vỡ thứ tự FIFO của cấu trúc.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2025-09-08T02:00:00.000Z",
+      "updated_at": "2025-09-08T02:00:00.000Z"
+    },
+    {
+      "id": "q3",
+      "question_id": "q3",
+      "session_id": "s2",
+      "content": "Trong cây nhị phân tìm kiếm (BST), phần tử nhỏ nhất nằm ở đâu?",
+      "options": [
+        "Nút gốc của cây",
+        "Nút lá tận cùng bên phải",
+        "Nút lá tận cùng bên trái",
+        "Không xác định được"
+      ],
+      "correct_answer": 2,
+      "explanation": "Phần tử nhỏ nhất trong BST luôn nằm ở nút lá tận cùng bên trái.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2025-09-15T02:00:00.000Z",
+      "updated_at": "2025-09-15T02:00:00.000Z"
+    },
+    {
+      "id": "q4",
+      "question_id": "q4",
+      "session_id": "s2",
+      "content": "Độ phức tạp trung bình của thao tác tìm kiếm trên BST cân bằng với n phần tử là gì?",
+      "options": [
+        "O(log n)",
+        "O(n)",
+        "O(n log n)",
+        "O(1)"
+      ],
+      "correct_answer": 0,
+      "explanation": "Với cây cân bằng, độ phức tạp trung bình của tìm kiếm là O(log n).",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2025-09-15T02:00:00.000Z",
+      "updated_at": "2025-09-15T02:00:00.000Z"
+    },
+    {
+      "id": "q5",
+      "question_id": "q5",
+      "session_id": "s2",
+      "content": "Khi nào một BST suy biến thành danh sách liên kết, khiến độ phức tạp tìm kiếm là O(n)?",
+      "options": [
+        "Khi cây có số lẻ phần tử",
+        "Khi dữ liệu được chèn theo thứ tự đã sắp xếp",
+        "Khi cây được xóa nhiều lần",
+        "Không bao giờ xảy ra"
+      ],
+      "correct_answer": 1,
+      "explanation": "Nếu dữ liệu được chèn theo thứ tự đã sắp xếp, BST suy biến thành một danh sách liên kết.",
+      "difficulty": "hard",
+      "created_by": "u2",
+      "created_at": "2025-09-15T02:00:00.000Z",
+      "updated_at": "2025-09-15T02:00:00.000Z"
+    },
+    {
+      "id": "q6",
+      "question_id": "q6",
+      "session_id": "s2",
+      "content": "Chọn tất cả các thuật toán duyệt cây hợp lệ.",
+      "options": [
+        "Pre-order",
+        "Post-order",
+        "Quick-order",
+        "In-order"
+      ],
+      "correct_answer": [
+        0,
+        1,
+        3
+      ],
+      "explanation": "Pre-order, In-order và Post-order là các thuật toán duyệt cây hợp lệ; Quick-order không tồn tại.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2025-09-16T02:00:00.000Z",
+      "updated_at": "2025-09-16T02:00:00.000Z"
+    },
+    {
+      "id": "q7",
+      "question_id": "q7",
+      "session_id": "s3",
+      "content": "Độ phức tạp thời gian của thuật toán Dijkstra với heap nhị phân là gì?",
+      "options": [
+        "O(V^2)",
+        "O((V+E) log V)",
+        "O(E log E)",
+        "O(V log E)"
+      ],
+      "correct_answer": 1,
+      "explanation": "Với cài đặt bằng heap nhị phân, độ phức tạp của Dijkstra là O((V+E) log V).",
+      "difficulty": "hard",
+      "created_by": "u2",
+      "created_at": "2025-09-21T02:00:00.000Z",
+      "updated_at": "2025-09-21T02:00:00.000Z"
+    },
+    {
+      "id": "q8",
+      "question_id": "q8",
+      "session_id": "s4",
+      "content": "Bài toán cái túi 0/1 thuộc nhóm kỹ thuật nào?",
+      "options": [
+        "Chia để trị",
+        "Quy hoạch động",
+        "Tham lam",
+        "Vét cạn"
+      ],
+      "correct_answer": 1,
+      "explanation": "Bài toán cái túi 0/1 là bài toán kinh điển được giải bằng quy hoạch động.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2025-09-28T02:00:00.000Z",
+      "updated_at": "2025-09-28T02:00:00.000Z"
+    },
+    {
+      "id": "q9",
+      "question_id": "q9",
+      "session_id": "s1",
+      "content": "Thao tác chèn một nút vào đầu danh sách liên kết đơn có độ phức tạp thời gian là bao nhiêu?",
+      "options": [
+        "O(1)",
+        "O(n)",
+        "O(log n)",
+        "O(n^2)"
+      ],
+      "correct_answer": 0,
+      "explanation": "Chỉ cần tạo nút mới, cho con trỏ next trỏ tới nút đầu cũ rồi cập nhật head, nên thời gian không phụ thuộc số phần tử.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q10",
+      "question_id": "q10",
+      "session_id": "s1",
+      "content": "So với danh sách liên kết đơn, danh sách liên kết đôi có ưu điểm nào?",
+      "options": [
+        "Tốn ít bộ nhớ hơn",
+        "Duyệt ngược và xóa một nút khi biết con trỏ tới nó dễ dàng hơn",
+        "Truy cập phần tử thứ i trong O(1)",
+        "Không cần con trỏ head"
+      ],
+      "correct_answer": 1,
+      "explanation": "Mỗi nút có thêm con trỏ prev nên có thể duyệt ngược và xóa nút mà không cần tìm nút đứng trước; đổi lại tốn thêm bộ nhớ cho con trỏ.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q11",
+      "question_id": "q11",
+      "session_id": "s1",
+      "content": "Cấu trúc dữ liệu nào thường được dùng để cài đặt chức năng Undo trong trình soạn thảo văn bản?",
+      "options": [
+        "Hàng đợi (Queue)",
+        "Ngăn xếp (Stack)",
+        "Cây nhị phân",
+        "Bảng băm"
+      ],
+      "correct_answer": 1,
+      "explanation": "Thao tác thực hiện gần nhất phải được hoàn tác trước, đúng với nguyên tắc LIFO của ngăn xếp.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q12",
+      "question_id": "q12",
+      "session_id": "s1",
+      "content": "Trong hàng đợi vòng (circular queue) cài đặt bằng mảng kích thước n và chừa một ô trống, hàng đợi đầy khi nào?",
+      "options": [
+        "Khi front = rear",
+        "Khi (rear + 1) mod n = front",
+        "Khi rear = n - 1",
+        "Khi front = 0"
+      ],
+      "correct_answer": 1,
+      "explanation": "Với quy ước chừa một ô trống để phân biệt đầy và rỗng: hàng đợi rỗng khi front = rear, đầy khi (rear + 1) mod n = front.",
+      "difficulty": "hard",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q13",
+      "question_id": "q13",
+      "session_id": "s2",
+      "content": "Duyệt cây nhị phân tìm kiếm theo thứ tự In-order cho kết quả như thế nào?",
+      "options": [
+        "Các khóa theo thứ tự giảm dần",
+        "Các khóa theo thứ tự tăng dần",
+        "Các khóa theo thứ tự ngẫu nhiên",
+        "Chỉ các nút lá"
+      ],
+      "correct_answer": 1,
+      "explanation": "In-order duyệt trái, gốc, phải; do tính chất của BST nên các khóa được liệt kê theo thứ tự tăng dần.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q14",
+      "question_id": "q14",
+      "session_id": "s2",
+      "content": "Cây nhị phân có chiều cao h (cây chỉ có nút gốc có chiều cao 0) thì có tối đa bao nhiêu nút?",
+      "options": [
+        "2^h",
+        "2^(h+1) - 1",
+        "2h + 1",
+        "h^2"
+      ],
+      "correct_answer": 1,
+      "explanation": "Mức i có tối đa 2^i nút, nên tổng tối đa là 1 + 2 + ... + 2^h = 2^(h+1) - 1.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q15",
+      "question_id": "q15",
+      "session_id": "s2",
+      "content": "Khi xóa một nút có hai con trong BST, nút nào thường được dùng để thay thế?",
+      "options": [
+        "Một nút lá bất kỳ",
+        "Nút gốc của cây",
+        "Nút kế nhiệm in-order (nhỏ nhất của cây con phải)",
+        "Nút cha của nút bị xóa"
+      ],
+      "correct_answer": 2,
+      "explanation": "Có thể thay bằng nút kế nhiệm in-order (hoặc nút tiền nhiệm in-order) để vẫn giữ nguyên tính chất của BST, sau đó xóa nút thay thế ở vị trí cũ.",
+      "difficulty": "hard",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q16",
+      "question_id": "q16",
+      "session_id": "s2",
+      "content": "Hệ số cân bằng của mỗi nút trong cây AVL phải thuộc tập giá trị nào?",
+      "options": [
+        "{-1, 0, 1}",
+        "{0, 1}",
+        "{-2, -1, 0, 1, 2}",
+        "Bất kỳ số nguyên nào"
+      ],
+      "correct_answer": 0,
+      "explanation": "Hệ số cân bằng là hiệu chiều cao cây con trái và cây con phải. Nếu giá trị vượt ra ngoài {-1, 0, 1} thì cây phải thực hiện phép xoay để cân bằng lại.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q17",
+      "question_id": "q17",
+      "session_id": "s3",
+      "content": "Thuật toán BFS trên đồ thị sử dụng cấu trúc dữ liệu nào để quản lý các đỉnh cần thăm?",
+      "options": [
+        "Ngăn xếp",
+        "Hàng đợi",
+        "Cây AVL",
+        "Heap"
+      ],
+      "correct_answer": 1,
+      "explanation": "BFS thăm các đỉnh theo từng lớp, cần lấy đỉnh vào trước ra trước nên dùng hàng đợi (FIFO).",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q18",
+      "question_id": "q18",
+      "session_id": "s3",
+      "content": "Với đồ thị có V đỉnh và E cạnh biểu diễn bằng danh sách kề, độ phức tạp thời gian của DFS là bao nhiêu?",
+      "options": [
+        "O(V)",
+        "O(V + E)",
+        "O(V * E)",
+        "O(E^2)"
+      ],
+      "correct_answer": 1,
+      "explanation": "DFS thăm mỗi đỉnh một lần và duyệt qua mỗi cạnh một lần (hai lần với đồ thị vô hướng), nên độ phức tạp là O(V + E).",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q19",
+      "question_id": "q19",
+      "session_id": "s3",
+      "content": "Thuật toán Dijkstra có thể cho kết quả sai trong trường hợp nào?",
+      "options": [
+        "Đồ thị vô hướng",
+        "Đồ thị có cạnh trọng số âm",
+        "Đồ thị có chu trình trọng số dương",
+        "Đồ thị thưa"
+      ],
+      "correct_answer": 1,
+      "explanation": "Dijkstra giả định khi một đỉnh đã được chốt thì khoảng cách của nó là nhỏ nhất, giả định này không còn đúng khi có cạnh trọng số âm.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q20",
+      "question_id": "q20",
+      "session_id": "s3",
+      "content": "Sắp xếp topo (topological sort) chỉ áp dụng được cho loại đồ thị nào?",
+      "options": [
+        "Đồ thị vô hướng liên thông",
+        "Đồ thị có hướng không có chu trình (DAG)",
+        "Đồ thị đầy đủ",
+        "Đồ thị có trọng số âm"
+      ],
+      "correct_answer": 1,
+      "explanation": "Thứ tự topo chỉ tồn tại khi đồ thị có hướng và không có chu trình; nếu có chu trình thì không thể xếp các đỉnh thỏa mãn mọi ràng buộc.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q21",
+      "question_id": "q21",
+      "session_id": "s4",
+      "content": "Điều kiện cần của một bài toán để áp dụng quy hoạch động hiệu quả là gì?",
+      "options": [
+        "Có cấu trúc con tối ưu và các bài toán con gối nhau",
+        "Dữ liệu đầu vào đã được sắp xếp",
+        "Đồ thị không có chu trình",
+        "Số phần tử là lũy thừa của 2"
+      ],
+      "correct_answer": 0,
+      "explanation": "Quy hoạch động hiệu quả khi lời giải tối ưu được tạo từ lời giải tối ưu của bài toán con và các bài toán con lặp lại nhiều lần nên có thể lưu kết quả để dùng lại.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q22",
+      "question_id": "q22",
+      "session_id": "s4",
+      "content": "Tính số Fibonacci thứ n bằng quy hoạch động (lưu lại kết quả các bài toán con) có độ phức tạp thời gian là bao nhiêu?",
+      "options": [
+        "O(2^n)",
+        "O(n)",
+        "O(log n)",
+        "O(n^2)"
+      ],
+      "correct_answer": 1,
+      "explanation": "Mỗi giá trị F(i) chỉ được tính một lần nhờ lưu lại kết quả, nên tổng thời gian là O(n), trong khi đệ quy thuần túy mất O(2^n).",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q23",
+      "question_id": "q23",
+      "session_id": "s4",
+      "content": "Hai cách cài đặt quy hoạch động thường gặp là gì?",
+      "options": [
+        "Chia để trị và tham lam",
+        "Top-down có ghi nhớ (memoization) và bottom-up có bảng (tabulation)",
+        "Vét cạn và nhánh cận",
+        "Đệ quy đuôi và lặp vô hạn"
+      ],
+      "correct_answer": 1,
+      "explanation": "Top-down dùng đệ quy kèm bộ nhớ đệm, bottom-up điền bảng kết quả từ bài toán nhỏ đến bài toán lớn.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q24",
+      "question_id": "q24",
+      "session_id": "s1",
+      "content": "Truy cập phần tử thứ k trong danh sách liên kết đơn có độ phức tạp thời gian trong trường hợp xấu nhất là bao nhiêu?",
+      "options": [
+        "O(1)",
+        "O(log n)",
+        "O(n)",
+        "O(n log n)"
+      ],
+      "correct_answer": 2,
+      "explanation": "Danh sách liên kết không hỗ trợ truy cập ngẫu nhiên; phải duyệt tuần tự từ nút đầu nên trường hợp xấu nhất đi qua n nút.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q25",
+      "question_id": "q25",
+      "session_id": "s1",
+      "content": "Điều gì xảy ra khi thực hiện pop() trên một ngăn xếp rỗng?",
+      "options": [
+        "Trả về phần tử đầu tiên được thêm vào",
+        "Ngăn xếp tự động mở rộng",
+        "Xảy ra lỗi tràn dưới (stack underflow)",
+        "Trả về phần tử cuối của mảng"
+      ],
+      "correct_answer": 2,
+      "explanation": "Không còn phần tử nào để lấy ra nên thao tác pop() trên ngăn xếp rỗng gây lỗi underflow; cần kiểm tra rỗng trước khi pop.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q26",
+      "question_id": "q26",
+      "session_id": "s1",
+      "content": "Biểu thức hậu tố (postfix) thường được tính giá trị bằng cấu trúc dữ liệu nào?",
+      "options": [
+        "Hàng đợi",
+        "Cây AVL",
+        "Bảng băm",
+        "Ngăn xếp"
+      ],
+      "correct_answer": 3,
+      "explanation": "Duyệt biểu thức từ trái sang phải: toán hạng được đẩy vào ngăn xếp, gặp toán tử thì lấy hai toán hạng trên cùng ra tính rồi đẩy kết quả lại.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q27",
+      "question_id": "q27",
+      "session_id": "s1",
+      "content": "Giá trị của biểu thức hậu tố 3 4 + 2 * là bao nhiêu?",
+      "options": [
+        "10",
+        "14",
+        "11",
+        "24"
+      ],
+      "correct_answer": 1,
+      "explanation": "3 4 + cho 7, sau đó 7 2 * cho 14.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q28",
+      "question_id": "q28",
+      "session_id": "s1",
+      "content": "Cấu trúc dữ liệu nào phù hợp để cài đặt hàng chờ in, tài liệu gửi trước được in trước?",
+      "options": [
+        "Ngăn xếp",
+        "Cây nhị phân tìm kiếm",
+        "Hàng đợi",
+        "Đồ thị"
+      ],
+      "correct_answer": 2,
+      "explanation": "Yêu cầu đến trước phải được xử lý trước, đúng với nguyên tắc FIFO của hàng đợi.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q29",
+      "question_id": "q29",
+      "session_id": "s1",
+      "content": "Danh sách liên kết đơn chỉ có con trỏ head (không có tail). Chèn một nút vào cuối danh sách mất thời gian bao nhiêu?",
+      "options": [
+        "O(1)",
+        "O(n)",
+        "O(log n)",
+        "O(n^2)"
+      ],
+      "correct_answer": 1,
+      "explanation": "Phải duyệt từ head đến nút cuối rồi mới nối nút mới, nên mất O(n). Có con trỏ tail thì thao tác này chỉ còn O(1).",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q30",
+      "question_id": "q30",
+      "session_id": "s1",
+      "content": "Phát hiện chu trình trong danh sách liên kết đơn bằng thuật toán hai con trỏ nhanh - chậm (Floyd) cần bao nhiêu bộ nhớ phụ?",
+      "options": [
+        "O(1)",
+        "O(n)",
+        "O(log n)",
+        "O(n^2)"
+      ],
+      "correct_answer": 0,
+      "explanation": "Thuật toán chỉ dùng hai con trỏ, một đi một bước và một đi hai bước; nếu có chu trình thì hai con trỏ sẽ gặp nhau, không cần lưu thêm dữ liệu.",
+      "difficulty": "hard",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q31",
+      "question_id": "q31",
+      "session_id": "s1",
+      "content": "Hàng đợi cài đặt bằng mảng thông thường (không vòng) có thể bị đầy giả khi nào?",
+      "options": [
+        "Khi rear chạm cuối mảng dù các ô phía đầu mảng còn trống",
+        "Khi front bằng rear",
+        "Khi mảng đang rỗng",
+        "Khi mảng đã được sắp xếp"
+      ],
+      "correct_answer": 0,
+      "explanation": "Mỗi lần dequeue, front dịch về phía sau và các ô phía trước không được dùng lại. Hàng đợi vòng giải quyết vấn đề này.",
+      "difficulty": "hard",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q32",
+      "question_id": "q32",
+      "session_id": "s1",
+      "content": "Danh sách liên kết vòng (circular linked list) khác danh sách liên kết đơn ở điểm nào?",
+      "options": [
+        "Nút cuối trỏ về nút đầu thay vì trỏ NULL",
+        "Mỗi nút có hai con trỏ",
+        "Các nút được lưu liên tục trong mảng",
+        "Không có nút đầu"
+      ],
+      "correct_answer": 0,
+      "explanation": "Ở danh sách vòng, con trỏ next của nút cuối trỏ lại nút đầu, nên có thể duyệt tuần hoàn từ bất kỳ nút nào.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q33",
+      "question_id": "q33",
+      "session_id": "s2",
+      "content": "Duyệt Pre-order cây nhị phân thăm các nút theo thứ tự nào?",
+      "options": [
+        "Trái, phải, gốc",
+        "Trái, gốc, phải",
+        "Phải, gốc, trái",
+        "Gốc, trái, phải"
+      ],
+      "correct_answer": 3,
+      "explanation": "Pre-order thăm nút gốc trước, sau đó duyệt cây con trái rồi cây con phải.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q34",
+      "question_id": "q34",
+      "session_id": "s2",
+      "content": "Duyệt Post-order cây nhị phân thường được dùng cho tác vụ nào?",
+      "options": [
+        "Sao chép cây",
+        "Liệt kê khóa theo thứ tự tăng dần",
+        "Giải phóng (xóa) toàn bộ cây",
+        "Tìm nút gốc"
+      ],
+      "correct_answer": 2,
+      "explanation": "Post-order xử lý các nút con trước nút cha, phù hợp để xóa cây vì không làm mất liên kết tới các nút con chưa xử lý.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q35",
+      "question_id": "q35",
+      "session_id": "s2",
+      "content": "Chèn lần lượt các khóa 5, 3, 8, 1, 4 vào một BST rỗng. Duyệt In-order cho kết quả nào?",
+      "options": [
+        "5 3 8 1 4",
+        "8 5 4 3 1",
+        "1 3 4 5 8",
+        "1 4 3 8 5"
+      ],
+      "correct_answer": 2,
+      "explanation": "Cây thu được có gốc 5, con trái 3 (con của 3 là 1 và 4), con phải 8. In-order của BST luôn cho các khóa tăng dần: 1 3 4 5 8.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q36",
+      "question_id": "q36",
+      "session_id": "s2",
+      "content": "Cây AVL cần xoay kép Left-Right khi nào?",
+      "options": [
+        "Khi nút mất cân bằng lệch trái và con trái của nó lệch phải",
+        "Khi nút mất cân bằng lệch phải và con phải của nó lệch trái",
+        "Khi cây chỉ có một nút",
+        "Khi thêm khóa trùng"
+      ],
+      "correct_answer": 0,
+      "explanation": "Trường hợp Left-Right: xoay trái tại nút con trái rồi xoay phải tại nút mất cân bằng.",
+      "difficulty": "hard",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q37",
+      "question_id": "q37",
+      "session_id": "s2",
+      "content": "Độ phức tạp thời gian của thao tác chèn trong cây AVL có n nút là bao nhiêu?",
+      "options": [
+        "O(1)",
+        "O(n)",
+        "O(n log n)",
+        "O(log n)"
+      ],
+      "correct_answer": 3,
+      "explanation": "Cây AVL có chiều cao O(log n) và số phép xoay sau mỗi lần chèn là hằng số, nên chèn mất O(log n).",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q38",
+      "question_id": "q38",
+      "session_id": "s2",
+      "content": "Cây nhị phân đầy đủ có chiều cao h (nút gốc có chiều cao 0) thì có bao nhiêu nút lá?",
+      "options": [
+        "h",
+        "2h",
+        "2^h",
+        "2^(h+1)"
+      ],
+      "correct_answer": 2,
+      "explanation": "Ở mức cuối cùng (mức h) có 2^h nút và đó đều là nút lá.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q39",
+      "question_id": "q39",
+      "session_id": "s2",
+      "content": "Độ sâu (depth) của một nút trong cây là gì?",
+      "options": [
+        "Số cạnh trên đường đi từ nút gốc tới nút đó",
+        "Số nút con của nút đó",
+        "Số nút lá trong cây con của nó",
+        "Chiều cao của cả cây"
+      ],
+      "correct_answer": 0,
+      "explanation": "Độ sâu của nút là số cạnh trên đường đi duy nhất từ gốc đến nó; nút gốc có độ sâu 0.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q40",
+      "question_id": "q40",
+      "session_id": "s3",
+      "content": "Biểu diễn đồ thị có V đỉnh bằng ma trận kề cần bộ nhớ bao nhiêu?",
+      "options": [
+        "O(V)",
+        "O(V^2)",
+        "O(V + E)",
+        "O(E)"
+      ],
+      "correct_answer": 1,
+      "explanation": "Ma trận kề là bảng V x V nên luôn cần O(V^2) ô nhớ, bất kể số cạnh.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q41",
+      "question_id": "q41",
+      "session_id": "s3",
+      "content": "Với đồ thị thưa (số cạnh E rất nhỏ so với V^2), cách biểu diễn nào thường tiết kiệm bộ nhớ hơn?",
+      "options": [
+        "Ma trận kề",
+        "Ma trận trọng số đầy đủ",
+        "Mảng hai chiều V x V",
+        "Danh sách kề"
+      ],
+      "correct_answer": 3,
+      "explanation": "Danh sách kề chỉ lưu các cạnh thực sự có, dùng O(V + E) bộ nhớ.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q42",
+      "question_id": "q42",
+      "session_id": "s3",
+      "content": "Trong đồ thị vô hướng (không khuyên, không cạnh song song) có E cạnh, tổng bậc của tất cả các đỉnh bằng bao nhiêu?",
+      "options": [
+        "E",
+        "V + E",
+        "2E",
+        "E/2"
+      ],
+      "correct_answer": 2,
+      "explanation": "Mỗi cạnh nối hai đỉnh nên được đếm hai lần khi cộng bậc, do đó tổng bậc bằng 2E.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q43",
+      "question_id": "q43",
+      "session_id": "s3",
+      "content": "BFS tìm được đường đi ngắn nhất (theo số cạnh) từ đỉnh nguồn trong loại đồ thị nào?",
+      "options": [
+        "Đồ thị không trọng số (hoặc mọi cạnh cùng trọng số)",
+        "Đồ thị có trọng số âm",
+        "Đồ thị có chu trình âm",
+        "Chỉ đồ thị đầy đủ"
+      ],
+      "correct_answer": 0,
+      "explanation": "BFS thăm các đỉnh theo từng lớp khoảng cách nên lần đầu gặp một đỉnh cũng là đường đi có ít cạnh nhất.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q44",
+      "question_id": "q44",
+      "session_id": "s3",
+      "content": "Cài đặt DFS không dùng đệ quy thường sử dụng cấu trúc dữ liệu nào?",
+      "options": [
+        "Hàng đợi",
+        "Heap",
+        "Bảng băm",
+        "Ngăn xếp"
+      ],
+      "correct_answer": 3,
+      "explanation": "DFS đi sâu rồi quay lui, tương ứng với nguyên tắc LIFO, nên có thể thay ngăn xếp gọi hàm bằng một ngăn xếp tường minh.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q45",
+      "question_id": "q45",
+      "session_id": "s3",
+      "content": "Thuật toán nào tìm được đường đi ngắn nhất trong đồ thị có cạnh trọng số âm (nhưng không có chu trình âm)?",
+      "options": [
+        "Bellman-Ford",
+        "Dijkstra",
+        "BFS",
+        "Prim"
+      ],
+      "correct_answer": 0,
+      "explanation": "Bellman-Ford nới lỏng tất cả các cạnh V - 1 lần nên xử lý được trọng số âm, độ phức tạp O(V * E).",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q46",
+      "question_id": "q46",
+      "session_id": "s3",
+      "content": "Thuật toán Floyd-Warshall giải bài toán nào?",
+      "options": [
+        "Cây khung nhỏ nhất",
+        "Đường đi ngắn nhất giữa mọi cặp đỉnh",
+        "Sắp xếp topo",
+        "Tìm thành phần liên thông"
+      ],
+      "correct_answer": 1,
+      "explanation": "Floyd-Warshall dùng quy hoạch động để tìm đường đi ngắn nhất giữa mọi cặp đỉnh với độ phức tạp O(V^3).",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q47",
+      "question_id": "q47",
+      "session_id": "s3",
+      "content": "Khi dùng DFS để phát hiện chu trình trong đồ thị có hướng, ta dựa vào dấu hiệu nào?",
+      "options": [
+        "Gặp lại một đỉnh đang nằm trên đường đi đệ quy hiện tại (cạnh ngược)",
+        "Gặp một đỉnh đã thăm xong ở nhánh khác",
+        "Số đỉnh bằng số cạnh",
+        "Đỉnh gốc có bậc bằng 0"
+      ],
+      "correct_answer": 0,
+      "explanation": "Nếu từ một đỉnh ta đi tới một đỉnh vẫn đang được xử lý (còn trong ngăn xếp đệ quy) thì tồn tại cạnh ngược, tức có chu trình.",
+      "difficulty": "hard",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q48",
+      "question_id": "q48",
+      "session_id": "s3",
+      "content": "Một đồ thị liên thông, không có chu trình (là một cây) với V đỉnh thì có bao nhiêu cạnh?",
+      "options": [
+        "V",
+        "V + 1",
+        "V - 1",
+        "2V"
+      ],
+      "correct_answer": 2,
+      "explanation": "Cây liên thông và không có chu trình với V đỉnh luôn có đúng V - 1 cạnh.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q49",
+      "question_id": "q49",
+      "session_id": "s3",
+      "content": "Dijkstra thường dùng cấu trúc nào để chọn nhanh đỉnh chưa chốt có khoảng cách nhỏ nhất?",
+      "options": [
+        "Ngăn xếp",
+        "Danh sách liên kết đơn",
+        "Hàng đợi ưu tiên (heap)",
+        "Mảng đã sắp xếp cố định"
+      ],
+      "correct_answer": 2,
+      "explanation": "Hàng đợi ưu tiên cài đặt bằng heap cho phép lấy phần tử nhỏ nhất và cập nhật khoảng cách trong O(log V).",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q50",
+      "question_id": "q50",
+      "session_id": "s4",
+      "content": "Bài toán dãy con chung dài nhất (LCS) của hai chuỗi độ dài m và n giải bằng quy hoạch động có độ phức tạp thời gian là bao nhiêu?",
+      "options": [
+        "O(m + n)",
+        "O(m * n)",
+        "O(2^(m+n))",
+        "O(log(m * n))"
+      ],
+      "correct_answer": 1,
+      "explanation": "Bảng quy hoạch động có m x n ô, mỗi ô tính trong thời gian hằng số nên tổng thời gian là O(m * n).",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q51",
+      "question_id": "q51",
+      "session_id": "s4",
+      "content": "Công thức truy hồi của dãy Fibonacci là gì?",
+      "options": [
+        "F(n) = F(n-1) * F(n-2)",
+        "F(n) = 2 * F(n-1)",
+        "F(n) = F(n-1) + F(n-2)",
+        "F(n) = F(n-1) - F(n-2)"
+      ],
+      "correct_answer": 2,
+      "explanation": "Mỗi số Fibonacci bằng tổng hai số đứng ngay trước nó.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q52",
+      "question_id": "q52",
+      "session_id": "s4",
+      "content": "Bài toán đổi tiền (coin change) tìm số đồng xu ít nhất, với mọi hệ mệnh giá, được giải đúng bằng kỹ thuật nào?",
+      "options": [
+        "Tham lam",
+        "Tìm kiếm nhị phân",
+        "Sắp xếp trộn",
+        "Quy hoạch động"
+      ],
+      "correct_answer": 3,
+      "explanation": "Chọn đồng lớn nhất trước (tham lam) có thể sai với một số hệ mệnh giá, ví dụ {1, 3, 4} đổi 6 thì tham lam cho 4 + 1 + 1 trong khi tối ưu là 3 + 3. Quy hoạch động luôn cho kết quả đúng.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q53",
+      "question_id": "q53",
+      "session_id": "s4",
+      "content": "Điểm khác biệt chính giữa quy hoạch động và chia để trị là gì?",
+      "options": [
+        "Quy hoạch động không bao giờ dùng đệ quy",
+        "Quy hoạch động tận dụng các bài toán con gối nhau và lưu lại kết quả, còn chia để trị thường có các bài toán con độc lập",
+        "Chia để trị luôn dùng bảng hai chiều",
+        "Hai kỹ thuật hoàn toàn giống nhau"
+      ],
+      "correct_answer": 1,
+      "explanation": "Khi các bài toán con lặp lại, quy hoạch động lưu kết quả để không tính lại; ở chia để trị (ví dụ merge sort) các bài toán con không trùng nhau nên không cần lưu.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q54",
+      "question_id": "q54",
+      "session_id": "s4",
+      "content": "Bài toán cái túi 0/1 với n vật và sức chứa W giải bằng quy hoạch động có độ phức tạp thời gian là bao nhiêu?",
+      "options": [
+        "O(n + W)",
+        "O(n log W)",
+        "O(n * W)",
+        "O(2^n)"
+      ],
+      "correct_answer": 2,
+      "explanation": "Bảng quy hoạch động có n x W trạng thái, mỗi trạng thái tính trong thời gian hằng số.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q55",
+      "question_id": "q55",
+      "session_id": "s4",
+      "content": "Điểm khác nhau giữa cái túi 0/1 và cái túi phân số là gì?",
+      "options": [
+        "Ở cái túi 0/1 mỗi vật hoặc được lấy nguyên vẹn hoặc không lấy",
+        "Ở cái túi 0/1 được lấy một phần của vật",
+        "Cái túi 0/1 không có giới hạn sức chứa",
+        "Cái túi 0/1 luôn chọn vật nhẹ nhất"
+      ],
+      "correct_answer": 0,
+      "explanation": "Cái túi phân số cho phép lấy một phần vật nên giải được bằng tham lam; cái túi 0/1 không chia nhỏ được nên cần quy hoạch động.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q56",
+      "question_id": "q56",
+      "session_id": "s4",
+      "content": "Bài toán dãy con tăng dài nhất (LIS) giải bằng quy hoạch động cơ bản có độ phức tạp thời gian là bao nhiêu?",
+      "options": [
+        "O(n)",
+        "O(n log n)",
+        "O(n^2)",
+        "O(2^n)"
+      ],
+      "correct_answer": 2,
+      "explanation": "Với mỗi phần tử ta xét tất cả phần tử đứng trước nó nên cài đặt cơ bản mất O(n^2).",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q57",
+      "question_id": "q57",
+      "session_id": "s4",
+      "content": "Khoảng cách chỉnh sửa (edit distance) giữa hai chuỗi cho biết điều gì?",
+      "options": [
+        "Độ dài chuỗi con chung dài nhất",
+        "Số ký tự khác nhau trong hai chuỗi bất kể vị trí",
+        "Hiệu độ dài hai chuỗi",
+        "Số phép thêm, xóa, thay thế ít nhất để biến chuỗi này thành chuỗi kia"
+      ],
+      "correct_answer": 3,
+      "explanation": "Edit distance (Levenshtein) là số thao tác chèn, xóa, thay thế tối thiểu để biến đổi một chuỗi thành chuỗi còn lại và tính bằng quy hoạch động.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q58",
+      "question_id": "q58",
+      "session_id": "s4",
+      "content": "Khi tính Fibonacci bằng quy hoạch động, có thể giảm bộ nhớ từ O(n) xuống mức nào?",
+      "options": [
+        "Không thể giảm",
+        "O(log n)",
+        "O(1)",
+        "O(n^2)"
+      ],
+      "correct_answer": 2,
+      "explanation": "Mỗi giá trị chỉ phụ thuộc hai giá trị đứng ngay trước nên chỉ cần lưu hai biến thay vì cả bảng.",
+      "difficulty": "medium",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q59",
+      "question_id": "q59",
+      "session_id": "s4",
+      "content": "Bước đầu tiên khi thiết kế lời giải quy hoạch động thường là gì?",
+      "options": [
+        "Sắp xếp dữ liệu đầu vào",
+        "Chuyển bài toán sang đồ thị",
+        "Xác định trạng thái và công thức truy hồi của bài toán",
+        "Cài đặt bằng vét cạn rồi dừng lại"
+      ],
+      "correct_answer": 2,
+      "explanation": "Cần định nghĩa rõ trạng thái (bài toán con) và cách tính nó từ các trạng thái nhỏ hơn, sau đó mới chọn cách cài đặt.",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "id": "q60",
+      "question_id": "q60",
+      "session_id": "s4",
+      "content": "Vì sao đệ quy thuần túy tính số Fibonacci rất chậm?",
+      "options": [
+        "Dùng quá nhiều biến toàn cục",
+        "Tính lặp lại rất nhiều lần cùng một bài toán con",
+        "Luôn gây tràn bộ nhớ ngay lập tức",
+        "Phải sắp xếp dữ liệu trước khi tính"
+      ],
+      "correct_answer": 1,
+      "explanation": "Các lời gọi F(n-1) và F(n-2) cùng gọi lại nhiều giá trị chung, làm số lời gọi tăng theo hàm mũ O(2^n).",
+      "difficulty": "easy",
+      "created_by": "u2",
+      "created_at": "2026-10-06T02:00:00.000Z",
+      "updated_at": "2026-10-06T02:00:00.000Z"
+    }
   ],
-
   "quizzes": [
-    { "id": "quiz1", "quiz_id": "quiz1", "session_id": "s1", "title": "Quiz Chương 1 — Danh sách & Ngăn xếp", "question_ids": ["q1", "q2"], "time_limit_minutes": 15, "status": "published", "pass_score": 5, "created_by": "u2", "created_at": "2025-09-09T02:00:00.000Z", "updated_at": "2025-09-09T02:00:00.000Z" },
-    { "id": "quiz2", "quiz_id": "quiz2", "session_id": "s2", "title": "Quiz Chương 2 — Cây & BST", "question_ids": ["q3", "q4", "q5", "q6"], "time_limit_minutes": 20, "status": "published", "pass_score": 5, "created_by": "u2", "created_at": "2025-09-17T02:00:00.000Z", "updated_at": "2026-08-26T01:00:00.000Z" },
-    { "id": "quiz3", "quiz_id": "quiz3", "session_id": "s3", "title": "Quiz Chương 3 — Đồ thị", "question_ids": ["q7"], "time_limit_minutes": 25, "status": "scheduled", "pass_score": 5, "created_by": "u2", "created_at": "2025-09-22T02:00:00.000Z", "updated_at": "2026-09-02T01:00:00.000Z" },
-    { "id": "quiz4", "quiz_id": "quiz4", "session_id": "s4", "title": "Quiz Chương 4 — Quy hoạch động", "question_ids": ["q8"], "time_limit_minutes": 15, "status": "scheduled", "pass_score": 5, "created_by": "u2", "created_at": "2025-09-29T02:00:00.000Z", "updated_at": "2026-09-09T01:00:00.000Z" }
+    {
+      "id": "quiz1",
+      "quiz_id": "quiz1",
+      "session_id": "s1",
+      "title": "Quiz Chương 1 — Danh sách & Ngăn xếp",
+      "question_ids": [
+        "q1",
+        "q2",
+        "q9",
+        "q10",
+        "q11",
+        "q12",
+        "q24",
+        "q25",
+        "q26",
+        "q27",
+        "q28",
+        "q29",
+        "q30",
+        "q31",
+        "q32"
+      ],
+      "time_limit_minutes": 15,
+      "status": "published",
+      "pass_score": 5,
+      "created_by": "u2",
+      "created_at": "2025-09-09T02:00:00.000Z",
+      "updated_at": "2025-09-09T02:00:00.000Z"
+    },
+    {
+      "id": "quiz2",
+      "quiz_id": "quiz2",
+      "session_id": "s2",
+      "title": "Quiz Chương 2 — Cây & BST",
+      "question_ids": [
+        "q3",
+        "q4",
+        "q5",
+        "q6",
+        "q13",
+        "q14",
+        "q15",
+        "q16",
+        "q33",
+        "q34",
+        "q35",
+        "q36",
+        "q37",
+        "q38",
+        "q39"
+      ],
+      "time_limit_minutes": 20,
+      "status": "published",
+      "pass_score": 5,
+      "created_by": "u2",
+      "created_at": "2025-09-17T02:00:00.000Z",
+      "updated_at": "2026-08-26T01:00:00.000Z"
+    },
+    {
+      "id": "quiz3",
+      "quiz_id": "quiz3",
+      "session_id": "s3",
+      "title": "Quiz Chương 3 — Đồ thị",
+      "question_ids": [
+        "q7",
+        "q17",
+        "q18",
+        "q19",
+        "q20",
+        "q40",
+        "q41",
+        "q42",
+        "q43",
+        "q44",
+        "q45",
+        "q46",
+        "q47",
+        "q48",
+        "q49"
+      ],
+      "time_limit_minutes": 25,
+      "status": "scheduled",
+      "pass_score": 5,
+      "created_by": "u2",
+      "created_at": "2025-09-22T02:00:00.000Z",
+      "updated_at": "2026-09-02T01:00:00.000Z"
+    },
+    {
+      "id": "quiz4",
+      "quiz_id": "quiz4",
+      "session_id": "s4",
+      "title": "Quiz Chương 4 — Quy hoạch động",
+      "question_ids": [
+        "q8",
+        "q21",
+        "q22",
+        "q23",
+        "q50",
+        "q51",
+        "q52",
+        "q53",
+        "q54",
+        "q55",
+        "q56",
+        "q57",
+        "q58",
+        "q59",
+        "q60"
+      ],
+      "time_limit_minutes": 15,
+      "status": "scheduled",
+      "pass_score": 5,
+      "created_by": "u2",
+      "created_at": "2025-09-29T02:00:00.000Z",
+      "updated_at": "2026-09-09T01:00:00.000Z"
+    }
   ],
-
   "enrollments": [
-    { "id": "e1", "enrollment_id": "e1", "user_id": "u1", "course_id": "c1", "status": "active", "enrolled_at": "2026-07-01T02:00:00.000Z", "completed_at": null, "completion_rate": 42, "average_quiz_score": 9.0, "created_at": "2026-07-01T02:00:00.000Z", "updated_at": "2026-09-20T02:00:00.000Z" },
-    { "id": "e2", "enrollment_id": "e2", "user_id": "u1", "course_id": "c6", "status": "active", "enrolled_at": "2026-06-15T02:00:00.000Z", "completed_at": null, "completion_rate": 45, "average_quiz_score": 7.0, "created_at": "2026-06-15T02:00:00.000Z", "updated_at": "2026-09-18T02:00:00.000Z" },
-    { "id": "e3", "enrollment_id": "e3", "user_id": "u1", "course_id": "c7", "status": "completed", "enrolled_at": "2026-02-01T02:00:00.000Z", "completed_at": "2026-04-20T02:00:00.000Z", "completion_rate": 100, "average_quiz_score": 9.1, "created_at": "2026-02-01T02:00:00.000Z", "updated_at": "2026-04-20T02:00:00.000Z" },
-    { "id": "e4", "enrollment_id": "e4", "user_id": "u1", "course_id": "c8", "status": "active", "enrolled_at": "2026-09-01T02:00:00.000Z", "completed_at": null, "completion_rate": 8, "average_quiz_score": null, "created_at": "2026-09-01T02:00:00.000Z", "updated_at": "2026-09-10T02:00:00.000Z" }
+    {
+      "id": "e1",
+      "enrollment_id": "e1",
+      "user_id": "u1",
+      "course_id": "c1",
+      "status": "active",
+      "enrolled_at": "2026-07-01T02:00:00.000Z",
+      "completed_at": null,
+      "completion_rate": 42,
+      "average_quiz_score": 9,
+      "created_at": "2026-07-01T02:00:00.000Z",
+      "updated_at": "2026-09-20T02:00:00.000Z"
+    },
+    {
+      "id": "e2",
+      "enrollment_id": "e2",
+      "user_id": "u1",
+      "course_id": "c6",
+      "status": "active",
+      "enrolled_at": "2026-06-15T02:00:00.000Z",
+      "completed_at": null,
+      "completion_rate": 45,
+      "average_quiz_score": 7,
+      "created_at": "2026-06-15T02:00:00.000Z",
+      "updated_at": "2026-09-18T02:00:00.000Z"
+    },
+    {
+      "id": "e3",
+      "enrollment_id": "e3",
+      "user_id": "u1",
+      "course_id": "c7",
+      "status": "completed",
+      "enrolled_at": "2026-02-01T02:00:00.000Z",
+      "completed_at": "2026-04-20T02:00:00.000Z",
+      "completion_rate": 100,
+      "average_quiz_score": 9.1,
+      "created_at": "2026-02-01T02:00:00.000Z",
+      "updated_at": "2026-04-20T02:00:00.000Z"
+    },
+    {
+      "id": "e4",
+      "enrollment_id": "e4",
+      "user_id": "u1",
+      "course_id": "c8",
+      "status": "active",
+      "enrolled_at": "2026-09-01T02:00:00.000Z",
+      "completed_at": null,
+      "completion_rate": 8,
+      "average_quiz_score": null,
+      "created_at": "2026-09-01T02:00:00.000Z",
+      "updated_at": "2026-09-10T02:00:00.000Z"
+    }
   ],
-
   "progress": [
-    { "id": "p1", "progress_id": "p1", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l1", "is_completed": true, "completed_at": "2026-07-02T02:00:00.000Z", "time_spent_seconds": 1100, "last_accessed_at": "2026-07-02T02:00:00.000Z", "created_at": "2026-07-01T02:00:00.000Z", "updated_at": "2026-07-02T02:00:00.000Z" },
-    { "id": "p2", "progress_id": "p2", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l2", "is_completed": true, "completed_at": "2026-07-03T02:00:00.000Z", "time_spent_seconds": 980, "last_accessed_at": "2026-07-03T02:00:00.000Z", "created_at": "2026-07-02T02:00:00.000Z", "updated_at": "2026-07-03T02:00:00.000Z" },
-    { "id": "p3", "progress_id": "p3", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l3", "is_completed": true, "completed_at": "2026-07-05T02:00:00.000Z", "time_spent_seconds": 890, "last_accessed_at": "2026-07-05T02:00:00.000Z", "created_at": "2026-07-04T02:00:00.000Z", "updated_at": "2026-07-05T02:00:00.000Z" },
-    { "id": "p4", "progress_id": "p4", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l4", "is_completed": false, "completed_at": null, "time_spent_seconds": 120, "last_accessed_at": "2026-09-20T02:00:00.000Z", "created_at": "2026-09-20T02:00:00.000Z", "updated_at": "2026-09-20T02:00:00.000Z" },
-    { "id": "p5", "progress_id": "p5", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l5", "is_completed": true, "completed_at": "2026-09-10T02:00:00.000Z", "time_spent_seconds": 700, "last_accessed_at": "2026-09-10T02:00:00.000Z", "created_at": "2026-09-09T02:00:00.000Z", "updated_at": "2026-09-10T02:00:00.000Z" },
-    { "id": "p6", "progress_id": "p6", "enrollment_id": "e1", "user_id": "u1", "lesson_id": "l6", "is_completed": false, "completed_at": null, "time_spent_seconds": 340, "last_accessed_at": "2026-09-22T02:00:00.000Z", "created_at": "2026-09-21T02:00:00.000Z", "updated_at": "2026-09-22T02:00:00.000Z" }
+    {
+      "id": "p1",
+      "progress_id": "p1",
+      "enrollment_id": "e1",
+      "user_id": "u1",
+      "lesson_id": "l1",
+      "is_completed": true,
+      "completed_at": "2026-07-02T02:00:00.000Z",
+      "time_spent_seconds": 1100,
+      "last_accessed_at": "2026-07-02T02:00:00.000Z",
+      "created_at": "2026-07-01T02:00:00.000Z",
+      "updated_at": "2026-07-02T02:00:00.000Z"
+    },
+    {
+      "id": "p2",
+      "progress_id": "p2",
+      "enrollment_id": "e1",
+      "user_id": "u1",
+      "lesson_id": "l2",
+      "is_completed": true,
+      "completed_at": "2026-07-03T02:00:00.000Z",
+      "time_spent_seconds": 980,
+      "last_accessed_at": "2026-07-03T02:00:00.000Z",
+      "created_at": "2026-07-02T02:00:00.000Z",
+      "updated_at": "2026-07-03T02:00:00.000Z"
+    },
+    {
+      "id": "p3",
+      "progress_id": "p3",
+      "enrollment_id": "e1",
+      "user_id": "u1",
+      "lesson_id": "l3",
+      "is_completed": true,
+      "completed_at": "2026-07-05T02:00:00.000Z",
+      "time_spent_seconds": 890,
+      "last_accessed_at": "2026-07-05T02:00:00.000Z",
+      "created_at": "2026-07-04T02:00:00.000Z",
+      "updated_at": "2026-07-05T02:00:00.000Z"
+    },
+    {
+      "id": "p4",
+      "progress_id": "p4",
+      "enrollment_id": "e1",
+      "user_id": "u1",
+      "lesson_id": "l4",
+      "is_completed": false,
+      "completed_at": null,
+      "time_spent_seconds": 120,
+      "last_accessed_at": "2026-09-20T02:00:00.000Z",
+      "created_at": "2026-09-20T02:00:00.000Z",
+      "updated_at": "2026-09-20T02:00:00.000Z"
+    },
+    {
+      "id": "p5",
+      "progress_id": "p5",
+      "enrollment_id": "e1",
+      "user_id": "u1",
+      "lesson_id": "l5",
+      "is_completed": true,
+      "completed_at": "2026-09-10T02:00:00.000Z",
+      "time_spent_seconds": 700,
+      "last_accessed_at": "2026-09-10T02:00:00.000Z",
+      "created_at": "2026-09-09T02:00:00.000Z",
+      "updated_at": "2026-09-10T02:00:00.000Z"
+    },
+    {
+      "id": "p6",
+      "progress_id": "p6",
+      "enrollment_id": "e1",
+      "user_id": "u1",
+      "lesson_id": "l6",
+      "is_completed": false,
+      "completed_at": null,
+      "time_spent_seconds": 340,
+      "last_accessed_at": "2026-09-22T02:00:00.000Z",
+      "created_at": "2026-09-21T02:00:00.000Z",
+      "updated_at": "2026-09-22T02:00:00.000Z"
+    }
   ],
-
   "attempts": [
-    { "id": "a1", "attempt_id": "a1", "quiz_id": "quiz1", "user_id": "u1", "enrollment_id": "e1", "status": "submitted", "score": 9, "started_at": "2026-09-15T08:00:00.000Z", "submitted_at": "2026-09-15T08:09:42.000Z", "duration_seconds": 582, "created_at": "2026-09-15T08:00:00.000Z" }
+    {
+      "id": "a1",
+      "attempt_id": "a1",
+      "quiz_id": "quiz1",
+      "user_id": "u1",
+      "enrollment_id": "e1",
+      "status": "submitted",
+      "score": 9,
+      "started_at": "2026-09-15T08:00:00.000Z",
+      "submitted_at": "2026-09-15T08:09:42.000Z",
+      "duration_seconds": 582,
+      "created_at": "2026-09-15T08:00:00.000Z"
+    }
   ],
-
   "answers": [
-    { "id": "an1", "answer_id": "an1", "attempt_id": "a1", "question_id": "q1", "selected_option": 0, "is_correct": true, "answered_at": "2026-09-15T08:03:10.000Z", "time_spent_seconds": 40, "view_explanation_count": 0, "created_at": "2026-09-15T08:03:10.000Z", "updated_at": "2026-09-15T08:03:10.000Z" },
-    { "id": "an2", "answer_id": "an2", "attempt_id": "a1", "question_id": "q2", "selected_option": 0, "is_correct": false, "answered_at": "2026-09-15T08:06:45.000Z", "time_spent_seconds": 55, "view_explanation_count": 1, "created_at": "2026-09-15T08:06:45.000Z", "updated_at": "2026-09-15T08:06:45.000Z" }
+    {
+      "id": "an1",
+      "answer_id": "an1",
+      "attempt_id": "a1",
+      "question_id": "q1",
+      "selected_option": 0,
+      "is_correct": true,
+      "answered_at": "2026-09-15T08:03:10.000Z",
+      "time_spent_seconds": 40,
+      "view_explanation_count": 0,
+      "created_at": "2026-09-15T08:03:10.000Z",
+      "updated_at": "2026-09-15T08:03:10.000Z"
+    },
+    {
+      "id": "an2",
+      "answer_id": "an2",
+      "attempt_id": "a1",
+      "question_id": "q2",
+      "selected_option": 0,
+      "is_correct": false,
+      "answered_at": "2026-09-15T08:06:45.000Z",
+      "time_spent_seconds": 55,
+      "view_explanation_count": 1,
+      "created_at": "2026-09-15T08:06:45.000Z",
+      "updated_at": "2026-09-15T08:06:45.000Z"
+    }
   ]
 }
