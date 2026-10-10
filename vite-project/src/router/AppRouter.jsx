@@ -1,6 +1,11 @@
-import { BrowserRouter, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
+import RoleGuard from '../components/common/RoleGuard';
+import { RoleProvider } from '../context/RoleContext';
+import { PAGE_ACCESS } from '../context/roles';
+import HomePage from '../pages/HomePage';
+import LoginPage from '../pages/LoginPage';
 import UserManagementPage from '../pages/admin/UserManagementPage';
 import CourseApprovalPage from '../pages/admin/CourseApprovalPage';
 import InstructorDashboard from '../pages/instructors/InstructorDashboard';
@@ -15,43 +20,38 @@ import BlogListPage from '../pages/blogs/BlogListPage';
 import BlogDetailPage from '../pages/blogs/BlogDetailPage';
 import EnrollmentLookupPage from '../pages/enrollment/EnrollmentLookupPage';
 
-function AdminTabs() {
-  const location = useLocation();
-  const isActive = (path) => (location.pathname === path ? 'active' : '');
-  return (
-    <header className="app-header">
-      <h2 style={{ fontSize: 18 }}>Khu vực quản trị</h2>
-      <nav>
-        <Link to="/admin/users" className={isActive('/admin/users')}>Quản lý người dùng</Link>
-        <Link to="/admin/courses" className={isActive('/admin/courses')}>Duyệt khoá học</Link>
-        <Link to="/dashboard" className={isActive('/dashboard')}>Dashboard giảng viên</Link>
-      </nav>
-    </header>
-  );
-}
-
 function Layout() {
   const { pathname } = useLocation();
   const isExam = pathname.startsWith('/quiz-doing');
   return (
     <>
       {!isExam && <Header />}
-      {!isExam && <AdminTabs />}
       <Routes>
-        <Route path="/" element={<UserManagementPage />} />
-        <Route path="/admin/users" element={<UserManagementPage />} />
-        <Route path="/admin/courses" element={<CourseApprovalPage />} />
-        <Route path="/compare" element={<ComparePage />} />
-        <Route path="/dashboard" element={<InstructorDashboard />} />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+
+        {/* Trang dành cho mọi người dùng */}
+        <Route path="/courses" element={<CourseListPage />} />
+        <Route path="/courses/:id" element={<CourseDetailPage />} />
         <Route path="/quiz-list" element={<QuizList />} />
         <Route path="/quiz-doing/:quizId" element={<QuizDoing />} />
         <Route path="/quiz-result/:quizId" element={<QuizResult />} />
-        <Route path="/courses" element={<CourseListPage />} />
-        <Route path="/courses/:id" element={<CourseDetailPage />} />
         <Route path="/instructors" element={<InstructorListPage />} />
         <Route path="/blogs" element={<BlogListPage />} />
         <Route path="/blogs/:id" element={<BlogDetailPage />} />
         <Route path="/enrollment-lookup" element={<EnrollmentLookupPage />} />
+        <Route path="/compare" element={<ComparePage />} />
+
+        {/* Trang theo vai trò */}
+        <Route path="/admin/users" element={
+          <RoleGuard allow={PAGE_ACCESS['/admin/users']}><UserManagementPage /></RoleGuard>
+        } />
+        <Route path="/admin/courses" element={
+          <RoleGuard allow={PAGE_ACCESS['/admin/courses']}><CourseApprovalPage /></RoleGuard>
+        } />
+        <Route path="/dashboard" element={
+          <RoleGuard allow={PAGE_ACCESS['/dashboard']}><InstructorDashboard /></RoleGuard>
+        } />
       </Routes>
       {!isExam && <Footer />}
     </>
@@ -61,7 +61,9 @@ function Layout() {
 export default function AppRouter() {
   return (
     <BrowserRouter>
-      <Layout />
+      <RoleProvider>
+        <Layout />
+      </RoleProvider>
     </BrowserRouter>
   );
 }
