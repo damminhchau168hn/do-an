@@ -19,7 +19,6 @@ import ComparePage from '../pages/courses/ComparePage';
 import BlogListPage from '../pages/blogs/BlogListPage';
 import BlogDetailPage from '../pages/blogs/BlogDetailPage';
 import EnrollmentLookupPage from '../pages/enrollment/EnrollmentLookupPage';
-import QuestionImportExportPage from "../components/question/QuestionImportExport";
 
 function Layout() {
   const { pathname } = useLocation();
@@ -42,9 +41,8 @@ function Layout() {
         <Route path="/blogs/:id" element={<BlogDetailPage />} />
         <Route path="/enrollment-lookup" element={<EnrollmentLookupPage />} />
         <Route path="/compare" element={<ComparePage />} />
-        <Route path="/question-import-export" element={<QuestionImportExportPage />}/>
 
-        {/* Trang theo vai trò */}  
+        {/* Trang theo vai trò */}
         <Route path="/admin/users" element={
           <RoleGuard allow={PAGE_ACCESS['/admin/users']}><UserManagementPage /></RoleGuard>
         } />
@@ -53,9 +51,6 @@ function Layout() {
         } />
         <Route path="/dashboard" element={
           <RoleGuard allow={PAGE_ACCESS['/dashboard']}><InstructorDashboard /></RoleGuard>
-        } />
-        <Route path="/question-import-export" element={
-          <RoleGuard allow={['admin', 'instructor']}><QuestionImportExportPage /></RoleGuard>
         } />
       </Routes>
       {!isExam && <Footer />}
