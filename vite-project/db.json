@@ -1833,6 +1833,48 @@
       "status": "completed",
       "submitted_at": "2026-10-10T09:23:13.017Z",
       "id": "E-gk-ex"
+    },
+    {
+      "quiz_id": "quiz3",
+      "user_id": "u1",
+      "score": 0,
+      "correct_count": 0,
+      "total_questions": 15,
+      "answers": {
+        "q7": 0
+      },
+      "elapsed": 1,
+      "status": "completed",
+      "submitted_at": "2026-10-10T09:34:20.946Z",
+      "id": "UShes2j"
+    },
+    {
+      "quiz_id": "quiz3",
+      "user_id": "u1",
+      "score": 2.67,
+      "correct_count": 4,
+      "total_questions": 15,
+      "answers": {
+        "q7": 1,
+        "q17": 0,
+        "q18": 3,
+        "q19": 3,
+        "q20": 2,
+        "q40": 1,
+        "q41": 0,
+        "q42": 2,
+        "q43": 1,
+        "q44": 2,
+        "q45": 2,
+        "q46": 2,
+        "q47": 0,
+        "q48": 1,
+        "q49": 0
+      },
+      "elapsed": 18,
+      "status": "completed",
+      "submitted_at": "2026-10-10T09:34:43.821Z",
+      "id": "ElZXI4o"
     }
   ],
   "answers": [
