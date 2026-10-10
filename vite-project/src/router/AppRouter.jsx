@@ -42,6 +42,7 @@ function Layout() {
         <Route path="/blogs/:id" element={<BlogDetailPage />} />
         <Route path="/enrollment-lookup" element={<EnrollmentLookupPage />} />
         <Route path="/compare" element={<ComparePage />} />
+        <Route path="/question-import-export" element={<QuestionImportExportPage />}/>
 
         {/* Trang theo vai trò */}  
         <Route path="/admin/users" element={

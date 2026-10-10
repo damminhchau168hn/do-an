@@ -37,6 +37,7 @@ function Header() {
           <a href="/instructors" style={noWrap}>Giảng viên</a>
           <a href="/blogs" style={noWrap}>Bài viết</a>
           <a href="/enrollment-lookup" style={noWrap}>Tra cứu đăng ký</a>
+          <a href="/question-import-export" style={noWrap}> Import / Export</a>
 
           {adminLinks.length > 0 && (
             <div style={{ position: 'relative' }} onMouseLeave={() => setAdminOpen(false)}>
