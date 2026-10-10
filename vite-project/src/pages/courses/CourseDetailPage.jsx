@@ -26,7 +26,7 @@ export default function CourseDetailPage() {
           { 
             id: "c1-l1", 
             name: "Bài 1: Tổng quan về Mảng và Danh sách liên kết", 
-            video_url:  "https://youtu.be/9HrpW3kiyw0?si=LCHcCCesKBzrpcaG", 
+            video_url: "https://youtu.be/9HrpW3kiyw0?si=LCHcCCesKBzrpcaG", 
             content: "Mảng (Array) và Danh sách liên kết (Linked List) là hai cấu trúc dữ liệu tuyến tính cơ bản nhất. Hãy theo dõi video trên để hiểu cách phân bổ bộ nhớ RAM và so sánh độ phức tạp thời gian O(n) khi thực hiện chèn, xóa phần tử." 
           },
           { 
@@ -114,30 +114,110 @@ export default function CourseDetailPage() {
     // Hỗ trợ tìm kiếm theo cả dạng "c1" hoặc số "1"
     const lookupKey = id && !id.startsWith('c') ? `c${id}` : id;
     const selectedChapter = repository[lookupKey] || repository["c1"];
-    setCurrentChapter(selectedChapter);
+
+    // Nếu từng import bài học thì ưu tiên dữ liệu đã lưu
+    let chapterData = selectedChapter;
+    try {
+      const saved = localStorage.getItem(`lessons_${lookupKey}`);
+      if (saved) chapterData = { ...selectedChapter, lessons: JSON.parse(saved) };
+    } catch (err) {
+      console.error('Không đọc được dữ liệu đã lưu', err);
+    }
+
+    setCurrentChapter(chapterData);
 
     // Mặc định hiển thị bài học thứ nhất
-    if (selectedChapter && selectedChapter.lessons.length > 0) {
-      setActiveLesson(selectedChapter.lessons[0]);
+    if (chapterData && chapterData.lessons.length > 0) {
+      setActiveLesson(chapterData.lessons[0]);
     }
     setLoading(false);
   }, [id]);
 
-  if (loading) return <div style={{ color: '#fff', padding: '20px' }}>Đang tải nội dung...</div>;
+  const chapterKey = id && !id.startsWith('c') ? `c${id}` : id;
+
+  // Xuất các bài học của chương đang xem ra file JSON
+  const handleExport = () => {
+    if (!currentChapter) return;
+    const data = { chapter: currentChapter.name, lessons: currentChapter.lessons };
+    const blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `${chapterKey || 'chapter'}-lessons.json`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  // Nhập bài học từ file JSON (trùng id thì ghi đè, id mới thì thêm vào cuối)
+  const handleImport = (e) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(reader.result);
+        const list = Array.isArray(parsed) ? parsed : parsed.lessons;
+        if (!Array.isArray(list)) throw new Error('Sai định dạng');
+
+        const cleaned = list
+          .filter((l) => l && l.name)
+          .map((l, i) => ({
+            id: l.id || `${chapterKey}-import-${Date.now()}-${i}`,
+            name: String(l.name),
+            video_url: l.video_url || '',
+            content: l.content || '',
+          }));
+        if (cleaned.length === 0) throw new Error('Không có bài học hợp lệ');
+
+        const map = new Map(currentChapter.lessons.map((l) => [l.id, l]));
+        cleaned.forEach((l) => map.set(l.id, l));
+        const merged = Array.from(map.values());
+
+        setCurrentChapter({ ...currentChapter, lessons: merged });
+        if (!activeLesson) setActiveLesson(merged[0]);
+        localStorage.setItem(`lessons_${chapterKey}`, JSON.stringify(merged));
+        alert(`Đã nhập ${cleaned.length} bài học.`);
+      } catch (err) {
+        alert('File không hợp lệ. Cần file JSON có danh sách "lessons" (mỗi bài có name, video_url, content).');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = ''; // cho phép chọn lại cùng một file
+  };
+
+  if (loading) return <div style={{ color: '#333', padding: '20px' }}>Đang tải nội dung...</div>;
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#1a1a1a', color: '#fff', fontFamily: 'sans-serif' }}>
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#fdfbf7', color: '#1f1f1f', fontFamily: 'sans-serif' }}>
       
       {/* SIDEBAR BÊN TRÁI: DANH MỤC BÀI HỌC CỦA CHƯƠNG ĐANG CHỌN */}
-      <div style={{ width: '360px', borderRight: '1px solid #333', padding: '20px', overflowY: 'auto' }}>
+      <div style={{ width: '360px', borderRight: '1px solid #e5e0d5', padding: '20px', overflowY: 'auto' }}>
         <Link to="/courses" style={{ color: '#4caf50', textDecoration: 'none', display: 'inline-block', marginBottom: '20px', fontSize: '14px', fontWeight: 'bold' }}>
           ⬅️ Quay lại danh sách chương
         </Link>
         
-        <div style={{ backgroundColor: '#262626', padding: '15px', borderRadius: '8px' }}>
-          <h4 style={{ margin: '0 0 15px 0', fontSize: '15px', color: '#fff', fontWeight: 'bold', lineHeight: '1.4' }}>
+        <div style={{ backgroundColor: '#ffffff', border: '1px solid #e5e0d5', padding: '15px', borderRadius: '8px' }}>
+          <h4 style={{ margin: '0 0 15px 0', fontSize: '15px', color: '#1f1f1f', fontWeight: 'bold', lineHeight: '1.4' }}>
             {currentChapter?.name}
           </h4>
+
+          {/* NÚT EXPORT / IMPORT NỘI DUNG BÀI HỌC */}
+          <div style={{ display: 'flex', gap: '8px', marginBottom: '15px' }}>
+            <button
+              onClick={handleExport}
+              style={{ flex: 1, padding: '8px', backgroundColor: '#2196f3', color: '#fff', border: 'none', borderRadius: '5px', cursor: 'pointer', fontSize: '12.5px', fontWeight: 'bold' }}
+            >
+              ⬇️ Export
+            </button>
+
+            <label
+              style={{ flex: 1, padding: '8px', backgroundColor: '#9c27b0', color: '#fff', borderRadius: '5px', cursor: 'pointer', fontSize: '12.5px', fontWeight: 'bold', textAlign: 'center' }}
+            >
+              ⬆️ Import
+              <input type="file" accept=".json,application/json" onChange={handleImport} style={{ display: 'none' }} />
+            </label>
+          </div>
 
           <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 20px 0' }}>
             {currentChapter?.lessons.map((lesson) => {
@@ -152,8 +232,8 @@ export default function CourseDetailPage() {
                     borderRadius: '5px',
                     cursor: 'pointer',
                     fontSize: '13.5px',
-                    backgroundColor: isSelected ? '#4caf50' : '#333',
-                    color: isSelected ? '#fff' : '#ccc',
+                    backgroundColor: isSelected ? '#4caf50' : '#f1ede4',
+                    color: isSelected ? '#fff' : '#444',
                     transition: 'all 0.2s',
                     borderLeft: isSelected ? '4px solid #fff' : '4px solid transparent'
                   }}
@@ -164,7 +244,7 @@ export default function CourseDetailPage() {
             })}
           </ul>
 
-          <div style={{ textAlign: 'center', borderTop: '1px solid #444', paddingTop: '15px' }}>
+          <div style={{ textAlign: 'center', borderTop: '1px solid #e5e0d5', paddingTop: '15px' }}>
             <Link 
               to="/quiz-list" 
               style={{
@@ -185,41 +265,41 @@ export default function CourseDetailPage() {
       </div>
 
       {/* KHU VỰC BÊN PHẢI: HIỂN THỊ TRÌNH PHÁT VIDEO VÀ VĂN BẢN */}
-      <div style={{ flex: 1, padding: '40px', overflowY: 'auto', backgroundColor: '#141414' }}>
+      <div style={{ flex: 1, padding: '40px', overflowY: 'auto', backgroundColor: '#fdfbf7' }}>
         {activeLesson ? (
           <div style={{ maxWidth: '850px', margin: '0 auto' }}>
             {/* Tiêu đề bài học */}
-            <h2 style={{ borderBottom: '2px solid #4caf50', paddingBottom: '15px', color: '#fff', fontSize: '22px', fontWeight: 'bold', marginBottom: '25px' }}>
+            <h2 style={{ borderBottom: '2px solid #4caf50', paddingBottom: '15px', color: '#1f1f1f', fontSize: '22px', fontWeight: 'bold', marginBottom: '25px' }}>
               {activeLesson.name}
             </h2>
-          
+            
             {/* KHUNG TRÌNH PHÁT VIDEO YOUTUBE NHÚNG PHẢN HỒI (RESPONSIVE) */}
             {getEmbedUrl(activeLesson.video_url) ? (
-          <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', backgroundColor: '#000', borderRadius: '8px', overflow: 'hidden', marginBottom: '25px', boxShadow: '0 4px 15px rgba(0,0,0,0.5)' }}>
-            <iframe
-              key={activeLesson.id}
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-              src={getEmbedUrl(activeLesson.video_url)}
-              title={activeLesson.name}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-          </div>
-        ) : (
-          <p style={{ color: '#ff9800', marginBottom: '25px' }}>
-            Video chưa khả dụng hoặc link không hợp lệ.
-          </p>
-        )}
+              <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', backgroundColor: '#000', borderRadius: '8px', overflow: 'hidden', marginBottom: '25px', boxShadow: '0 4px 15px rgba(0,0,0,0.2)' }}>
+                <iframe
+                  key={activeLesson.id}
+                  style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
+                  src={getEmbedUrl(activeLesson.video_url)}
+                  title={activeLesson.name}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
+              </div>
+            ) : (
+              <p style={{ color: '#ff9800', marginBottom: '25px' }}>
+                Video chưa khả dụng hoặc link không hợp lệ.
+              </p>
+            )}
             
             {/* Mô tả chi tiết bên dưới video */}
             <h3 style={{ fontSize: '16px', color: '#4caf50', margin: '20px 0 10px 0', fontWeight: 'bold' }}>Tóm tắt nội dung bài học:</h3>
-            <p style={{ lineHeight: '1.8', fontSize: '15.5px', color: '#e0e0e0', textAlign: 'justify', margin: 0 }}>
+            <p style={{ lineHeight: '1.8', fontSize: '15.5px', color: '#333333', textAlign: 'justify', margin: 0 }}>
               {activeLesson.content}
             </p>
           </div>
         ) : (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: '#aaa' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: '#777' }}>
             Chọn bài học bên trái để bắt đầu học video.
           </div>
         )}
