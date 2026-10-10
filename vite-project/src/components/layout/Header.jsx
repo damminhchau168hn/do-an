@@ -2,6 +2,7 @@ import { useState } from 'react';
 import './Header.css';
 import { useRole } from '../../context/RoleContext';
 import { ROLE_LABELS, PAGE_ACCESS } from '../../context/roles';
+import QuestionMenu from '../question/QuestionMenu';
 
 const ADMIN_LINKS = [
   { to: '/admin/users', label: 'Quản lý người dùng' },
@@ -37,7 +38,9 @@ function Header() {
           <a href="/instructors" style={noWrap}>Giảng viên</a>
           <a href="/blogs" style={noWrap}>Bài viết</a>
           <a href="/enrollment-lookup" style={noWrap}>Tra cứu đăng ký</a>
-          <a href="/question-import-export" style={noWrap}> Import / Export</a>
+
+          {/* Export Excel / Import Excel / Tải file mẫu (chỉ admin và giảng viên thấy) */}
+          <QuestionMenu />
 
           {adminLinks.length > 0 && (
             <div style={{ position: 'relative' }} onMouseLeave={() => setAdminOpen(false)}>
