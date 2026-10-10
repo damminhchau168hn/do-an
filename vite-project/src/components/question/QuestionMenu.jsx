@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import * as XLSX from 'xlsx';
 import { useRole } from '../../context/RoleContext';
@@ -93,6 +94,7 @@ function readRow(row) {
 
 export default function QuestionMenu() {
   const { user, role } = useRole();
+  const navigate = useNavigate();
   const fileInputRef = useRef(null);
   const timerRef = useRef(null);
   const [open, setOpen] = useState(false);
@@ -256,11 +258,13 @@ export default function QuestionMenu() {
 
       let imported = 0;
       let failed = 0;
+      const importedIds = [];
 
       // Thêm từng câu hỏi vào JSON Server
       for (const question of validQuestions) {
         try {
-          await axios.post(`${API}/questions`, question);
+          const created = await axios.post(`${API}/questions`, question);
+          importedIds.push(created.data.id);
           imported++;
         } catch (error) {
           console.error('Lỗi khi thêm câu hỏi:', error);
@@ -277,6 +281,11 @@ export default function QuestionMenu() {
         result,
         imported > 0 && failed === 0 && invalidRows.length === 0 ? 'success' : 'info'
       );
+
+      // Chuyển sang trang xem ngân hàng câu hỏi để kiểm tra nội dung vừa import
+      if (imported > 0) {
+        navigate('/question-bank', { state: { importedIds } });
+      }
     } catch (error) {
       console.error('Lỗi import câu hỏi:', error);
       showMessage('Không đọc được file. Hãy chọn file Excel .xlsx hoặc .xls hợp lệ.', 'error');
@@ -355,6 +364,7 @@ export default function QuestionMenu() {
     { icon: '📤', label: 'Export Excel', onClick: handleExport },
     { icon: '📥', label: 'Import Excel', onClick: () => fileInputRef.current?.click() },
     { icon: '📄', label: 'Tải file mẫu', onClick: handleDownloadTemplate },
+    { icon: '📋', label: 'Xem ngân hàng câu hỏi', onClick: () => navigate('/question-bank') },
   ];
 
   const toastColor = toast ? TOAST_COLORS[toast.type] ?? TOAST_COLORS.info : null;
@@ -386,7 +396,7 @@ export default function QuestionMenu() {
         <div style={{ position: 'absolute', top: '100%', left: 0, paddingTop: 10, zIndex: 50 }}>
           <div
             style={{
-              minWidth: 190,
+              minWidth: 230,
               background: 'var(--card, #fff)',
               border: '1px solid var(--line, #e5e0d5)',
               borderRadius: 'var(--radius, 10px)',

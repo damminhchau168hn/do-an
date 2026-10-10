@@ -19,6 +19,7 @@ import ComparePage from '../pages/courses/ComparePage';
 import BlogListPage from '../pages/blogs/BlogListPage';
 import BlogDetailPage from '../pages/blogs/BlogDetailPage';
 import EnrollmentLookupPage from '../pages/enrollment/EnrollmentLookupPage';
+import QuestionBankPage from '../pages/questions/QuestionBankPage';
 
 function Layout() {
   const { pathname } = useLocation();
@@ -51,6 +52,9 @@ function Layout() {
         } />
         <Route path="/dashboard" element={
           <RoleGuard allow={PAGE_ACCESS['/dashboard']}><InstructorDashboard /></RoleGuard>
+        } />
+        <Route path="/question-bank" element={
+          <RoleGuard allow={['admin', 'instructor']}><QuestionBankPage /></RoleGuard>
         } />
       </Routes>
       {!isExam && <Footer />}
