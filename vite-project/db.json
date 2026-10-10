@@ -1,130 +1,129 @@
-{
-  "users": [
-  {
-    "id": "u1",
-    "user_id": "u1",
-    "full_name": "Nguyễn Dương",
-    "email": "duong.nguyen@truong.edu.vn",
-    "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash1",
-    "role": "student",
-    "permissions": [],
-    "status": "active",
-    "phone": "0901234567",
-    "created_at": "2026-01-12T02:00:00.000Z",
-    "updated_at": "2026-01-12T02:00:00.000Z"
-  },
-  {
-    "id": "u2",
-    "user_id": "u2",
-    "full_name": "TS. Nguyễn Hải",
-    "email": "hai.nguyen@truong.edu.vn",
-    "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash2",
-    "role": "instructor",
-    "permissions": [
-      "course:create",
-      "quiz:create",
-      "question:manage"
-    ],
-    "status": "active",
-    "phone": "0909876543",
-    "created_at": "2025-09-03T02:00:00.000Z",
-    "updated_at": "2025-09-03T02:00:00.000Z"
-  },
-  {
-    "id": "u3",
-    "user_id": "u3",
-    "full_name": "ThS. Lê Vy",
-    "email": "vy.le@truong.edu.vn",
-    "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash3",
-    "role": "instructor",
-    "permissions": [
-      "course:create",
-      "quiz:create",
-      "question:manage"
-    ],
-    "status": "active",
-    "phone": "0912345678",
-    "created_at": "2025-11-17T02:00:00.000Z",
-    "updated_at": "2025-11-17T02:00:00.000Z"
-  },
-  {
-    "id": "u4",
-    "user_id": "u4",
-    "full_name": "TS. Phạm An",
-    "email": "an.pham@truong.edu.vn",
-    "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash4",
-    "role": "instructor",
-    "permissions": [
-      "course:create",
-      "quiz:create",
-      "question:manage"
-    ],
-    "status": "active",
-    "phone": "0987654321",
-    "created_at": "2026-02-01T02:00:00.000Z",
-    "updated_at": "2026-10-06T09:34:09.950Z"
-  },
-  {
-    "id": "u5",
-    "user_id": "u5",
-    "full_name": "TS. Nguyễn Khánh",
-    "email": "khanh.nguyen@truong.edu.vn",
-    "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash5",
-    "role": "instructor",
-    "permissions": [
-      "course:create",
-      "quiz:create",
-      "question:manage"
-    ],
-    "status": "active",
-    "phone": "0977111222",
-    "created_at": "2025-08-20T02:00:00.000Z",
-    "updated_at": "2025-08-20T02:00:00.000Z"
-  },
-  {
-    "id": "u6",
-    "user_id": "u6",
-    "full_name": "Nguyễn Nam",
-    "email": "nam.nguyen@truong.edu.vn",
-    "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash6",
-    "role": "student",
-    "permissions": [],
-    "status": "locked",
-    "phone": "0933444555",
-    "created_at": "2026-02-28T02:00:00.000Z",
-    "updated_at": "2026-10-06T09:34:16.226Z"
-  },
-  {
-    "id": "u7",
-    "user_id": "u7",
-    "full_name": "Quản trị viên",
-    "email": "admin@skillbook.vn",
-    "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash7",
-    "role": "admin",
-    "permissions": [
-      "*"
-    ],
-    "status": "active",
-    "phone": "0900000000",
-    "created_at": "2025-06-01T02:00:00.000Z",
-    "updated_at": "2025-06-01T02:00:00.000Z"
-  },
-  {
-    "id": "u8",
-    "user_id": "u8",
-    "full_name": "Đàm Minh Châu",
-    "email": "chau.dam@truong.edu.vn",
-    "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash8",
-    "role": "reviewer",
-    "permissions": [
-      "course:approve"
-    ],
-    "status": "active",
-    "phone": "0944555666",
-    "created_at": "2026-10-07T02:00:00.000Z",
-    "updated_at": "2026-10-07T02:00:00.000Z"
-  }
-],
+   {
+  "users":[ {
+      "id": "u1",
+      "user_id": "u1",
+      "full_name": "Nguyễn Dương",
+      "email": "duong.nguyen@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash1",
+      "role": "student",
+      "permissions": [],
+      "status": "active",
+      "phone": "0901234567",
+      "created_at": "2026-01-12T02:00:00.000Z",
+      "updated_at": "2026-01-12T02:00:00.000Z"
+    },
+    {
+      "id": "u2",
+      "user_id": "u2",
+      "full_name": "TS. Nguyễn Hải",
+      "email": "hai.nguyen@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash2",
+      "role": "instructor",
+      "permissions": [
+        "course:create",
+        "quiz:create",
+        "question:manage"
+      ],
+      "status": "active",
+      "phone": "0909876543",
+      "created_at": "2025-09-03T02:00:00.000Z",
+      "updated_at": "2025-09-03T02:00:00.000Z"
+    },
+    {
+      "id": "u3",
+      "user_id": "u3",
+      "full_name": "ThS. Lê Vy",
+      "email": "vy.le@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash3",
+      "role": "instructor",
+      "permissions": [
+        "course:create",
+        "quiz:create",
+        "question:manage"
+      ],
+      "status": "active",
+      "phone": "0912345678",
+      "created_at": "2025-11-17T02:00:00.000Z",
+      "updated_at": "2025-11-17T02:00:00.000Z"
+    },
+    {
+      "id": "u4",
+      "user_id": "u4",
+      "full_name": "TS. Phạm An",
+      "email": "an.pham@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash4",
+      "role": "instructor",
+      "permissions": [
+        "course:create",
+        "quiz:create",
+        "question:manage"
+      ],
+      "status": "active",
+      "phone": "0987654321",
+      "created_at": "2026-02-01T02:00:00.000Z",
+      "updated_at": "2026-10-06T09:34:09.950Z"
+    },
+    {
+      "id": "u5",
+      "user_id": "u5",
+      "full_name": "TS. Nguyễn Khánh",
+      "email": "khanh.nguyen@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash5",
+      "role": "instructor",
+      "permissions": [
+        "course:create",
+        "quiz:create",
+        "question:manage"
+      ],
+      "status": "active",
+      "phone": "0977111222",
+      "created_at": "2025-08-20T02:00:00.000Z",
+      "updated_at": "2025-08-20T02:00:00.000Z"
+    },
+    {
+      "id": "u6",
+      "user_id": "u6",
+      "full_name": "Nguyễn Nam",
+      "email": "nam.nguyen@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash6",
+      "role": "student",
+      "permissions": [],
+      "status": "locked",
+      "phone": "0933444555",
+      "created_at": "2026-02-28T02:00:00.000Z",
+      "updated_at": "2026-10-06T09:34:16.226Z"
+    },
+    {
+      "id": "u7",
+      "user_id": "u7",
+      "full_name": "Quản trị viên",
+      "email": "admin@skillbook.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash7",
+      "role": "admin",
+      "permissions": [
+        "*"
+      ],
+      "status": "active",
+      "phone": "0900000000",
+      "created_at": "2025-06-01T02:00:00.000Z",
+      "updated_at": "2025-06-01T02:00:00.000Z"
+    },
+    {
+      "id": "u8",
+      "user_id": "u8",
+      "full_name": "Đàm Minh Châu",
+      "email": "chau.dam@truong.edu.vn",
+      "password_hash": "$2b$10$demoHashOnly.NotARealBcryptHash8",
+      "role": "reviewer",
+      "permissions": [
+        "course:approve"
+      ],
+      "status": "active",
+      "phone": "0944555666",
+      "created_at": "2026-10-07T02:00:00.000Z",
+      "updated_at": "2026-10-07T02:00:00.000Z"
+    }
+  ],
   "courses": [
     {
       "id": "c1",
@@ -1580,7 +1579,7 @@
         "q49"
       ],
       "time_limit_minutes": 25,
-      "status": "scheduled",
+      "status": "published",
       "pass_score": 5,
       "created_by": "u2",
       "created_at": "2025-09-22T02:00:00.000Z",
@@ -1609,7 +1608,7 @@
         "q60"
       ],
       "time_limit_minutes": 15,
-      "status": "scheduled",
+      "status": "published",
       "pass_score": 5,
       "created_by": "u2",
       "created_at": "2025-09-29T02:00:00.000Z",
@@ -1763,6 +1762,48 @@
       "submitted_at": "2026-09-15T08:09:42.000Z",
       "duration_seconds": 582,
       "created_at": "2026-09-15T08:00:00.000Z"
+    },
+    {
+      "quiz_id": "quiz2",
+      "user_id": "u1",
+      "score": 0,
+      "correct_count": 0,
+      "total_questions": 15,
+      "answers": {
+        "q3": 0
+      },
+      "elapsed": 3,
+      "status": "completed",
+      "submitted_at": "2026-10-09T17:04:30.911Z",
+      "id": "Kp8BMrZ"
+    },
+    {
+      "quiz_id": "quiz2",
+      "user_id": "u1",
+      "score": 9.33,
+      "correct_count": 14,
+      "total_questions": 15,
+      "answers": {
+        "q3": 2,
+        "q4": 0,
+        "q5": 1,
+        "q6": 3,
+        "q13": 1,
+        "q14": 1,
+        "q15": 2,
+        "q16": 0,
+        "q33": 3,
+        "q34": 2,
+        "q35": 2,
+        "q36": 0,
+        "q37": 3,
+        "q38": 2,
+        "q39": 0
+      },
+      "elapsed": 79,
+      "status": "completed",
+      "submitted_at": "2026-10-09T17:06:03.861Z",
+      "id": "08n9avi"
     }
   ],
   "answers": [
