@@ -1,5 +1,6 @@
-   {
-  "users":[ {
+{
+  "users": [
+    {
       "id": "u1",
       "user_id": "u1",
       "full_name": "Nguyễn Dương",
@@ -1804,6 +1805,34 @@
       "status": "completed",
       "submitted_at": "2026-10-09T17:06:03.861Z",
       "id": "08n9avi"
+    },
+    {
+      "quiz_id": "quiz3",
+      "user_id": "u1",
+      "score": 2,
+      "correct_count": 3,
+      "total_questions": 15,
+      "answers": {
+        "q7": 0,
+        "q17": 0,
+        "q18": 0,
+        "q19": 0,
+        "q20": 0,
+        "q40": 0,
+        "q41": 0,
+        "q42": 0,
+        "q43": 0,
+        "q44": 0,
+        "q45": 0,
+        "q46": 0,
+        "q47": 0,
+        "q48": 0,
+        "q49": 0
+      },
+      "elapsed": 42,
+      "status": "completed",
+      "submitted_at": "2026-10-10T09:23:13.017Z",
+      "id": "E-gk-ex"
     }
   ],
   "answers": [
