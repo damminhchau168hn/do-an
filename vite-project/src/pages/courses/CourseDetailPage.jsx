@@ -192,7 +192,7 @@ export default function CourseDetailPage() {
             <h2 style={{ borderBottom: '2px solid #4caf50', paddingBottom: '15px', color: '#fff', fontSize: '22px', fontWeight: 'bold', marginBottom: '25px' }}>
               {activeLesson.name}
             </h2>
-            
+          
             {/* KHUNG TRÌNH PHÁT VIDEO YOUTUBE NHÚNG PHẢN HỒI (RESPONSIVE) */}
             {getEmbedUrl(activeLesson.video_url) ? (
           <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', backgroundColor: '#000', borderRadius: '8px', overflow: 'hidden', marginBottom: '25px', boxShadow: '0 4px 15px rgba(0,0,0,0.5)' }}>
