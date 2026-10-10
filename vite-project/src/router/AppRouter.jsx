@@ -14,6 +14,7 @@ import ComparePage from '../pages/courses/ComparePage';
 import BlogListPage from '../pages/blogs/BlogListPage';
 import BlogDetailPage from '../pages/blogs/BlogDetailPage';
 import EnrollmentLookupPage from '../pages/enrollment/EnrollmentLookupPage';
+import QuestionImportExportPage from "../components/question/QuestionImportExport";
 
 function AdminTabs() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function AdminTabs() {
         <Link to="/admin/users" className={isActive('/admin/users')}>Quản lý người dùng</Link>
         <Link to="/admin/courses" className={isActive('/admin/courses')}>Duyệt khoá học</Link>
         <Link to="/dashboard" className={isActive('/dashboard')}>Dashboard giảng viên</Link>
+        <Link to="/question-import-export" className={isActive('/question-import-export')}>Nhập/Xuất câu hỏi</Link>
       </nav>
     </header>
   );
@@ -52,6 +54,7 @@ function Layout() {
         <Route path="/blogs" element={<BlogListPage />} />
         <Route path="/blogs/:id" element={<BlogDetailPage />} />
         <Route path="/enrollment-lookup" element={<EnrollmentLookupPage />} />
+        <Route path="/question-import-export" element={<QuestionImportExportPage />} />
       </Routes>
       {!isExam && <Footer />}
     </>

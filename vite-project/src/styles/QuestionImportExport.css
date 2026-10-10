@@ -1,0 +1,283 @@
+
+/* Tổng thể trang */
+.qie-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 32px;
+  box-sizing: border-box;
+  color: #1e293b;
+  font-family: Arial, sans-serif;
+}
+
+/* Tiêu đề trang */
+.qie-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.qie-heading-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 58px;
+  height: 58px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background-color: #dbeafe;
+  font-size: 28px;
+}
+
+.qie-header h1 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.qie-header p {
+  margin: 0;
+  color: #64748b;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Các khung nội dung */
+.qie-card {
+  margin-bottom: 24px;
+  padding: 26px;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  background-color: #ffffff;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
+}
+
+.qie-card h2 {
+  margin: 0 0 12px;
+  color: #1e293b;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.qie-card-description {
+  margin: 0 0 24px;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Các nút chức năng */
+.qie-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.qie-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 44px;
+  padding: 12px 18px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.qie-btn:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.1);
+}
+
+.qie-btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+.qie-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Nút Export */
+.qie-btn-export {
+  color: #ffffff;
+  background-color: #15803d;
+}
+
+.qie-btn-export:hover:not(:disabled) {
+  background-color: #166534;
+}
+
+/* Nút Import */
+.qie-btn-import {
+  color: #ffffff;
+  background-color: #2563eb;
+}
+
+.qie-btn-import:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+/* Nút tải file mẫu */
+.qie-btn-template {
+  color: #334155;
+  background-color: #f8fafc;
+  border-color: #cbd5e1;
+}
+
+.qie-btn-template:hover:not(:disabled) {
+  background-color: #e2e8f0;
+}
+
+/* Ẩn input chọn file mặc định */
+.qie-hidden-input {
+  display: none;
+}
+
+/* Thông báo */
+.qie-message {
+  margin-top: 20px;
+  padding: 14px 16px;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+  overflow-wrap: anywhere;
+}
+
+.qie-message-success {
+  color: #166534;
+  background-color: #f0fdf4;
+  border-color: #bbf7d0;
+}
+
+.qie-message-error {
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border-color: #fecaca;
+}
+
+.qie-message-info {
+  color: #1d4ed8;
+  background-color: #eff6ff;
+  border-color: #bfdbfe;
+}
+
+.qie-loading {
+  margin: 18px 0 0;
+  color: #2563eb;
+  font-size: 14px;
+}
+
+/* Hướng dẫn sử dụng */
+.qie-guide {
+  padding-bottom: 12px;
+}
+
+.qie-guide-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 18px 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.qie-guide-item:last-child {
+  border-bottom: none;
+}
+
+.qie-guide-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  color: #1d4ed8;
+  background-color: #dbeafe;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.qie-guide-item h3 {
+  margin: 2px 0 8px;
+  color: #334155;
+  font-size: 15px;
+}
+
+.qie-guide-item p {
+  margin: 0;
+  color: #64748b;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+/* Giao diện điện thoại */
+@media (max-width: 768px) {
+  .qie-page {
+    padding: 20px 14px;
+  }
+
+  .qie-header {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .qie-heading-icon {
+    width: 46px;
+    height: 46px;
+    font-size: 23px;
+  }
+
+  .qie-header h1 {
+    font-size: 22px;
+    line-height: 1.4;
+  }
+
+  .qie-header p {
+    font-size: 14px;
+  }
+
+  .qie-card {
+    padding: 20px 16px;
+    border-radius: 10px;
+  }
+
+  .qie-card h2 {
+    font-size: 18px;
+  }
+
+  .qie-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .qie-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 400px) {
+  .qie-page {
+    padding: 16px 10px;
+  }
+
+  .qie-header h1 {
+    font-size: 19px;
+  }
+
+  .qie-card {
+    padding: 16px 12px;
+  }
+}
