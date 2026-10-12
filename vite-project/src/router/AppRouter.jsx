@@ -19,6 +19,7 @@ import ComparePage from '../pages/courses/ComparePage';
 import BlogListPage from '../pages/blogs/BlogListPage';
 import BlogDetailPage from '../pages/blogs/BlogDetailPage';
 import EnrollmentLookupPage from '../pages/enrollment/EnrollmentLookupPage';
+import QuizCourse from '../pages/quiz/QuizCourse';
 
 function Layout() {
   const { pathname } = useLocation();
@@ -41,6 +42,7 @@ function Layout() {
         <Route path="/blogs/:id" element={<BlogDetailPage />} />
         <Route path="/enrollment-lookup" element={<EnrollmentLookupPage />} />
         <Route path="/compare" element={<ComparePage />} />
+        <Route path="/quiz-course/:chapterId" element={<QuizCourse />} />
 
         {/* Trang theo vai trò */}
         <Route path="/admin/users" element={

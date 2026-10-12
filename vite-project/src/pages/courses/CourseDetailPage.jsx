@@ -98,21 +98,21 @@ export default function CourseDetailPage() {
           </ul>
 
           <div style={{ textAlign: 'center', borderTop: '1px solid #444', paddingTop: '15px' }}>
-            <Link 
-              to="/quiz-list" 
-              style={{
-                display: 'block',
-                padding: '10px',
-                backgroundColor: '#ff9800',
-                color: '#fff',
-                textDecoration: 'none',
-                borderRadius: '5px',
-                fontSize: '13px',
-                fontWeight: 'bold'
-              }}
-            >
-              Làm Bài Quiz Của Chương 📝
-            </Link>
+            <Link
+  to={`/quiz-course/${id}`}
+  style={{
+    display: 'block',
+    padding: '10px',
+    backgroundColor: '#ff9800',
+    color: '#fff',
+    textDecoration: 'none',
+    borderRadius: '5px',
+    fontSize: '13px',
+    fontWeight: 'bold'
+  }}
+>
+  Làm Bài Quiz Của Chương 📝
+</Link>
           </div>
         </div>
       </div>

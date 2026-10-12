@@ -1496,6 +1496,60 @@
       "created_by": "u2",
       "created_at": "2026-10-06T02:00:00.000Z",
       "updated_at": "2026-10-06T02:00:00.000Z"
+    },
+    {
+      "content": "React dùng để làm gì?",
+      "options": [
+        "Xây dựng giao diện người dùng",
+        "Quản lý cơ sở dữ liệu",
+        "Thiết kế phần cứng",
+        "Tạo hệ điều hành"
+      ],
+      "correct_answer": 0,
+      "explanation": "React là thư viện JavaScript để xây dựng giao diện.",
+      "difficulty": "medium",
+      "session_id": null,
+      "created_by": "u7",
+      "created_at": "2026-10-10T10:08:38.869Z",
+      "updated_at": "2026-10-10T10:08:38.869Z",
+      "id": "1MUKxmj"
+    },
+    {
+      "content": "Chọn tất cả các ngôn ngữ lập trình.",
+      "options": [
+        "JavaScript",
+        "HTML",
+        "Python",
+        "CSS",
+        "Java"
+      ],
+      "correct_answer": [
+        0,
+        2,
+        4
+      ],
+      "explanation": "HTML và CSS là ngôn ngữ đánh dấu và định dạng, không phải ngôn ngữ lập trình.",
+      "difficulty": "medium",
+      "session_id": null,
+      "created_by": "u7",
+      "created_at": "2026-10-10T10:08:38.871Z",
+      "updated_at": "2026-10-10T10:08:38.871Z",
+      "id": "G9-oVmQ"
+    },
+    {
+      "content": "Hà Nội là thủ đô của Việt Nam.",
+      "options": [
+        "Đúng",
+        "Sai"
+      ],
+      "correct_answer": 0,
+      "explanation": "Hà Nội là thủ đô của nước Cộng hòa xã hội chủ nghĩa Việt Nam.",
+      "difficulty": "medium",
+      "session_id": null,
+      "created_by": "u7",
+      "created_at": "2026-10-10T10:09:31.956Z",
+      "updated_at": "2026-10-10T10:09:31.956Z",
+      "id": "Z2o7_Tx"
     }
   ],
   "quizzes": [

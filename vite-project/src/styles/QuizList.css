@@ -233,3 +233,61 @@
   flex-shrink: 0;
   background: #f9fafb;
 }
+/* Giữ giao diện QuizList độc lập với CSS chung */
+.quiz-page {
+  width: 100%;
+  min-height: 60vh;
+  isolation: isolate;
+}
+
+.quiz-page .quiz-wrap {
+  width: 100%;
+}
+
+.quiz-page .quiz-list {
+  width: 100%;
+}
+
+.quiz-page .quiz-row {
+  min-width: 0;
+}
+
+.quiz-page .quiz-row > div {
+  min-width: 0;
+}
+
+.quiz-page .quiz-title {
+  overflow-wrap: anywhere;
+}
+
+.quiz-page .quiz-meta {
+  line-height: 1.5;
+}
+
+.quiz-page .quiz-btn {
+  text-align: center;
+}
+
+/* Tránh nút bị tràn trên màn hình nhỏ */
+@media (max-width: 640px) {
+  .quiz-page .quiz-row {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .quiz-page .quiz-row > :nth-child(3),
+  .quiz-page .quiz-row > :nth-child(4) {
+    grid-column: 2;
+    margin-top: 6px;
+    justify-self: start;
+  }
+
+  .quiz-page .quiz-badge {
+    white-space: normal;
+  }
+
+  .quiz-page .quiz-btn {
+    white-space: normal;
+  }
+}
