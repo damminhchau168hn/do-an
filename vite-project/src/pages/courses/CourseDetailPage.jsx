@@ -122,7 +122,7 @@ export default function CourseDetailPage() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    let chapter = repository[chapterKey];
+    const chapter = repository[chapterKey];
 
     if (!chapter) {
       setCurrentChapter(null);
@@ -131,139 +131,10 @@ export default function CourseDetailPage() {
       return;
     }
 
-    try {
-      const saved = localStorage.getItem(`lessons_${chapterKey}`);
-
-      if (saved) {
-        const savedLessons = JSON.parse(saved);
-
-        if (Array.isArray(savedLessons)) {
-          chapter = {
-            ...chapter,
-            lessons: savedLessons
-          };
-        }
-      }
-    } catch (error) {
-      console.error('Không đọc được bài học đã lưu:', error);
-    }
-
     setCurrentChapter(chapter);
     setActiveLesson(chapter.lessons[0] || null);
     setLoading(false);
   }, [chapterKey]);
-
-  const handleExport = () => {
-    if (!currentChapter) return;
-
-    const data = {
-      chapter: currentChapter.name,
-      lessons: currentChapter.lessons
-    };
-
-    const blob = new Blob(
-      [JSON.stringify(data, null, 2)],
-      { type: 'application/json;charset=utf-8' }
-    );
-
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-
-    a.href = url;
-    a.download = `${chapterKey}-lessons.json`;
-    document.body.appendChild(a);
-    a.click();
-    a.remove();
-
-    setTimeout(() => URL.revokeObjectURL(url), 1000);
-  };
-
-  const handleImport = (event) => {
-    const file = event.target.files?.[0];
-    if (!file || !currentChapter) return;
-
-    const reader = new FileReader();
-
-    reader.onload = () => {
-      try {
-        const parsed = JSON.parse(reader.result);
-        const list = Array.isArray(parsed)
-          ? parsed
-          : parsed.lessons;
-
-        if (!Array.isArray(list)) {
-          throw new Error('Sai định dạng file');
-        }
-
-        const cleaned = list
-          .filter((lesson) => lesson && lesson.name)
-          .map((lesson, index) => ({
-            id:
-              lesson.id ||
-              `${chapterKey}-import-${Date.now()}-${index}`,
-            name: String(lesson.name),
-            video_url: String(lesson.video_url || ''),
-            content: String(lesson.content || '')
-          }));
-
-        if (cleaned.length === 0) {
-          throw new Error('Không có bài học hợp lệ');
-        }
-
-        const lessonMap = new Map(
-          currentChapter.lessons.map((lesson) => [
-            lesson.id,
-            lesson
-          ])
-        );
-
-        cleaned.forEach((lesson) => {
-          lessonMap.set(lesson.id, lesson);
-        });
-
-        const merged = Array.from(lessonMap.values());
-
-        const updatedChapter = {
-          ...currentChapter,
-          lessons: merged
-        };
-
-        localStorage.setItem(
-          `lessons_${chapterKey}`,
-          JSON.stringify(merged)
-        );
-
-        setCurrentChapter(updatedChapter);
-
-        if (
-          !activeLesson ||
-          !merged.some((lesson) => lesson.id === activeLesson.id)
-        ) {
-          setActiveLesson(merged[0] || null);
-        } else {
-          const updatedActiveLesson = merged.find(
-            (lesson) => lesson.id === activeLesson.id
-          );
-
-          setActiveLesson(updatedActiveLesson);
-        }
-
-        alert(`Đã nhập ${cleaned.length} bài học.`);
-      } catch (error) {
-        console.error('Lỗi nhập bài học:', error);
-        alert(
-          'File JSON không hợp lệ. File cần có danh sách lessons; mỗi bài học cần có name, video_url và content.'
-        );
-      }
-    };
-
-    reader.onerror = () => {
-      alert('Không thể đọc file. Bạn hãy thử lại.');
-    };
-
-    reader.readAsText(file);
-    event.target.value = '';
-  };
 
   if (loading) {
     return (
@@ -356,54 +227,6 @@ export default function CourseDetailPage() {
           >
             Đăng ký khóa học ✍️
           </Link>
-
-          {/* Import / Export */}
-          <div
-            style={{
-              display: 'flex',
-              gap: 8,
-              marginBottom: 15
-            }}
-          >
-            <button
-              onClick={handleExport}
-              style={{
-                flex: 1,
-                padding: 9,
-                backgroundColor: '#14213D',
-                color: '#F7F3E8',
-                border: '1px solid #14213D',
-                borderRadius: 4,
-                cursor: 'pointer',
-                fontWeight: 'bold'
-              }}
-            >
-              ⬇️ Export
-            </button>
-
-            <label
-              style={{
-                flex: 1,
-                padding: 9,
-                backgroundColor: 'transparent',
-                color: '#14213D',
-                border: '1px solid #14213D',
-                borderRadius: 4,
-                cursor: 'pointer',
-                textAlign: 'center',
-                fontWeight: 'bold',
-                boxSizing: 'border-box'
-              }}
-            >
-              ⬆️ Import
-              <input
-                type="file"
-                accept=".json,application/json"
-                onChange={handleImport}
-                style={{ display: 'none' }}
-              />
-            </label>
-          </div>
 
           {/* Danh sách bài học */}
           {currentChapter.lessons.length > 0 ? (

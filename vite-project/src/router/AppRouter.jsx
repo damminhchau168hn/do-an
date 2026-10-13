@@ -15,6 +15,7 @@ import CourseApprovalPage from '../pages/admin/CourseApprovalPage';
 
 import InstructorDashboard from '../pages/instructors/InstructorDashboard';
 import InstructorListPage from '../pages/instructors/InstructorListPage';
+import InstructorDetailPage from '../pages/instructors/InstructorDetailPage';
 
 import QuizList from '../pages/quiz/QuizList';
 import QuizDoing from '../pages/quiz/QuizDoing';
@@ -57,6 +58,7 @@ function Layout() {
 
         {/* Giảng viên */}
         <Route path="/instructors" element={<InstructorListPage />} />
+        <Route path="/instructors/:id" element={<InstructorDetailPage />} />
         <Route
           path="/dashboard"
           element={

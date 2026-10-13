@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import axiosClient from '../../api/axiosClient';
 
 export default function InstructorListPage() {
@@ -33,7 +34,12 @@ export default function InstructorListPage() {
       ) : (
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20 }}>
           {instructors.map((ins) => (
-            <div key={ins.id} className="card" style={{ textAlign: 'center' }}>
+            <Link
+              key={ins.id}
+              to={`/instructors/${ins.id}`}
+              className="card"
+              style={{ textAlign: 'center', textDecoration: 'none', color: 'inherit', cursor: 'pointer' }}
+            >
               <div
                 className="mini-avatar"
                 style={{ width: 64, height: 64, fontSize: 22, margin: '0 auto 14px' }}
@@ -43,7 +49,7 @@ export default function InstructorListPage() {
               <h3 style={{ marginBottom: 4 }}>{ins.full_name}</h3>
               <p style={{ color: 'var(--ink-soft)', fontSize: 14, marginBottom: 10 }}>{ins.email}</p>
               <span className="badge badge-teal">Giảng viên</span>
-            </div>
+            </Link>
           ))}
         </div>
       )}
