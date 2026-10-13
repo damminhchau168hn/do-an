@@ -1875,6 +1875,25 @@
       "status": "completed",
       "submitted_at": "2026-10-10T09:34:43.821Z",
       "id": "ElZXI4o"
+    },
+    {
+      "quiz_id": "quiz3",
+      "user_id": "u1",
+      "score": 2,
+      "correct_count": 3,
+      "total_questions": 15,
+      "answers": {
+        "q7": 0,
+        "q17": 0,
+        "q18": 0,
+        "q19": 1,
+        "q20": 1,
+        "q40": 1
+      },
+      "elapsed": 16,
+      "status": "completed",
+      "submitted_at": "2026-10-10T10:58:11.574Z",
+      "id": "HNjKEUI"
     }
   ],
   "answers": [
