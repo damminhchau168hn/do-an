@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import axiosClient from '../../api/axiosClient';
 
 const STATUS_LABEL = { active: 'Đang học', completed: 'Đã hoàn thành' };
@@ -54,7 +55,7 @@ export default function EnrollmentLookupPage() {
     <div className="page-container">
       <h1 style={{ marginBottom: 24 }}>Tra cứu đăng ký khoá học</h1>
 
-      <form onSubmit={handleSearch} className="card" style={{ marginBottom: 24, display: 'flex', gap: 10 }}>
+      <form onSubmit={handleSearch} className="card" style={{ marginBottom: 16, display: 'flex', gap: 10 }}>
         <input
           type="email"
           className="search-box"
@@ -67,6 +68,15 @@ export default function EnrollmentLookupPage() {
         <button type="submit" className="btn btn-primary">Tra cứu</button>
       </form>
 
+      {/* Gợi ý cho người chưa đăng ký */}
+      <p style={{ color: 'var(--ink-soft)', fontSize: 14, marginBottom: 24 }}>
+        Chưa đăng ký khoá học nào?{' '}
+        <Link to="/courses" style={{ color: 'var(--clay, #B84B2A)', fontWeight: 600 }}>
+          Xem danh sách khoá học
+        </Link>{' '}
+        rồi chọn một khoá và bấm <strong>Đăng ký khóa học</strong>.
+      </p>
+
       {loading && <div className="card"><div className="state-block">Đang tra cứu...</div></div>}
 
       {!loading && error && (
@@ -74,7 +84,14 @@ export default function EnrollmentLookupPage() {
       )}
 
       {!loading && !error && searched && results.length === 0 && (
-        <div className="card"><div className="state-block">Email này chưa đăng ký khoá học nào.</div></div>
+        <div className="card">
+          <div className="state-block">
+            Email này chưa đăng ký khoá học nào.
+            <div style={{ marginTop: 14 }}>
+              <Link to="/courses" className="btn btn-primary">Đăng ký khoá học</Link>
+            </div>
+          </div>
+        </div>
       )}
 
       {!loading && results.length > 0 && (

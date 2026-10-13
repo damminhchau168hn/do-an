@@ -3,228 +3,569 @@ import { useParams, Link } from 'react-router-dom';
 
 function getEmbedUrl(url) {
   if (!url) return null;
+
   const match = url.match(
     /(?:youtu\.be\/|youtube\.com\/(?:watch\?v=|embed\/|shorts\/))([A-Za-z0-9_-]{11})/
   );
-  return match ? `https://www.youtube.com/embed/${match[1]}` : null;
+
+  return match
+    ? `https://www.youtube.com/embed/${match[1]}`
+    : null;
 }
 
+const repository = {
+  c1: {
+    name: 'Chương 1: Cấu trúc dữ liệu & Giải thuật',
+    lessons: [
+      {
+        id: 'c1-l1',
+        name: 'Bài 1: Tổng quan về Mảng và Danh sách liên kết',
+        video_url: 'https://youtu.be/9HrpW3kiyw0',
+        content:
+          'Mảng (Array) và Danh sách liên kết (Linked List) là hai cấu trúc dữ liệu tuyến tính cơ bản. Tìm hiểu cách phân bổ bộ nhớ và độ phức tạp khi chèn, xóa phần tử.'
+      },
+      {
+        id: 'c1-l2',
+        name: 'Bài 2: Cơ chế Stack (Ngăn xếp) và Queue (Hàng đợi)',
+        video_url: 'https://youtu.be/jYLW3E4EMyg',
+        content:
+          'Tìm hiểu nguyên lý LIFO của ngăn xếp và FIFO của hàng đợi cùng các ứng dụng trong lập trình.'
+      }
+    ]
+  },
+  c2: {
+    name: 'Chương 2: Nhập môn Lập trình',
+    lessons: [
+      {
+        id: 'c2-l1',
+        name: 'Bài 1: Biến, Kiểu dữ liệu và Câu lệnh điều kiện',
+        video_url: 'https://youtu.be/CrHLRrpsg6Y',
+        content:
+          'Làm quen với biến, kiểu dữ liệu cơ bản và cách sử dụng câu lệnh If-Else.'
+      },
+      {
+        id: 'c2-l2',
+        name: 'Bài 2: Vòng lặp For, While và Hàm xử lý',
+        video_url: 'https://youtu.be/dCveScuUE4U',
+        content:
+          'Tìm hiểu vòng lặp và cách xây dựng hàm để tái sử dụng mã nguồn.'
+      }
+    ]
+  },
+  c3: {
+    name: 'Chương 3: Lập trình Web nâng cao (React & Node)',
+    lessons: [
+      {
+        id: 'c3-l1',
+        name: 'Bài 1: Khởi tạo dự án và Component trong ReactJS',
+        video_url: 'https://youtu.be/_4RQxs5OX-k',
+        content:
+          'Tìm hiểu cách khởi tạo dự án Vite và chia giao diện thành các React Component.'
+      },
+      {
+        id: 'c3-l2',
+        name: 'Bài 2: Xây dựng RESTful API với NodeJS & Express',
+        video_url: 'https://youtu.be/Lj-QNEo07yg',
+        content:
+          'Tìm hiểu cách xây dựng máy chủ, xử lý HTTP Request và trả về dữ liệu JSON.'
+      }
+    ]
+  },
+  c4: {
+    name: 'Chương 4: Kỹ năng thuyết trình & làm việc nhóm',
+    lessons: [
+      {
+        id: 'c4-l1',
+        name: 'Bài 1: Nghệ thuật thiết kế Slide và thuyết trình',
+        video_url: 'https://youtu.be/rP9fJdW9dyI',
+        content:
+          'Tìm hiểu bố cục slide, ngôn ngữ cơ thể và cách trình bày thu hút người nghe.'
+      },
+      {
+        id: 'c4-l2',
+        name: 'Bài 2: Phương pháp quản lý xung đột khi làm việc nhóm',
+        video_url: 'https://youtu.be/PUEeQWPX84Q',
+        content:
+          'Tìm hiểu cách lắng nghe, giải quyết xung đột và phối hợp làm việc nhóm.'
+      }
+    ]
+  },
+  c5: {
+    name: 'Chương 5: Tiếng Anh học thuật IELTS 6.5+',
+    lessons: [
+      {
+        id: 'c5-l1',
+        name: 'Bài 1: IELTS Reading - Skimming & Scanning',
+        video_url: 'https://youtu.be/2gHPxjffc4E',
+        content:
+          'Tìm hiểu cách đọc lướt lấy ý chính và tìm từ khóa trong bài IELTS Reading.'
+      },
+      {
+        id: 'c5-l2',
+        name: 'Bài 2: IELTS Writing Task 2',
+        video_url: 'https://youtu.be/ShwA1r3Bp-c',
+        content:
+          'Tìm hiểu cách xây dựng bài luận có bố cục rõ ràng và lập luận logic.'
+      }
+    ]
+  }
+};
+
 export default function CourseDetailPage() {
-  // Nhận id từ URL (ví dụ: c1, c2, c3...)
   const { id } = useParams();
+
+  const chapterKey =
+    id && id.startsWith('c') ? id : `c${id}`;
+
   const [currentChapter, setCurrentChapter] = useState(null);
   const [activeLesson, setActiveLesson] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Kho dữ liệu chuẩn hóa theo đúng tiêu đề 5 ô khóa học trên màn hình của bạn + Tích hợp Video
-    const repository = {
-      "c1": {
-        name: "Chương 1: Cấu trúc dữ liệu & Giải thuật",
-        quiz_id: "quiz-list",
-        lessons: [
-          { 
-            id: "c1-l1", 
-            name: "Bài 1: Tổng quan về Mảng và Danh sách liên kết", 
-            video_url:  "https://youtu.be/9HrpW3kiyw0?si=LCHcCCesKBzrpcaG", 
-            content: "Mảng (Array) và Danh sách liên kết (Linked List) là hai cấu trúc dữ liệu tuyến tính cơ bản nhất. Hãy theo dõi video trên để hiểu cách phân bổ bộ nhớ RAM và so sánh độ phức tạp thời gian O(n) khi thực hiện chèn, xóa phần tử." 
-          },
-          { 
-            id: "c1-l2", 
-            name: "Bài 2: Cơ chế Stack (Ngăn xếp) và Queue (Hàng đợi)", 
-            video_url: "https://youtu.be/jYLW3E4EMyg?si=6x0A16DfmHx0LYVi",
-            content: "Video này minh họa trực quan nguyên lý LIFO (Vào sau ra trước) của Ngăn xếp và FIFO (Vào trước ra trước) của Hàng đợi kèm theo các bài toán ứng dụng thực tế trong lập trình." 
-          }
-        ]
-      },
-      "c2": {
-        name: "Chương 2: Nhập môn Lập trình",
-        quiz_id: "quiz-list",
-        lessons: [
-          { 
-            id: "c2-l1", 
-            name: "Bài 1: Biến, Kiểu dữ liệu và Câu lệnh điều kiện", 
-            video_url: "https://youtu.be/CrHLRrpsg6Y?si=456P5Gc-0OFbF7MS",
-            content: "Bắt đầu hành trình lập trình bằng cách làm quen với khái niệm lưu trữ biến, các kiểu dữ liệu cơ bản (số, chuỗi, logic) và cách điều hướng luồng chương trình bằng câu lệnh If-Else qua video hướng dẫn chi tiết." 
-          },
-          { 
-            id: "c2-l2", 
-            name: "Bài 2: Vòng lặp For, While và Hàm xử lý", 
-            video_url: "https://youtu.be/dCveScuUE4U?si=pcipRJkkn4xADF70",
-            content: "Tìm hiểu cách tối ưu hóa mã nguồn, tránh lặp code bằng cách sử dụng vòng lặp và đóng gói logic vào trong các hàm tái sử dụng." 
-          }
-        ]
-      },
-      "c3": {
-        name: "Chương 3: Lập trình Web nâng cao (React & Node)",
-        quiz_id: "quiz-list",
-        lessons: [
-          { 
-            id: "c3-l1", 
-            name: "Bài 1: Khởi tạo dự án và Component trong ReactJS", 
-            video_url: "https://youtu.be/_4RQxs5OX-k?si=VAZH7JHczqfSE9oA",
-            content: "Video hướng dẫn từng bước cài đặt môi trường Vite, cấu trúc thư mục chuẩn cho dự án Frontend và cách chia nhỏ giao diện thành các React Component độc lập." 
-          },
-          { 
-            id: "c3-l2", 
-            name: "Bài 2: Xây dựng RESTful API backend với NodeJS & Express", 
-            video_url: "https://youtu.be/Lj-QNEo07yg?si=zzoLyI6-zeG_mbqo",
-            content: "Học cách viết mã nguồn máy chủ (Server), tiếp nhận HTTP Request từ Client và phản hồi dữ liệu định dạng JSON chuẩn REST API." 
-          }
-        ]
-      },
-      "c4": {
-        name: "Chương 4: Kỹ năng thuyết trình & làm việc nhóm",
-        quiz_id: "quiz-list",
-        lessons: [
-          { 
-            id: "c4-l1", 
-            name: "Bài 1: Nghệ thuật thiết kế Slide và Thuyết trình lôi cuốn", 
-            video_url: "https://youtu.be/rP9fJdW9dyI?si=6eC7nkG85Rnf5wMp",
-            content: "Video chia sẻ các quy tắc vàng trong bố cục slide, cách sử dụng ngôn ngữ cơ thể và kiểm soát cao độ giọng nói để thu hút người nghe hoàn toàn từ những giây đầu tiên." 
-          },
-          { 
-            id: "c4-l2", 
-            name: "Bài 2: Phương pháp quản lý xung đột khi làm việc nhóm", 
-            video_url: "https://youtu.be/PUEeQWPX84Q?si=nA2ZBIndLD3euXAB",
-            content: "Học cách lắng nghe tích cực, phân chia công việc theo mô hình Scrum/Agile hiệu quả để tối ưu năng suất làm việc của một đội ngũ." 
-          }
-        ]
-      },
-      "c5": {
-        name: "Chương 5: Tiếng Anh học thuật IELTS 6.5+",
-        quiz_id: "quiz-list",
-        lessons: [
-          { 
-            id: "c5-l1", 
-            name: "Bài 1: Chiến thuật làm bài IELTS Reading - Skimming & Scanning", 
-            video_url: "https://youtu.be/2gHPxjffc4E?si=7poIVczB712x5470",
-            content: "Video hướng dẫn mẹo đọc lướt lấy ý chính và quét từ khóa để tìm đáp án chính xác nhất trong thời gian ngắn cho bài thi đọc IELTS." 
-          },
-          { 
-            id: "c5-l2", 
-            name: "Bài 2: Cấu trúc bài viết IELTS Writing Task 2 đạt điểm cao", 
-            video_url: "https://youtu.be/ShwA1r3Bp-c?si=n1KNxVGkva-A_xmO",
-            content: "Phân tích sơ đồ viết bài luận 4 đoạn tiêu chuẩn, cách triển khai luận điểm logic và sử dụng các từ nối học thuật nâng band điểm tiêu chí Coherence & Cohesion." 
-          }
-        ]
+    let chapter = repository[chapterKey];
+
+    if (!chapter) {
+      setCurrentChapter(null);
+      setActiveLesson(null);
+      setLoading(false);
+      return;
+    }
+
+    try {
+      const saved = localStorage.getItem(`lessons_${chapterKey}`);
+
+      if (saved) {
+        const savedLessons = JSON.parse(saved);
+
+        if (Array.isArray(savedLessons)) {
+          chapter = {
+            ...chapter,
+            lessons: savedLessons
+          };
+        }
+      }
+    } catch (error) {
+      console.error('Không đọc được bài học đã lưu:', error);
+    }
+
+    setCurrentChapter(chapter);
+    setActiveLesson(chapter.lessons[0] || null);
+    setLoading(false);
+  }, [chapterKey]);
+
+  const handleExport = () => {
+    if (!currentChapter) return;
+
+    const data = {
+      chapter: currentChapter.name,
+      lessons: currentChapter.lessons
+    };
+
+    const blob = new Blob(
+      [JSON.stringify(data, null, 2)],
+      { type: 'application/json;charset=utf-8' }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+
+    a.href = url;
+    a.download = `${chapterKey}-lessons.json`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
+  };
+
+  const handleImport = (event) => {
+    const file = event.target.files?.[0];
+    if (!file || !currentChapter) return;
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      try {
+        const parsed = JSON.parse(reader.result);
+        const list = Array.isArray(parsed)
+          ? parsed
+          : parsed.lessons;
+
+        if (!Array.isArray(list)) {
+          throw new Error('Sai định dạng file');
+        }
+
+        const cleaned = list
+          .filter((lesson) => lesson && lesson.name)
+          .map((lesson, index) => ({
+            id:
+              lesson.id ||
+              `${chapterKey}-import-${Date.now()}-${index}`,
+            name: String(lesson.name),
+            video_url: String(lesson.video_url || ''),
+            content: String(lesson.content || '')
+          }));
+
+        if (cleaned.length === 0) {
+          throw new Error('Không có bài học hợp lệ');
+        }
+
+        const lessonMap = new Map(
+          currentChapter.lessons.map((lesson) => [
+            lesson.id,
+            lesson
+          ])
+        );
+
+        cleaned.forEach((lesson) => {
+          lessonMap.set(lesson.id, lesson);
+        });
+
+        const merged = Array.from(lessonMap.values());
+
+        const updatedChapter = {
+          ...currentChapter,
+          lessons: merged
+        };
+
+        localStorage.setItem(
+          `lessons_${chapterKey}`,
+          JSON.stringify(merged)
+        );
+
+        setCurrentChapter(updatedChapter);
+
+        if (
+          !activeLesson ||
+          !merged.some((lesson) => lesson.id === activeLesson.id)
+        ) {
+          setActiveLesson(merged[0] || null);
+        } else {
+          const updatedActiveLesson = merged.find(
+            (lesson) => lesson.id === activeLesson.id
+          );
+
+          setActiveLesson(updatedActiveLesson);
+        }
+
+        alert(`Đã nhập ${cleaned.length} bài học.`);
+      } catch (error) {
+        console.error('Lỗi nhập bài học:', error);
+        alert(
+          'File JSON không hợp lệ. File cần có danh sách lessons; mỗi bài học cần có name, video_url và content.'
+        );
       }
     };
 
-    // Hỗ trợ tìm kiếm theo cả dạng "c1" hoặc số "1"
-    const lookupKey = id && !id.startsWith('c') ? `c${id}` : id;
-    const selectedChapter = repository[lookupKey] || repository["c1"];
-    setCurrentChapter(selectedChapter);
+    reader.onerror = () => {
+      alert('Không thể đọc file. Bạn hãy thử lại.');
+    };
 
-    // Mặc định hiển thị bài học thứ nhất
-    if (selectedChapter && selectedChapter.lessons.length > 0) {
-      setActiveLesson(selectedChapter.lessons[0]);
-    }
-    setLoading(false);
-  }, [id]);
+    reader.readAsText(file);
+    event.target.value = '';
+  };
 
-  if (loading) return <div style={{ color: '#fff', padding: '20px' }}>Đang tải nội dung...</div>;
+  if (loading) {
+    return (
+      <div style={{ padding: 20 }}>
+        Đang tải nội dung...
+      </div>
+    );
+  }
+
+  if (!currentChapter) {
+    return (
+      <div style={{ padding: 30, textAlign: 'center' }}>
+        <h2>Không tìm thấy chương học</h2>
+        <Link to="/courses">Quay lại danh sách khóa học</Link>
+      </div>
+    );
+  }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#1a1a1a', color: '#fff', fontFamily: 'sans-serif' }}>
-      
-      {/* SIDEBAR BÊN TRÁI: DANH MỤC BÀI HỌC CỦA CHƯƠNG ĐANG CHỌN */}
-      <div style={{ width: '360px', borderRight: '1px solid #333', padding: '20px', overflowY: 'auto' }}>
-        <Link to="/courses" style={{ color: '#4caf50', textDecoration: 'none', display: 'inline-block', marginBottom: '20px', fontSize: '14px', fontWeight: 'bold' }}>
-          ⬅️ Quay lại danh sách chương
+    <div
+      style={{
+        display: 'flex',
+        flexWrap: 'wrap',
+        minHeight: '100vh',
+        backgroundColor: '#F7F3E8',
+        color: '#14213D',
+        fontFamily: "'IBM Plex Sans', sans-serif"
+      }}
+    >
+      {/* Sidebar bài học */}
+      <aside
+        style={{
+          width: '100%',
+          maxWidth: 360,
+          flex: '1 1 280px',
+          borderRight: '1px solid rgba(20,33,61,0.14)',
+          padding: 20,
+          boxSizing: 'border-box'
+        }}
+      >
+        <Link
+          to="/courses"
+          style={{
+            color: '#B84B2A',
+            textDecoration: 'none',
+            display: 'inline-block',
+            marginBottom: 20,
+            fontSize: 14,
+            fontWeight: 'bold'
+          }}
+        >
+          ⬅️ Quay lại danh sách khóa học
         </Link>
-        
-        <div style={{ backgroundColor: '#262626', padding: '15px', borderRadius: '8px' }}>
-          <h4 style={{ margin: '0 0 15px 0', fontSize: '15px', color: '#fff', fontWeight: 'bold', lineHeight: '1.4' }}>
-            {currentChapter?.name}
+
+        <div
+          style={{
+            backgroundColor: '#FFFFFF',
+            border: '1px solid rgba(20,33,61,0.14)',
+            padding: 15,
+            borderRadius: 4
+          }}
+        >
+          <h4
+            style={{
+              margin: '0 0 15px',
+              fontFamily: "'Fraunces', serif",
+              fontWeight: 600,
+              fontSize: 16,
+              lineHeight: 1.5
+            }}
+          >
+            {currentChapter.name}
           </h4>
 
-          <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 20px 0' }}>
-            {currentChapter?.lessons.map((lesson) => {
-              const isSelected = activeLesson?.id === lesson.id;
-              return (
-                <li 
-                  key={lesson.id}
-                  onClick={() => setActiveLesson(lesson)}
-                  style={{
-                    padding: '12px 10px',
-                    marginBottom: '6px',
-                    borderRadius: '5px',
-                    cursor: 'pointer',
-                    fontSize: '13.5px',
-                    backgroundColor: isSelected ? '#4caf50' : '#333',
-                    color: isSelected ? '#fff' : '#ccc',
-                    transition: 'all 0.2s',
-                    borderLeft: isSelected ? '4px solid #fff' : '4px solid transparent'
-                  }}
-                >
-                  {lesson.name}
-                </li>
-              );
-            })}
-          </ul>
+          {/* Nút đăng ký khóa học */}
+          <Link
+            to={`/enroll/${chapterKey}`}
+            style={{
+              display: 'block',
+              padding: 12,
+              marginBottom: 15,
+              backgroundColor: '#1F7A6C',
+              color: '#F7F3E8',
+              textDecoration: 'none',
+              textAlign: 'center',
+              borderRadius: 4,
+              fontSize: 14,
+              fontWeight: 'bold'
+            }}
+          >
+            Đăng ký khóa học ✍️
+          </Link>
 
-          <div style={{ textAlign: 'center', borderTop: '1px solid #444', paddingTop: '15px' }}>
-            <Link 
-              to="/quiz-list" 
+          {/* Import / Export */}
+          <div
+            style={{
+              display: 'flex',
+              gap: 8,
+              marginBottom: 15
+            }}
+          >
+            <button
+              onClick={handleExport}
               style={{
-                display: 'block',
-                padding: '10px',
-                backgroundColor: '#ff9800',
-                color: '#fff',
-                textDecoration: 'none',
-                borderRadius: '5px',
-                fontSize: '13px',
+                flex: 1,
+                padding: 9,
+                backgroundColor: '#14213D',
+                color: '#F7F3E8',
+                border: '1px solid #14213D',
+                borderRadius: 4,
+                cursor: 'pointer',
                 fontWeight: 'bold'
               }}
             >
-              Làm Bài Quiz Của Chương 📝
+              ⬇️ Export
+            </button>
+
+            <label
+              style={{
+                flex: 1,
+                padding: 9,
+                backgroundColor: 'transparent',
+                color: '#14213D',
+                border: '1px solid #14213D',
+                borderRadius: 4,
+                cursor: 'pointer',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                boxSizing: 'border-box'
+              }}
+            >
+              ⬆️ Import
+              <input
+                type="file"
+                accept=".json,application/json"
+                onChange={handleImport}
+                style={{ display: 'none' }}
+              />
+            </label>
+          </div>
+
+          {/* Danh sách bài học */}
+          {currentChapter.lessons.length > 0 ? (
+            <ul
+              style={{
+                listStyle: 'none',
+                padding: 0,
+                margin: '0 0 20px'
+              }}
+            >
+              {currentChapter.lessons.map((lesson) => {
+                const isSelected =
+                  activeLesson?.id === lesson.id;
+
+                return (
+                  <li
+                    key={lesson.id}
+                    onClick={() => setActiveLesson(lesson)}
+                    style={{
+                      padding: '12px 10px',
+                      marginBottom: 6,
+                      borderRadius: 4,
+                      cursor: 'pointer',
+                      fontSize: 13.5,
+                      lineHeight: 1.5,
+                      backgroundColor: isSelected
+                        ? '#14213D'
+                        : '#EFE9D8',
+                      color: isSelected ? '#F7F3E8' : '#14213D',
+                      borderLeft: isSelected
+                        ? '4px solid #F2A93B'
+                        : '4px solid transparent'
+                    }}
+                  >
+                    {lesson.name}
+                  </li>
+                );
+              })}
+            </ul>
+          ) : (
+            <p>Chương này chưa có bài học.</p>
+          )}
+
+          {/* Quiz theo chương */}
+          <div
+            style={{
+              textAlign: 'center',
+              borderTop: '1px solid rgba(20,33,61,0.14)',
+              paddingTop: 15
+            }}
+          >
+            <Link
+              to={`/quiz-list?chapter=${chapterKey}`}
+              style={{
+                display: 'block',
+                padding: 10,
+                backgroundColor: '#14213D',
+                color: '#F7F3E8',
+                textDecoration: 'none',
+                borderRadius: 4,
+                fontSize: 13,
+                fontWeight: 'bold'
+              }}
+            >
+              Làm bài Quiz của chương 📝
             </Link>
           </div>
         </div>
-      </div>
+      </aside>
 
-      {/* KHU VỰC BÊN PHẢI: HIỂN THỊ TRÌNH PHÁT VIDEO VÀ VĂN BẢN */}
-      <div style={{ flex: 1, padding: '40px', overflowY: 'auto', backgroundColor: '#141414' }}>
+      {/* Nội dung bài học */}
+      <main
+        style={{
+          flex: '1 1 400px',
+          minWidth: 0,
+          padding: 'clamp(20px, 4vw, 40px)',
+          boxSizing: 'border-box',
+          backgroundColor: '#F7F3E8'
+        }}
+      >
         {activeLesson ? (
-          <div style={{ maxWidth: '850px', margin: '0 auto' }}>
-            {/* Tiêu đề bài học */}
-            <h2 style={{ borderBottom: '2px solid #4caf50', paddingBottom: '15px', color: '#fff', fontSize: '22px', fontWeight: 'bold', marginBottom: '25px' }}>
+          <div style={{ maxWidth: 850, margin: '0 auto' }}>
+            <h2
+              style={{
+                borderBottom: '2px solid #B84B2A',
+                paddingBottom: 15,
+                fontFamily: "'Fraunces', serif",
+                fontWeight: 600,
+                fontSize: 26,
+                lineHeight: 1.5,
+                marginBottom: 25
+              }}
+            >
               {activeLesson.name}
             </h2>
-          
-            {/* KHUNG TRÌNH PHÁT VIDEO YOUTUBE NHÚNG PHẢN HỒI (RESPONSIVE) */}
+
             {getEmbedUrl(activeLesson.video_url) ? (
-          <div style={{ position: 'relative', width: '100%', paddingTop: '56.25%', backgroundColor: '#000', borderRadius: '8px', overflow: 'hidden', marginBottom: '25px', boxShadow: '0 4px 15px rgba(0,0,0,0.5)' }}>
-            <iframe
-              key={activeLesson.id}
-              style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none' }}
-              src={getEmbedUrl(activeLesson.video_url)}
-              title={activeLesson.name}
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-            ></iframe>
-          </div>
-        ) : (
-          <p style={{ color: '#ff9800', marginBottom: '25px' }}>
-            Video chưa khả dụng hoặc link không hợp lệ.
-          </p>
-        )}
-            
-            {/* Mô tả chi tiết bên dưới video */}
-            <h3 style={{ fontSize: '16px', color: '#4caf50', margin: '20px 0 10px 0', fontWeight: 'bold' }}>Tóm tắt nội dung bài học:</h3>
-            <p style={{ lineHeight: '1.8', fontSize: '15.5px', color: '#e0e0e0', textAlign: 'justify', margin: 0 }}>
+              <div
+                style={{
+                  position: 'relative',
+                  width: '100%',
+                  paddingTop: '56.25%',
+                  backgroundColor: '#000',
+                  borderRadius: 8,
+                  overflow: 'hidden',
+                  marginBottom: 25,
+                  boxShadow: '0 4px 15px rgba(0,0,0,0.2)'
+                }}
+              >
+                <iframe
+                  key={activeLesson.id}
+                  style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    border: 0
+                  }}
+                  src={getEmbedUrl(activeLesson.video_url)}
+                  title={activeLesson.name}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <p style={{ color: '#B84B2A', marginBottom: 25 }}>
+                Video chưa khả dụng hoặc đường dẫn không hợp lệ.
+              </p>
+            )}
+
+            <h3
+              style={{
+                fontFamily: "'Fraunces', serif",
+                fontSize: 18,
+                color: '#B84B2A',
+                margin: '20px 0 10px',
+                fontWeight: 'bold'
+              }}
+            >
+              Tóm tắt nội dung bài học:
+            </h3>
+
+            <p
+              style={{
+                lineHeight: 1.8,
+                fontSize: 15.5,
+                color: '#14213D',
+                textAlign: 'justify',
+                margin: 0
+              }}
+            >
               {activeLesson.content}
             </p>
           </div>
         ) : (
-          <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%', color: '#aaa' }}>
-            Chọn bài học bên trái để bắt đầu học video.
+          <div style={{ padding: 30, color: '#5B6472' }}>
+            Chương này chưa có bài học để hiển thị.
           </div>
         )}
-      </div>
-
+      </main>
     </div>
   );
 }

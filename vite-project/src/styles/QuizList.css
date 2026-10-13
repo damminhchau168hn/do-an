@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Sans:wght@400;600&family=IBM+Plex+Mono:wght@400;600&display=swap");
 
-.quiz-page {
+.ql-page {
   --ink: #14213d;
   --paper: #f7f3e8;
   --amber: #f2a93b;
@@ -17,24 +17,24 @@
   font-family: "IBM Plex Sans", sans-serif;
   text-align: left;
 }
-.quiz-page *,
-.quiz-page *::before,
-.quiz-page *::after {
+.ql-page *,
+.ql-page *::before,
+.ql-page *::after {
   box-sizing: border-box;
 }
 
-.quiz-wrap {
+.ql-wrap {
   max-width: 820px;
   margin: 0 auto;
   padding: 0 32px;
 }
 @media (max-width: 640px) {
-  .quiz-wrap {
+  .ql-wrap {
     padding: 0 20px;
   }
 }
 
-.quiz-eyebrow {
+.ql-eyebrow {
   margin: 0;
   display: flex;
   align-items: center;
@@ -45,14 +45,14 @@
   text-transform: uppercase;
   color: var(--clay);
 }
-.quiz-eyebrow::before {
+.ql-eyebrow::before {
   content: "";
   width: 16px;
   height: 1px;
   background: var(--clay);
 }
 
-.quiz-heading {
+.ql-heading {
   margin: 12px 0 0;
   font-family: "Fraunces", serif;
   font-weight: 600;
@@ -61,21 +61,21 @@
   letter-spacing: -0.01em;
   color: var(--ink);
 }
-.quiz-lede {
+.ql-lede {
   margin: 10px 0 0;
   max-width: 56ch;
   font-size: 14.5px;
   color: var(--ink-soft);
 }
 
-.quiz-list {
+.ql-list {
   margin-top: 26px;
   overflow: hidden;
   background: var(--card);
   border: 1px solid var(--line);
   border-radius: 12px;
 }
-.quiz-row {
+.ql-row {
   display: grid;
   grid-template-columns: auto 1fr auto auto;
   gap: 20px;
@@ -83,30 +83,30 @@
   padding: 20px 22px;
   border-bottom: 1px solid var(--line);
 }
-.quiz-row:last-child {
+.ql-row:last-child {
   border-bottom: none;
 }
-.quiz-row.locked {
+.ql-row.locked {
   opacity: 0.5;
 }
 @media (max-width: 640px) {
-  .quiz-row {
+  .ql-row {
     grid-template-columns: auto 1fr;
   }
-  .quiz-row > :nth-child(3),
-  .quiz-row > :nth-child(4) {
+  .ql-row > :nth-child(3),
+  .ql-row > :nth-child(4) {
     grid-column: 2;
     margin-top: 6px;
     justify-self: start;
   }
 }
 
-.quiz-title {
+.ql-title {
   font-family: "Fraunces", serif;
   font-size: 16px;
   font-weight: 600;
 }
-.quiz-meta {
+.ql-meta {
   margin-top: 4px;
   font-size: 12.5px;
   color: var(--ink-soft);
@@ -139,7 +139,7 @@
   font-size: 12px;
 }
 
-.quiz-badge {
+.ql-badge {
   display: inline-flex;
   align-items: center;
   padding: 4px 10px;
@@ -150,20 +150,20 @@
   text-transform: uppercase;
   white-space: nowrap;
 }
-.quiz-badge.teal {
+.ql-badge.teal {
   background: rgba(31, 122, 108, 0.12);
   color: var(--teal);
 }
-.quiz-badge.amber {
+.ql-badge.amber {
   background: rgba(242, 169, 59, 0.18);
   color: #8a5a12;
 }
-.quiz-badge.ink {
+.ql-badge.ink {
   background: rgba(20, 33, 61, 0.08);
   color: var(--ink-soft);
 }
 
-.quiz-btn {
+.ql-btn {
   display: inline-block;
   padding: 9px 16px;
   border: 1px solid var(--ink);
@@ -176,30 +176,30 @@
   cursor: pointer;
   transition: all 0.15s;
 }
-.quiz-btn.primary {
+.ql-btn.primary {
   background: var(--ink);
   color: var(--paper);
 }
-.quiz-btn.primary:hover {
+.ql-btn.primary:hover {
   background: var(--clay);
   border-color: var(--clay);
   color: var(--paper);
 }
-.quiz-btn.ghost {
+.ql-btn.ghost {
   background: transparent;
   border-color: var(--line);
   color: var(--ink);
 }
-.quiz-btn:disabled {
+.ql-btn:disabled {
   opacity: 0.5;
   cursor: not-allowed;
 }
-.quiz-btn:focus-visible {
+.ql-btn:focus-visible {
   outline: 2px solid var(--amber);
   outline-offset: 2px;
 }
 
-.quiz-state {
+.ql-state {
   margin-top: 26px;
   padding: 22px;
   text-align: center;
@@ -209,16 +209,16 @@
   border: 1px dashed var(--line);
   border-radius: 12px;
 }
-.quiz-list .quiz-state {
+.ql-list .ql-state {
   margin-top: 0;
   border: none;
   border-radius: 0;
 }
-.quiz-state.error {
+.ql-state.error {
   color: #c23b3b;
 }
 
-.quiz-placeholder {
+.ql-placeholder {
   width: 52px;
   height: 52px;
   border-radius: 50%;
@@ -232,4 +232,62 @@
   font-weight: 600;
   flex-shrink: 0;
   background: #f9fafb;
+}
+/* Giữ giao diện QuizList độc lập với CSS chung */
+.ql-page {
+  width: 100%;
+  min-height: 60vh;
+  isolation: isolate;
+}
+
+.ql-page .ql-wrap {
+  width: 100%;
+}
+
+.ql-page .ql-list {
+  width: 100%;
+}
+
+.ql-page .ql-row {
+  min-width: 0;
+}
+
+.ql-page .ql-row > div {
+  min-width: 0;
+}
+
+.ql-page .ql-title {
+  overflow-wrap: anywhere;
+}
+
+.ql-page .ql-meta {
+  line-height: 1.5;
+}
+
+.ql-page .ql-btn {
+  text-align: center;
+}
+
+/* Tránh nút bị tràn trên màn hình nhỏ */
+@media (max-width: 640px) {
+  .ql-page .ql-row {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 12px;
+    padding: 16px;
+  }
+
+  .ql-page .ql-row > :nth-child(3),
+  .ql-page .ql-row > :nth-child(4) {
+    grid-column: 2;
+    margin-top: 6px;
+    justify-self: start;
+  }
+
+  .ql-page .ql-badge {
+    white-space: normal;
+  }
+
+  .ql-page .ql-btn {
+    white-space: normal;
+  }
 }

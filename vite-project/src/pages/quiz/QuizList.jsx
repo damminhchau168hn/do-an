@@ -1,7 +1,6 @@
-
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { API, CURRENT_USER_ID } from "../../api/quizUtils";
 import "../../styles/QuizList.css";
 
@@ -55,16 +54,10 @@ function Dial({ percent, color, size = 52 }) {
   );
 }
 
-/* Sắp xếp quiz theo chương */
-const byChapter = (a, b) =>
-  String(a.session_id).localeCompare(
-    String(b.session_id),
-    undefined,
-    { numeric: true }
-  );
+/* Lấy số chương từ chuỗi: "c1" -> "1", "s2" -> "2" */
+const chapterNumber = (value) => String(value ?? "").replace(/\D/g, "");
 
 /* Tính trạng thái quiz */
-
 function buildRows(quizzes, attempts) {
   const stats = {};
 
@@ -73,18 +66,14 @@ function buildRows(quizzes, attempts) {
     return (
       ["submitted", "completed", "finished"].includes(
         String(a.status || "").toLowerCase()
-      ) &&
-      a.submitted_at
+      ) && a.submitted_at
     );
   });
 
   submittedAttempts.forEach((a) => {
     const id = String(a.quiz_id);
 
-    const s = stats[id] ?? (stats[id] = {
-      count: 0,
-      best: 0,
-    });
+    const s = stats[id] ?? (stats[id] = { count: 0, best: 0 });
 
     s.count += 1;
     s.best = Math.max(s.best, Number(a.score) || 0);
@@ -104,8 +93,7 @@ function buildRows(quizzes, attempts) {
     const published = quiz.status === "published";
 
     const passed =
-      !!s && s.count > 0 &&
-      s.best >= Number(quiz.pass_score ?? 5);
+      !!s && s.count > 0 && s.best >= Number(quiz.pass_score ?? 5);
 
     // Quiz đầu tiên được mở nếu đã xuất bản.
     // Quiz tiếp theo chỉ mở khi quiz trước đạt điểm yêu cầu.
@@ -176,35 +164,52 @@ function rowTexts(row) {
   };
 }
 
-/* Nút thao tác */
+/* Nút thao tác
+   - Chưa mở: giữ nguyên (nút bị khóa)
+   - Chưa làm: chỉ có "Làm bài"
+   - Đã làm: "Xem kết quả" + "Làm lại" */
 function QuizAction({ row }) {
-  const { quiz, state } = row;
+  const { quiz, state, stats } = row;
 
   if (state === "locked") {
     return (
-      <button className="quiz-btn ghost" disabled>
+      <button className="ql-btn ghost" disabled>
         Chưa mở
       </button>
     );
   }
 
-  if (state === "done") {
-    return (
-      <Link to={`/quiz-result/${quiz.id}`} className="quiz-btn ghost">
-        Xem kết quả
-      </Link>
-    );
-  }
+  const hasDone = !!stats && stats.count > 0;
 
   return (
-    <Link to={`/quiz-doing/${quiz.id}`} className="quiz-btn primary">
-      {state === "failed" ? "Làm lại" : "Bắt đầu làm bài"}
-    </Link>
+    <div
+      style={{
+        display: "flex",
+        gap: 10,
+        alignItems: "center",
+        justifyContent: "flex-end",
+        whiteSpace: "nowrap",
+      }}
+    >
+      {hasDone && (
+        <Link to={`/quiz-result/${quiz.id}`} className="ql-btn ghost">
+          Xem kết quả
+        </Link>
+      )}
+
+      <Link to={`/quiz-doing/${quiz.id}`} className="ql-btn primary">
+        {hasDone ? "Làm lại" : "Làm bài"}
+      </Link>
+    </div>
   );
 }
 
 /* Component chính */
 function QuizList() {
+  const [searchParams] = useSearchParams();
+  const chapterParam = searchParams.get("chapter"); // ví dụ "c1"
+  const chapterNo = chapterParam ? chapterNumber(chapterParam) : "";
+
   const [rows, setRows] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -238,36 +243,53 @@ function QuizList() {
     };
   }, []);
 
+  // Khi vào từ trang chương: chỉ giữ quiz của chương đó
+  // (trạng thái mở khóa vẫn tính trên toàn bộ quiz)
+  const visibleRows = chapterNo
+    ? rows.filter((row) => chapterNumber(row.quiz.session_id) === chapterNo)
+    : rows;
+
   return (
-    <div className="quiz-page">
-      <div className="quiz-wrap">
-        <p className="quiz-eyebrow">
-          Cấu trúc dữ liệu &amp; Giải thuật
-        </p>
+    <div className="ql-page">
+      <div className="ql-wrap">
+        <p className="ql-eyebrow">Cấu trúc dữ liệu &amp; Giải thuật</p>
 
-        <h1 className="quiz-heading">Các bài quiz</h1>
+        <h1 className="ql-heading">
+          {chapterNo ? `Quiz của chương ${chapterNo}` : "Các bài quiz"}
+        </h1>
 
-        <p className="quiz-lede">
+        <p className="ql-lede">
           Hoàn thành quiz của chương trước với số điểm đạt để mở khóa
           quiz của chương tiếp theo. Mỗi quiz được tính giờ, lời giải
           hiển thị sau khi nộp bài.
         </p>
 
-        {loading && (
-          <div className="quiz-state">Đang tải danh sách Quiz...</div>
+        {chapterNo && (
+          <div style={{ display: "flex", gap: 10, marginTop: 16 }}>
+            <Link to={`/courses/${chapterParam}`} className="ql-btn ghost">
+              ← Quay lại bài học
+            </Link>
+            <Link to="/quiz-list" className="ql-btn ghost">
+              Xem tất cả quiz
+            </Link>
+          </div>
         )}
 
-        {error && (
-          <div className="quiz-state error">{error}</div>
-        )}
+        {loading && <div className="ql-state">Đang tải danh sách Quiz...</div>}
+
+        {error && <div className="ql-state error">{error}</div>}
 
         {!loading && !error && (
-          <div className="quiz-list">
-            {rows.length === 0 && (
-              <div className="quiz-state">Chưa có quiz nào.</div>
+          <div className="ql-list">
+            {visibleRows.length === 0 && (
+              <div className="ql-state">
+                {chapterNo
+                  ? "Chương này chưa có quiz."
+                  : "Chưa có quiz nào."}
+              </div>
             )}
 
-            {rows.map((row) => {
+            {visibleRows.map((row) => {
               const { quiz, state, stats } = row;
               const { meta, badge, badgeClass } = rowTexts(row);
 
@@ -279,9 +301,7 @@ function QuizList() {
               return (
                 <div
                   key={quiz.id}
-                  className={`quiz-row${
-                    state === "locked" ? " locked" : ""
-                  }`}
+                  className={`ql-row${state === "locked" ? " locked" : ""}`}
                 >
                   {showResult ? (
                     <Dial
@@ -289,17 +309,15 @@ function QuizList() {
                       color={COLORS[state]}
                     />
                   ) : (
-                    <div className="quiz-placeholder">?</div>
+                    <div className="ql-placeholder">?</div>
                   )}
 
                   <div>
-                    <div className="quiz-title">{quiz.title}</div>
-                    <div className="quiz-meta">{meta}</div>
+                    <div className="ql-title">{quiz.title}</div>
+                    <div className="ql-meta">{meta}</div>
                   </div>
 
-                  <span className={`quiz-badge ${badgeClass}`}>
-                    {badge}
-                  </span>
+                  <span className={`ql-badge ${badgeClass}`}>{badge}</span>
 
                   <QuizAction row={row} />
                 </div>
